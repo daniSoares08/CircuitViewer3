@@ -62,7 +62,7 @@ static void draw_antigos_menu(uint8_t selected) {
     prn("Versoes anteriores:", 10, 30);
 
     if (selected >= visible) first = (uint8_t)(selected - visible + 1);
-    for (i = 0; i < visible && first + i < antigos_count; i++) {
+    for (i = 0; i < visible && first + i < antigos_topic_count; i++) {
         uint8_t item = (uint8_t)(first + i);
         int y = 46 + i * 17;
         if (item == selected) {
@@ -74,10 +74,10 @@ static void draw_antigos_menu(uint8_t selected) {
         } else {
             gfx_SetTextFGColor(COL_BLACK);
         }
-        prn(antigos_items[item].title, 22, y);
+        prn(antigos_topics[item].title, 22, y);
     }
     if (first > 0) prn("^", 300, 32);
-    if (first + visible < antigos_count) prn("v", 300, 212);
+    if (first + visible < antigos_topic_count) prn("v", 300, 212);
     draw_footer_menu();
 }
 
@@ -295,9 +295,91 @@ static void subject_loop(uint8_t subject_index) {
     }
 }
 
+static void appvar_missing_loop(void) {
+    bool redraw = true;
+
+    wait_key_release();
+    while (1) {
+        check_on_exit();
+        kb_Scan();
+        if (redraw) {
+            gfx_FillScreen(COL_WHITE);
+            gfx_SetTextFGColor(COL_BLACK);
+            print_center("ANTIGOS", 8);
+            gfx_SetColor(COL_BLACK);
+            gfx_HorizLine(0, 24, SCREEN_W);
+            print_center("CV3DATA.8xv ausente", 92);
+            print_center("Envie o arquivo CV3DATA", 114);
+            print_center("CLEAR volta", 140);
+            draw_footer_ex();
+            gfx_SwapDraw();
+            redraw = false;
+        }
+        if (pressed_once(kb_KeyClear)) {
+            wait_key_release();
+            return;
+        }
+        delay(15);
+    }
+}
+
+static void antigos_view_loop(uint8_t topic) {
+    uint8_t start = antigos_topics[topic].start;
+    uint8_t total = antigos_topics[topic].count;
+    uint8_t pos = 0;
+    uint8_t page = 0;
+    bool redraw = true;
+
+    wait_key_release();
+    while (1) {
+        uint16_t gidx = (uint16_t)(start + pos);
+        const Exercise *ex = antigos_load(gidx);
+        check_on_exit();
+        kb_Scan();
+        if (redraw && ex) {
+            antigos_set_page(page);
+            draw_ex_header(antigos_meta[gidx].subject, ex->title, pos, total,
+                           page, ex->page_count);
+            draw_page_template(&ex->pages[page]);
+            draw_footer_ex();
+            gfx_SwapDraw();
+            redraw = false;
+        }
+        if (pressed_once(kb_KeyClear)) {
+            wait_key_release();
+            return;
+        }
+        if ((pressed_once(kb_KeyRight) || pressed_once(kb_KeyEnter)) &&
+            ex && page + 1 < ex->page_count) {
+            page++;
+            redraw = true;
+        }
+        if (pressed_once(kb_KeyLeft) && page > 0) {
+            page--;
+            redraw = true;
+        }
+        if (pressed_once(kb_KeyDown) && pos + 1 < total) {
+            pos++;
+            page = 0;
+            redraw = true;
+        }
+        if (pressed_once(kb_KeyUp) && pos > 0) {
+            pos--;
+            page = 0;
+            redraw = true;
+        }
+        delay(15);
+    }
+}
+
 static void antigos_loop(void) {
     uint8_t selected = 0;
     bool redraw = true;
+
+    if (!appvar_available()) {
+        appvar_missing_loop();
+        return;
+    }
 
     wait_key_release();
     while (1) {
@@ -312,7 +394,7 @@ static void antigos_loop(void) {
             wait_key_release();
             return;
         }
-        if (pressed_once(kb_KeyDown) && selected + 1 < antigos_count) {
+        if (pressed_once(kb_KeyDown) && selected + 1 < antigos_topic_count) {
             selected++;
             redraw = true;
         }
@@ -322,7 +404,7 @@ static void antigos_loop(void) {
         }
         if (pressed_once(kb_KeyEnter)) {
             wait_key_release();
-            subject_loop(antigos_items[selected].index);
+            antigos_view_loop(selected);
             redraw = true;
         }
         delay(15);
@@ -332,6 +414,11 @@ static void antigos_loop(void) {
 /* ---- Component search -------------------------------------------------- */
 
 enum { SEARCH_BACK = 0, SEARCH_RUN = 1 };
+
+typedef struct {
+    bool ant;
+    uint16_t idx;
+} SearchRef;
 
 static void draw_search_select(const uint8_t counts[5], bool show_labels,
                                bool show_counts) {
@@ -423,7 +510,7 @@ static void search_no_match_loop(void) {
     }
 }
 
-static void search_results_loop(const uint8_t *filtered, uint16_t fcount) {
+static void search_results_loop(const SearchRef *filtered, uint16_t fcount) {
     uint16_t idx = 0;
     uint8_t page = 0;
     bool redraw = true;
@@ -432,14 +519,25 @@ static void search_results_loop(const uint8_t *filtered, uint16_t fcount) {
 
     wait_key_release();
     while (1) {
-        const ExEntry *e = &all_exercises[filtered[idx]];
-        const Exercise *ex = e->ex;
+        const SearchRef *ref = &filtered[idx];
+        const Exercise *ex;
+        const char *subject;
+
+        if (ref->ant) {
+            ex = antigos_load(ref->idx);
+            subject = antigos_meta[ref->idx].subject;
+        } else {
+            const ExEntry *e = &all_exercises[ref->idx];
+            ex = e->ex;
+            subject = e->subject;
+        }
 
         check_on_exit();
         kb_Scan();
 
-        if (redraw) {
-            draw_ex_header(e->subject, ex->title, (uint8_t)idx,
+        if (redraw && ex) {
+            if (ref->ant) antigos_set_page(page);
+            draw_ex_header(subject, ex->title, (uint8_t)idx,
                            (uint8_t)fcount, page, ex->page_count);
             draw_page_template(&ex->pages[page]);
             draw_footer_ex();
@@ -459,7 +557,7 @@ static void search_results_loop(const uint8_t *filtered, uint16_t fcount) {
 
 static void search_flow(void) {
     static uint8_t counts[5] = { 0, 0, 0, 0, 0 };  /* persists across entries */
-    static uint8_t filtered[256];
+    static SearchRef filtered[256];
 
     while (1) {
         uint8_t action = search_select_loop(counts);
@@ -472,8 +570,25 @@ static void search_flow(void) {
             if (e->comp[0] >= counts[0] && e->comp[1] >= counts[1] &&
                 e->comp[2] >= counts[2] && e->comp[3] >= counts[3] &&
                 e->comp[4] >= counts[4]) {
-                if (fcount < (uint16_t)sizeof(filtered))
-                    filtered[fcount++] = (uint8_t)i;
+                if (fcount < (uint16_t)(sizeof(filtered) / sizeof(filtered[0]))) {
+                    filtered[fcount].ant = false;
+                    filtered[fcount].idx = i;
+                    fcount++;
+                }
+            }
+        }
+        if (appvar_available()) {
+            for (i = 0; i < antigos_meta_count; i++) {
+                const AntMeta *m = &antigos_meta[i];
+                if (m->comp[0] >= counts[0] && m->comp[1] >= counts[1] &&
+                    m->comp[2] >= counts[2] && m->comp[3] >= counts[3] &&
+                    m->comp[4] >= counts[4]) {
+                    if (fcount < (uint16_t)(sizeof(filtered) / sizeof(filtered[0]))) {
+                        filtered[fcount].ant = true;
+                        filtered[fcount].idx = i;
+                        fcount++;
+                    }
+                }
             }
         }
         search_results_loop(filtered, fcount);
@@ -486,6 +601,7 @@ int main(void) {
     kb_Scan();
     screen_init();
     calc_init();
+    appvar_init();
 
     /* open straight into the search/calculator screen */
     search_flow();

@@ -80,8 +80,24 @@ extern const Subject subjects[];
 extern const uint8_t subject_count;
 extern const MenuItem menu_items[];
 extern const uint8_t menu_count;
-extern const MenuItem antigos_items[];
-extern const uint8_t antigos_count;
+
+typedef struct {
+    const char *title;
+    uint8_t start;
+    uint8_t count;
+} AntTopic;
+
+typedef struct {
+    const char *title;
+    const char *subject;
+    uint8_t page_count;
+    uint8_t comp[5];
+} AntMeta;
+
+extern const AntTopic antigos_topics[];
+extern const uint8_t antigos_topic_count;
+extern const AntMeta antigos_meta[];
+extern const uint16_t antigos_meta_count;
 
 typedef struct {
     const Exercise *ex;
@@ -91,6 +107,11 @@ typedef struct {
 
 extern const ExEntry all_exercises[];
 extern const uint16_t all_exercises_count;
+
+void appvar_init(void);
+bool appvar_available(void);
+const Exercise *antigos_load(uint16_t meta_index);
+void antigos_set_page(uint8_t page);
 
 void check_on_exit(void);
 uint8_t pressed_once(kb_lkey_t key);
@@ -138,5 +159,11 @@ void draw_opamp(int x, int y, bool noninv_input_top);
 void draw_dep_vsource_v(int x, int y1, int y2, const char *label);
 void draw_dep_vsource_h(int x1, int y, int x2, const char *label);
 void draw_dep_isource_v(int x, int y1, int y2, const char *label, bool upward);
+
+void ui_label(const char *text, int x, int y);
+void ui_arrow_h(int x1, int y, int x2, const char *label, bool right);
+void ui_arrow_v(int x, int y1, int y2, const char *label, bool up);
+void ui_pm(int x, int y1, int y2);
+void ui_vo(int x, int y_top, int y_bottom, const char *label);
 
 #endif

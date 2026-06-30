@@ -498,3 +498,38 @@ void draw_dep_isource_v(int x, int y1, int y2, const char *label, bool upward) {
     }
     prn(label, x + 16, cy - 4);
 }
+
+void ui_label(const char *text, int x, int y) {
+    gfx_SetTextFGColor(COL_BLACK);
+    prn(text, x, y);
+}
+
+void ui_arrow_h(int x1, int y, int x2, const char *label, bool right) {
+    int ah = right ? -1 : 1;
+    int head = right ? x2 : x1;
+    draw_wire(x1, y, x2, y);
+    gfx_SetColor(COL_BLACK);
+    gfx_Line(head, y, head + ah * 7, y - 4);
+    gfx_Line(head, y, head + ah * 7, y + 4);
+    ui_label(label, (x1 + x2) / 2 - 8, y - 16);
+}
+
+void ui_arrow_v(int x, int y1, int y2, const char *label, bool up) {
+    int ah = up ? 1 : -1;
+    int head = up ? y1 : y2;
+    draw_wire(x, y1, x, y2);
+    gfx_SetColor(COL_BLACK);
+    gfx_Line(x, head, x - 4, head + ah * 7);
+    gfx_Line(x, head, x + 4, head + ah * 7);
+    ui_label(label, x + 6, (y1 + y2) / 2 - 4);
+}
+
+void ui_pm(int x, int y1, int y2) {
+    ui_label("+", x, y1);
+    ui_label("-", x, y2);
+}
+
+void ui_vo(int x, int y_top, int y_bottom, const char *label) {
+    ui_pm(x, y_top, y_bottom);
+    ui_label(label, x - 8, (y_top + y_bottom) / 2 - 4);
+}

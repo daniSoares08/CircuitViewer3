@@ -16,6 +16,9 @@ Run:
 """
 
 import argparse
+import shutil
+import struct
+import subprocess
 from pathlib import Path
 
 import cv_render
@@ -4371,7 +4374,15 @@ def generate_exercise_c(ex):
 
 
 def generate_c():
-    all_subjects = list(SUBJECT_ORDER) + list(ANTIGOS_ORDER)
+    all_subjects = list(SUBJECT_ORDER)
+    main_exercises = [ex for ex in EXERCISES if ex["subject"] in SUBJECT_ORDER]
+    draws = all_draws()
+    used_bodies = set()
+    for ex in main_exercises:
+        for page in build_pages(ex):
+            body_name = page.get("body_name")
+            if body_name:
+                used_bodies.add(body_name)
     out = [
         '#include "cv3.h"',
         "",
@@ -4382,6 +4393,7 @@ def generate_c():
     ]
     # generic fallbacks: emit only the ones actually referenced
     used_generic = {ex["kind"] for ex in EXERCISES
+                    if ex["subject"] in SUBJECT_ORDER
                     if ex["id"] not in CIRCUITS
                     and ex["id"] not in MULTI_CIRCUITS
                     and ex.get("circuit", "generic") is not None}
@@ -4390,16 +4402,18 @@ def generate_c():
             out.append(src)
             out.append("")
     # dedicated circuit draw functions (single source = CIRCUITS + MULTI)
-    for name, ops in all_draws().items():
+    for name, ops in draws.items():
+        if name not in used_bodies:
+            continue
         out.append(cv_render.emit_circuit_c(name, ops))
         out.append("")
 
-    for ex in EXERCISES:
+    for ex in main_exercises:
         out.append(generate_exercise_c(ex))
         out.append("")
 
     for subject in all_subjects:
-        items = [ex for ex in EXERCISES if ex["subject"] == subject]
+        items = [ex for ex in main_exercises if ex["subject"] == subject]
         arr = "subject_%s" % safe_id(subject)
         out.append("static const Exercise %s[] = {" % arr)
         for ex in items:
@@ -4419,7 +4433,7 @@ def generate_c():
     out.append("const ExEntry all_exercises[] = {")
     for subject in all_subjects:
         arr = "subject_%s" % safe_id(subject)
-        items = [ex for ex in EXERCISES if ex["subject"] == subject]
+        items = [ex for ex in main_exercises if ex["subject"] == subject]
         for i, ex in enumerate(items):
             cc = comp_counts_for(ex)
             out.append("    { &%s[%d], %s, { %d, %d, %d, %d, %d } },"
@@ -4440,13 +4454,31 @@ def generate_c():
     out.append("")
     out.append("const uint8_t menu_count = COUNT_OF(menu_items);")
     out.append("")
-    out.append("const MenuItem antigos_items[] = {")
-    base = len(SUBJECT_ORDER)
-    for k, subject in enumerate(ANTIGOS_ORDER):
-        out.append("    { %s, MENU_SUBJECT, %d }," % (c_string(subject), base + k))
+
+    out.append("const AntMeta antigos_meta[] = {")
+    ant_index = 0
+    topic_rows = []
+    for subject in ANTIGOS_ORDER:
+        items = [ex for ex in EXERCISES if ex["subject"] == subject]
+        start = ant_index
+        for ex in items:
+            cc = comp_counts_for(ex)
+            out.append("    { %s, %s, %d, { %d, %d, %d, %d, %d } },"
+                       % (c_string(ex["title"]), c_string(subject),
+                          len(build_pages(ex)), cc[0], cc[1], cc[2], cc[3], cc[4]))
+            ant_index += 1
+        topic_rows.append((subject, start, len(items)))
     out.append("};")
     out.append("")
-    out.append("const uint8_t antigos_count = COUNT_OF(antigos_items);")
+    out.append("const uint16_t antigos_meta_count = COUNT_OF(antigos_meta);")
+    out.append("")
+
+    out.append("const AntTopic antigos_topics[] = {")
+    for subject, start, count in topic_rows:
+        out.append("    { %s, %d, %d }," % (c_string(subject), start, count))
+    out.append("};")
+    out.append("")
+    out.append("const uint8_t antigos_topic_count = COUNT_OF(antigos_topics);")
     out.append("")
     return "\n".join(out)
 
@@ -4473,6 +4505,379 @@ def generate_manifest():
         "- Circuits are redrawn with graphx primitives (tools/cv_render.py).",
     ])
     return "\n".join(lines) + "\n"
+
+
+# ----------------------------------------------------------------------------
+# CV3DATA AppVar packing + strict round-trip verification
+# ----------------------------------------------------------------------------
+
+COLOR_VALUES = {
+    "COL_WHITE": 0,
+    "COL_BLACK": 1,
+    "COL_GRAY": 2,
+    "COL_LIGHT": 3,
+    "COL_BLUE": 4,
+    "COL_RED": 5,
+    "COL_GREEN": 6,
+}
+
+OPCODE_NAMES = [
+    "wire",
+    "node",
+    "term",
+    "res_h",
+    "res_v",
+    "cap_h",
+    "cap_v",
+    "ind_h",
+    "ind_v",
+    "vsrc_v",
+    "vsrc_h",
+    "isrc_v",
+    "isrc_h",
+    "gnd",
+    "sw_h",
+    "opamp",
+    "dvs_v",
+    "dvs_h",
+    "dis_v",
+    "lbl",
+    "arr_h",
+    "arr_v",
+    "vo",
+    "pm",
+]
+
+NAME_TO_OPCODE = {name: idx for idx, name in enumerate(OPCODE_NAMES)}
+NAME_TO_OPCODE["line"] = NAME_TO_OPCODE["wire"]
+for _op_name in NAME_TO_OPCODE:
+    if _op_name not in cv_render._C_EMIT:
+        raise RuntimeError("opcode table is out of sync for %s" % _op_name)
+
+
+def _cstr(value):
+    if value is None:
+        value = ""
+    if "\x00" in value:
+        raise ValueError("NUL byte in string %r" % value)
+    return value.encode("ascii", "strict") + b"\x00"
+
+
+def _u8(value):
+    if not 0 <= value <= 255:
+        raise ValueError("u8 out of range: %r" % value)
+    return struct.pack("<B", value)
+
+
+def _u16(value):
+    if not 0 <= value <= 65535:
+        raise ValueError("u16 out of range: %r" % value)
+    return struct.pack("<H", value)
+
+
+def _i16(value):
+    if not -32768 <= value <= 32767:
+        raise ValueError("i16 out of range: %r" % value)
+    return struct.pack("<h", value)
+
+
+def antigos_exercises_in_appvar_order():
+    ordered = []
+    for subject in ANTIGOS_ORDER:
+        ordered.extend(ex for ex in EXERCISES if ex["subject"] == subject)
+    if len(ordered) != 52:
+        raise AssertionError("expected 52 Antigos exercises, got %d" % len(ordered))
+    return ordered
+
+
+def normalize_op(op):
+    name = op[0]
+    if name not in NAME_TO_OPCODE:
+        raise ValueError("unknown op %r" % (op,))
+    a = b = c = d = 0
+    nums = []
+    flag = 0
+    label = ""
+    if name == "lbl":
+        if len(op) != 4:
+            raise ValueError("lbl op must be ('lbl', text, x, y): %r" % (op,))
+        label = op[1]
+        nums = [op[2], op[3]]
+    else:
+        for arg in op[1:]:
+            if isinstance(arg, bool):
+                flag = 1 if arg else 0
+            elif isinstance(arg, str):
+                label = arg
+            elif isinstance(arg, int):
+                nums.append(arg)
+            else:
+                raise TypeError("unsupported op argument %r in %r" % (arg, op))
+    if len(nums) > 4:
+        raise ValueError("too many numeric args in %r" % (op,))
+    coords = (nums + [0, 0, 0, 0])[:4]
+    a, b, c, d = coords
+    return (NAME_TO_OPCODE[name], a, b, c, d, flag, label)
+
+
+def expected_appvar_structure():
+    draws = all_draws()
+    exercises = []
+    for ex in antigos_exercises_in_appvar_order():
+        pages_out = []
+        for page in build_pages(ex):
+            lines_xy = page_lines_xy(page)
+            lines = []
+            for text, x, y, color in lines_xy:
+                lines.append((x, y, COLOR_VALUES[color], text))
+            if page.get("result"):
+                result = page["result"]
+                result_y = result_y_for(len(lines_xy))
+            else:
+                result = ""
+                result_y = 0
+            body_name = page.get("body_name")
+            ops = []
+            if body_name:
+                ops = [normalize_op(op) for op in draws[body_name]]
+            pages_out.append({
+                "title": page["title"],
+                "subtitle": page.get("subtitle", ""),
+                "result": result,
+                "result_y": result_y,
+                "lines": lines,
+                "ops": ops,
+            })
+        exercises.append({"pages": pages_out})
+    return exercises
+
+
+def encode_exercise_block(exercise):
+    out = bytearray()
+    pages = exercise["pages"]
+    out += _u8(len(pages))
+    for page in pages:
+        out += _cstr(page["title"])
+        out += _cstr(page["subtitle"])
+        out += _cstr(page["result"])
+        out += _u8(page["result_y"])
+        lines = page["lines"]
+        out += _u8(len(lines))
+        for x, y, color, text in lines:
+            out += _i16(x)
+            out += _i16(y)
+            out += _u8(color)
+            out += _cstr(text)
+        ops = page["ops"]
+        out += _u8(len(ops))
+        for opcode, a, b, c, d, flag, label in ops:
+            out += _u8(opcode)
+            out += _i16(a)
+            out += _i16(b)
+            out += _i16(c)
+            out += _i16(d)
+            out += _u8(flag)
+            out += _cstr(label)
+    return bytes(out)
+
+
+def build_appvar_payload():
+    exercises = expected_appvar_structure()
+    blocks = [encode_exercise_block(ex) for ex in exercises]
+    header_len = 4 + 1 + 1 + 2 + 2 * len(blocks)
+    offsets = []
+    pos = header_len
+    for block in blocks:
+        offsets.append(pos)
+        pos += len(block)
+    if pos >= 65536:
+        raise AssertionError("CV3DATA payload too large: %d bytes" % pos)
+    payload = bytearray(b"CV3A")
+    payload += _u8(1)
+    payload += _u8(0)
+    payload += _u16(len(blocks))
+    for offset in offsets:
+        payload += _u16(offset)
+    for block in blocks:
+        payload += block
+    return bytes(payload)
+
+
+class PayloadReader:
+    def __init__(self, data, pos=0, end=None):
+        self.data = data
+        self.pos = pos
+        self.end = len(data) if end is None else end
+
+    def read(self, n):
+        if self.pos + n > self.end:
+            raise ValueError("unexpected EOF at byte %d" % self.pos)
+        out = self.data[self.pos:self.pos + n]
+        self.pos += n
+        return out
+
+    def u8(self):
+        return self.read(1)[0]
+
+    def u16(self):
+        return struct.unpack("<H", self.read(2))[0]
+
+    def i16(self):
+        return struct.unpack("<h", self.read(2))[0]
+
+    def cstr(self):
+        start = self.pos
+        while self.pos < self.end and self.data[self.pos] != 0:
+            self.pos += 1
+        if self.pos >= self.end:
+            raise ValueError("unterminated cstr at byte %d" % start)
+        raw = self.data[start:self.pos]
+        self.pos += 1
+        return raw.decode("ascii", "strict")
+
+
+def decode_appvar_payload(payload):
+    reader = PayloadReader(payload)
+    if reader.read(4) != b"CV3A":
+        raise ValueError("bad CV3DATA magic")
+    version = reader.u8()
+    flags = reader.u8()
+    if version != 1 or flags != 0:
+        raise ValueError("bad header version/flags: %d/%d" % (version, flags))
+    count = reader.u16()
+    offsets = [reader.u16() for _ in range(count)]
+    header_len = reader.pos
+    if count != 52:
+        raise ValueError("expected 52 offsets, got %d" % count)
+    last = header_len
+    for offset in offsets:
+        if offset < header_len or offset >= len(payload):
+            raise ValueError("exercise offset out of range: %d" % offset)
+        if offset < last:
+            raise ValueError("exercise offsets are not monotonic")
+        last = offset
+
+    exercises = []
+    for i, offset in enumerate(offsets):
+        end = offsets[i + 1] if i + 1 < len(offsets) else len(payload)
+        r = PayloadReader(payload, offset, end)
+        pages = []
+        for _ in range(r.u8()):
+            title = r.cstr()
+            subtitle = r.cstr()
+            result = r.cstr()
+            result_y = r.u8()
+            lines = []
+            for _ in range(r.u8()):
+                x = r.i16()
+                y = r.i16()
+                color = r.u8()
+                text = r.cstr()
+                lines.append((x, y, color, text))
+            ops = []
+            for _ in range(r.u8()):
+                opcode = r.u8()
+                a = r.i16()
+                b = r.i16()
+                c = r.i16()
+                d = r.i16()
+                flag = r.u8()
+                label = r.cstr()
+                ops.append((opcode, a, b, c, d, flag, label))
+            pages.append({
+                "title": title,
+                "subtitle": subtitle,
+                "result": result,
+                "result_y": result_y,
+                "lines": lines,
+                "ops": ops,
+            })
+        if r.pos != end:
+            raise ValueError("exercise %d has %d trailing bytes" % (i, end - r.pos))
+        exercises.append({"pages": pages})
+    return exercises
+
+
+def first_mismatch(expected, actual, path="root"):
+    if type(expected) is not type(actual):
+        return "%s: type %s != %s" % (path, type(expected).__name__,
+                                     type(actual).__name__)
+    if isinstance(expected, dict):
+        if set(expected) != set(actual):
+            return "%s: keys %r != %r" % (path, sorted(expected), sorted(actual))
+        for key in expected:
+            found = first_mismatch(expected[key], actual[key], "%s.%s" % (path, key))
+            if found:
+                return found
+        return None
+    if isinstance(expected, (list, tuple)):
+        if len(expected) != len(actual):
+            return "%s: len %d != %d" % (path, len(expected), len(actual))
+        for idx, (left, right) in enumerate(zip(expected, actual)):
+            found = first_mismatch(left, right, "%s[%d]" % (path, idx))
+            if found:
+                return found
+        return None
+    if expected != actual:
+        return "%s: %r != %r" % (path, expected, actual)
+    return None
+
+
+def verify_appvar_round_trip(bin_path):
+    payload = Path(bin_path).read_bytes()
+    expected = expected_appvar_structure()
+    decoded = decode_appvar_payload(payload)
+    mismatch = first_mismatch(expected, decoded, "exercises")
+    if mismatch:
+        raise AssertionError("round-trip mismatch at %s" % mismatch)
+    pages = sum(len(ex["pages"]) for ex in decoded)
+    ops = sum(len(page["ops"]) for ex in decoded for page in ex["pages"])
+    line = "ROUND-TRIP OK: %d exercises, %d pages, %d ops" % (
+        len(decoded), pages, ops)
+    print(line)
+    return line
+
+
+def find_convbin():
+    found = shutil.which("convbin.exe") or shutil.which("convbin")
+    if found:
+        return found
+    for candidate in ("C:/CEdev/bin/convbin.exe", "/c/CEdev/bin/convbin.exe"):
+        if Path(candidate).exists():
+            return candidate
+    raise FileNotFoundError("convbin.exe not found")
+
+
+def pack_appvar(root):
+    bin_dir = root / "bin"
+    bin_dir.mkdir(parents=True, exist_ok=True)
+    bin_path = bin_dir / "CV3DATA.bin"
+    appvar_path = bin_dir / "CV3DATA.8xv"
+    payload = build_appvar_payload()
+    bin_path.write_bytes(payload)
+    convbin = find_convbin()
+    cmd = [
+        convbin,
+        "--iformat", "bin",
+        "--oformat", "8xv",
+        "--name", "CV3DATA",
+        "--archive",
+        "--input", str(bin_path),
+        "--output", str(appvar_path),
+    ]
+    subprocess.run(cmd, check=True)
+    verify_line = verify_appvar_round_trip(bin_path)
+    display_cmd = (
+        "%s --iformat bin --oformat 8xv --name CV3DATA --archive --input %s --output %s"
+        % (convbin, bin_path, appvar_path)
+    )
+    print("wrote %s and %s" % (bin_path, appvar_path))
+    return {
+        "bin_path": bin_path,
+        "appvar_path": appvar_path,
+        "verify_line": verify_line,
+        "convbin_cmd": display_cmd,
+    }
 
 
 # ----------------------------------------------------------------------------
@@ -4520,6 +4925,7 @@ def main():
     (root / "src" / "exercises.c").write_text(generate_c(), encoding="ascii")
     (root / "EXERCISE_MANIFEST.md").write_text(generate_manifest(), encoding="ascii")
     print("generated %d exercises" % len(EXERCISES))
+    pack_appvar(root)
 
     if args.preview:
         render_previews(args.preview)

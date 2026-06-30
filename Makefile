@@ -3,9 +3,9 @@ DESCRIPTION = "Circuit viewer 3"
 COMPRESSED = YES
 ARCHIVED = YES
 
-SRC = src/main.c src/ui.c src/formulas.c src/exercises.c src/search_overlay.c
+SRC = src/main.c src/ui.c src/formulas.c src/exercises.c src/search_overlay.c src/appvar.c
 
 CFLAGS = -Wall -Wextra -Oz
-LDFLAGS = -lgraphx -lkeypadc -ltice
+LDFLAGS = -lgraphx -lkeypadc -lfileioc -ltice
 
 include $(shell cedev-config --makefile)
