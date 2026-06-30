@@ -24,7 +24,9 @@ enum {
 
 enum {
     MENU_FORMULA = 0,
-    MENU_SUBJECT = 1
+    MENU_SUBJECT = 1,
+    MENU_SEARCH = 2,
+    MENU_ANTIGOS = 3
 };
 
 typedef void (*body_draw_fn)(void);
@@ -78,6 +80,17 @@ extern const Subject subjects[];
 extern const uint8_t subject_count;
 extern const MenuItem menu_items[];
 extern const uint8_t menu_count;
+extern const MenuItem antigos_items[];
+extern const uint8_t antigos_count;
+
+typedef struct {
+    const Exercise *ex;
+    const char *subject;
+    uint8_t comp[5];   /* res, FT, FC, cap, ind */
+} ExEntry;
+
+extern const ExEntry all_exercises[];
+extern const uint16_t all_exercises_count;
 
 void check_on_exit(void);
 uint8_t pressed_once(kb_lkey_t key);
@@ -93,6 +106,12 @@ void draw_ex_header(const char *subject, const char *ex_title,
 void draw_footer_menu(void);
 void draw_footer_formula(void);
 void draw_footer_ex(void);
+void draw_search_footer(const uint8_t counts[5], bool show_labels, bool show_counts);
+void calc_init(void);
+bool calc_handle_key(void);
+bool calc_is_empty(void);
+void calc_clear(void);
+void search_overlay_draw(void);
 void draw_title(const char *title, const char *subtitle);
 void result_box(const char *text, int y);
 void step_box(int y, const char *l1, const char *l2);

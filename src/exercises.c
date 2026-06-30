@@ -174,6 +174,73 @@ static void draw_rec_q5_circuit(void) {
     draw_arrow_v(166, 104, 150, "i", false);
 }
 
+static void draw_pv1rec_q2_circuit(void) {
+    draw_voltage_source(45, 80, 175, "200V");
+    draw_wire(45, 80, 260, 80);
+    draw_res_v(100, 80, 175, "160");
+    draw_res_v(180, 80, 175, "160");
+    draw_res_v(260, 80, 175, "80");
+    draw_wire(45, 175, 100, 175);
+    draw_res_h(100, 175, 180, "52");
+    draw_res_h(180, 175, 260, "20");
+    draw_node(100, 80);
+    draw_node(180, 80);
+    draw_node(260, 80);
+    draw_node(100, 175);
+    draw_node(180, 175);
+    draw_node(260, 175);
+}
+
+static void draw_pv1rec_q1_circuit(void) {
+    draw_voltage_source(60, 90, 175, "54V");
+    draw_wire(60, 90, 110, 90);
+    draw_res_h(110, 90, 190, "22");
+    draw_wire(190, 90, 240, 90);
+    draw_dep_vsource_v(240, 90, 175, "5io");
+    draw_wire(60, 175, 240, 175);
+    draw_arrow_h(118, 76, 182, "io", true);
+    draw_node(60, 90);
+    draw_node(240, 90);
+}
+
+static void draw_prova1a_q3_circuit(void) {
+    draw_res_v(58, 104, 180, "10");
+    draw_res_v(130, 104, 180, "5");
+    draw_res_v(216, 104, 180, "4");
+    draw_wire(58, 104, 130, 104);
+    draw_wire(216, 104, 284, 104);
+    draw_wire(58, 180, 284, 180);
+    draw_wire(130, 104, 130, 66);
+    draw_res_h(130, 66, 216, "2");
+    draw_wire(216, 104, 216, 66);
+    draw_current_source_h_dir(130, 104, 216, "3A", true);
+    draw_current_source_v_dir(284, 104, 180, "6A", true);
+    draw_ground(172, 180);
+    draw_node(130, 104);
+    draw_node(216, 104);
+    label("V1", 108, 88);
+    label("V2", 222, 88);
+}
+
+static void draw_prova1b_q3_circuit(void) {
+    draw_res_v(58, 104, 180, "10");
+    draw_res_v(130, 104, 180, "5");
+    draw_res_v(216, 104, 180, "4");
+    draw_wire(58, 104, 130, 104);
+    draw_wire(216, 104, 284, 104);
+    draw_wire(58, 180, 284, 180);
+    draw_wire(130, 104, 130, 66);
+    draw_res_h(130, 66, 216, "2");
+    draw_wire(216, 104, 216, 66);
+    draw_current_source_h_dir(130, 104, 216, "6A", true);
+    draw_current_source_v_dir(284, 104, 180, "3A", true);
+    draw_ground(172, 180);
+    draw_node(130, 104);
+    draw_node(216, 104);
+    label("V1", 108, 88);
+    label("V2", 222, 88);
+}
+
 static void draw_e_1_7_circuit(void) {
     draw_wire(70, 72, 70, 178);
     draw_wire(60, 130, 256, 130);
@@ -777,6 +844,803 @@ static void draw_e_4_31_circuit(void) {
     draw_node(225, 90);
 }
 
+static void draw_ant_iv_4_33_circuit(void) {
+    draw_current_source_v_dir(48, 82, 164, "4A", true);
+    draw_res_v(132, 82, 164, "10");
+    draw_res_h(132, 82, 224, "10");
+    draw_res_v(224, 82, 164, "5");
+    draw_wire(48, 82, 132, 82);
+    draw_wire(48, 164, 224, 164);
+    draw_node(132, 82);
+    draw_node(224, 82);
+}
+
+static void draw_ant_iv_4_35_circuit(void) {
+    draw_voltage_source(42, 100, 166, "12V");
+    draw_res_h(42, 100, 104, "6");
+    draw_res_v(104, 100, 166, "3");
+    draw_res_h(104, 100, 168, "5");
+    draw_res_v(168, 100, 166, "12");
+    draw_res_h(168, 100, 230, "4");
+    draw_voltage_source(230, 100, 166, "19V");
+    draw_wire(42, 166, 230, 166);
+    draw_wire(104, 100, 104, 74);
+    draw_wire(168, 100, 168, 74);
+    draw_current_source_h_dir(104, 74, 168, "2A", false);
+    draw_vo_marks(134, 108, 130, "vo");
+}
+
+static void draw_ant_iv_4_37_circuit(void) {
+    draw_voltage_source(42, 88, 168, "120V");
+    draw_res_h(42, 88, 120, "20");
+    draw_current_source_h_dir(120, 74, 205, "2A", false);
+    draw_res_h(120, 116, 205, "40");
+    draw_res_v(205, 88, 168, "12");
+    draw_wire(120, 88, 120, 74);
+    draw_wire(205, 74, 205, 88);
+    draw_wire(42, 168, 248, 168);
+    draw_terminal(252, 88, "a");
+    draw_terminal(252, 168, "b");
+    draw_wire(205, 88, 252, 88);
+}
+
+static void draw_ant_iv_4_39_circuit(void) {
+    draw_res_v(54, 78, 116, "10");
+    draw_voltage_source(54, 116, 168, "24V");
+    draw_wire(54, 78, 206, 78);
+    draw_current_source_h_dir(116, 78, 206, "3A", false);
+    draw_res_h(54, 116, 132, "10");
+    draw_res_v(132, 116, 168, "5");
+    draw_res_h(132, 116, 238, "16");
+    draw_wire(206, 78, 206, 116);
+    draw_wire(54, 168, 260, 168);
+    draw_terminal(264, 116, "a");
+    draw_terminal(264, 168, "b");
+    draw_wire(238, 116, 264, 116);
+}
+
+static void draw_ant_iv_4_41_circuit(void) {
+    draw_current_source_v_dir(42, 84, 164, "1A", true);
+    draw_res_v(90, 84, 164, "6");
+    draw_voltage_source_h(90, 84, 150, "14V");
+    draw_res_h(150, 84, 214, "14");
+    draw_current_source_v_dir(214, 84, 164, "3A", false);
+    draw_res_v(262, 84, 164, "5");
+    draw_wire(42, 84, 90, 84);
+    draw_wire(42, 164, 300, 164);
+    draw_wire(214, 84, 300, 84);
+    draw_terminal(304, 84, "a");
+    draw_terminal(304, 164, "b");
+}
+
+static void draw_ant_iv_4_43_circuit(void) {
+    draw_voltage_source(42, 82, 164, "20V");
+    draw_res_h(42, 82, 106, "10");
+    draw_res_v(106, 82, 164, "10");
+    draw_res_h(106, 82, 174, "6");
+    draw_arrow_h(126, 104, 162, "ix", false);
+    draw_res_v(214, 82, 164, "5");
+    draw_current_source_v_dir(270, 82, 164, "2A", true);
+    draw_wire(174, 82, 270, 82);
+    draw_wire(42, 164, 270, 164);
+    label("a", 104, 64);
+    label("b", 166, 64);
+    draw_node(106, 82);
+    draw_node(174, 82);
+}
+
+static void draw_ant_iv_4_45_circuit(void) {
+    draw_current_source_v_dir(46, 84, 164, "4A", true);
+    draw_res_v(132, 84, 164, "6");
+    draw_res_h(132, 84, 224, "6");
+    draw_res_v(224, 84, 164, "4");
+    draw_wire(46, 84, 132, 84);
+    draw_wire(46, 164, 264, 164);
+    draw_terminal(268, 84, "a");
+    draw_terminal(268, 164, "b");
+    draw_wire(224, 84, 268, 84);
+}
+
+static void draw_ant_iv_4_47_circuit(void) {
+    draw_voltage_source(46, 82, 166, "30V");
+    draw_res_h(46, 82, 136, "12");
+    draw_res_v(164, 82, 166, "60");
+    draw_dep_isource_v(238, 82, 166, "2Vx", false);
+    draw_wire(136, 82, 284, 82);
+    draw_wire(46, 166, 284, 166);
+    draw_vo_marks(144, 112, 142, "Vx");
+    draw_terminal(288, 82, "a");
+    draw_terminal(288, 166, "b");
+}
+
+static void draw_ant_iv_4_49_circuit(void) {
+    draw_voltage_source(44, 92, 168, "V");
+    draw_res_h(44, 92, 122, "R1");
+    draw_res_v(122, 92, 168, "R2");
+    draw_res_h(122, 92, 214, "R3");
+    draw_wire(122, 92, 122, 66);
+    draw_wire(214, 92, 214, 66);
+    draw_current_source_h_dir(122, 66, 214, "I", true);
+    draw_wire(44, 168, 260, 168);
+    draw_terminal(264, 92, "a");
+    draw_terminal(264, 168, "b");
+    draw_wire(214, 92, 264, 92);
+}
+
+static void draw_ant_iv_4_53_circuit(void) {
+    draw_voltage_source(48, 104, 170, "18V");
+    draw_res_h(48, 104, 132, "6");
+    draw_res_h(132, 104, 216, "2");
+    draw_res_v(132, 104, 170, "3");
+    draw_wire(132, 104, 132, 70);
+    draw_wire(216, 104, 216, 70);
+    draw_current_source_h_dir(132, 70, 216, "0.25vo", false);
+    draw_vo_marks(146, 130, 154, "vo");
+    draw_wire(48, 170, 260, 170);
+    draw_terminal(264, 104, "a");
+    draw_terminal(264, 170, "b");
+    draw_wire(216, 104, 264, 104);
+}
+
+static void draw_ant_iv_4_57_circuit(void) {
+    draw_voltage_source(44, 82, 166, "50V");
+    draw_res_h(44, 82, 118, "3");
+    draw_res_v(118, 82, 166, "6");
+    draw_res_h(118, 82, 198, "2");
+    draw_dep_isource_v(198, 82, 166, "0.5vx", true);
+    draw_res_v(252, 82, 166, "10");
+    draw_wire(198, 82, 286, 82);
+    draw_wire(44, 166, 286, 166);
+    draw_vo_marks(132, 110, 138, "vx");
+    draw_terminal(290, 82, "a");
+    draw_terminal(290, 166, "b");
+}
+
+static void draw_ant_iv_4_61_circuit(void) {
+    draw_voltage_source(44, 78, 118, "12V");
+    draw_res_v(44, 118, 166, "2");
+    draw_res_h(44, 78, 138, "2");
+    draw_res_v(138, 78, 124, "6");
+    draw_res_v(184, 78, 124, "6");
+    draw_res_v(160, 124, 162, "6");
+    draw_voltage_source(160, 162, 186, "12V");
+    draw_voltage_source(242, 78, 118, "12V");
+    draw_res_v(242, 118, 166, "2");
+    draw_wire(138, 78, 284, 78);
+    draw_wire(138, 124, 184, 124);
+    draw_wire(160, 186, 242, 186);
+    draw_wire(44, 166, 284, 166);
+    draw_terminal(288, 78, "a");
+    draw_terminal(288, 166, "b");
+}
+
+static void draw_ant_iv_4_63_circuit(void) {
+    draw_res_v(78, 92, 166, "20");
+    draw_res_h(78, 92, 174, "10");
+    draw_dep_isource_v(174, 92, 166, "0.5vo", true);
+    draw_wire(78, 166, 252, 166);
+    draw_wire(174, 92, 252, 92);
+    draw_vo_marks(56, 112, 140, "vo");
+    draw_terminal(256, 92, "a");
+    draw_terminal(256, 166, "b");
+}
+
+static void draw_ant_iv_5_15_circuit(void) {
+    draw_current_source_v_dir(50, 100, 170, "ii", true);
+    draw_wire(50, 100, 106, 100);
+    draw_wire(50, 170, 250, 170);
+    draw_res_h(106, 70, 170, "R1");
+    draw_res_h(170, 70, 238, "R3");
+    draw_res_v(170, 70, 120, "R2");
+    draw_wire(106, 70, 106, 100);
+    draw_wire(238, 70, 238, 120);
+    draw_opamp(106, 98, false);
+    draw_wire(106, 116, 170, 116);
+    draw_wire(168, 127, 238, 127);
+    draw_terminal(254, 120, "vo");
+    draw_terminal(254, 170, "0");
+    draw_ground(118, 170);
+}
+
+static void draw_ant_iv_5_17_circuit(void) {
+    draw_voltage_source(42, 116, 176, "vi");
+    draw_res_h(42, 116, 116, "5k");
+    draw_opamp(116, 98, false);
+    draw_wire(116, 140, 92, 140);
+    draw_ground(92, 140);
+    draw_wire(178, 127, 264, 127);
+    draw_res_v(250, 127, 176, "10k");
+    draw_wire(42, 176, 250, 176);
+    draw_res_h(96, 70, 198, "80k");
+    draw_res_h(96, 100, 198, "2M");
+    draw_res_h(96, 60, 198, "12k");
+    draw_wire(96, 60, 96, 116);
+    draw_wire(198, 60, 238, 60);
+    draw_wire(198, 70, 238, 70);
+    draw_wire(198, 100, 238, 100);
+    draw_wire(238, 60, 238, 127);
+    label("1", 244, 58);
+    label("2", 244, 74);
+    label("3", 244, 100);
+    draw_terminal(270, 127, "vo");
+}
+
+static void draw_ant_iv_5_19_circuit(void) {
+    draw_voltage_source(42, 98, 172, "750mV");
+    draw_res_h(42, 98, 112, "2k");
+    draw_res_v(112, 98, 172, "4k");
+    draw_res_h(112, 98, 178, "4k");
+    draw_res_h(178, 98, 248, "10k");
+    draw_opamp(178, 112, true);
+    draw_wire(248, 98, 248, 141);
+    draw_wire(240, 141, 278, 141);
+    draw_res_v(278, 141, 172, "2k");
+    draw_wire(42, 172, 278, 172);
+    draw_wire(178, 153, 150, 153);
+    draw_ground(150, 153);
+    draw_arrow_h(250, 133, 282, "io", true);
+}
+
+static void draw_ant_iv_5_21_circuit(void) {
+    draw_voltage_source(46, 118, 170, "3V");
+    draw_res_h(46, 118, 122, "4k");
+    draw_opamp(122, 96, false);
+    draw_res_h(122, 70, 210, "10k");
+    draw_wire(122, 70, 122, 114);
+    draw_wire(210, 70, 210, 125);
+    draw_wire(184, 125, 252, 125);
+    draw_voltage_source(122, 138, 170, "1V");
+    draw_wire(46, 170, 122, 170);
+    draw_terminal(256, 125, "+");
+    draw_terminal(256, 170, "-");
+    draw_wire(122, 170, 256, 170);
+    draw_ground(122, 170);
+    label("vo", 270, 144);
+}
+
+static void draw_ant_iv_5_23_circuit(void) {
+    draw_voltage_source(42, 112, 172, "vi");
+    draw_res_h(42, 112, 118, "R1");
+    draw_res_v(118, 112, 172, "R2");
+    draw_opamp(150, 96, true);
+    draw_wire(118, 112, 150, 114);
+    draw_res_h(150, 70, 238, "Rf");
+    draw_wire(150, 70, 150, 138);
+    draw_wire(238, 70, 238, 125);
+    draw_wire(212, 125, 272, 125);
+    draw_wire(42, 172, 272, 172);
+    draw_ground(118, 172);
+    draw_terminal(276, 125, "+");
+    draw_terminal(276, 172, "-");
+    label("vo", 286, 144);
+}
+
+static void draw_ant_iv_5_25_circuit(void) {
+    draw_opamp(96, 80, true);
+    draw_wire(96, 98, 62, 98);
+    draw_ground(62, 98);
+    draw_wire(96, 122, 64, 122);
+    draw_wire(64, 122, 64, 62);
+    draw_wire(64, 62, 204, 62);
+    draw_wire(158, 109, 188, 109);
+    draw_res_h(188, 109, 252, "12k");
+    draw_wire(252, 109, 276, 109);
+    draw_res_v(276, 109, 170, "load");
+    draw_wire(204, 62, 204, 109);
+    draw_wire(62, 170, 276, 170);
+    draw_vo_marks(290, 118, 154, "vo");
+}
+
+static void draw_ant_iv_5_27_circuit(void) {
+    draw_voltage_source(42, 92, 172, "7.5V");
+    draw_res_h(42, 92, 118, "16");
+    draw_res_v(118, 92, 172, "24");
+    draw_opamp(150, 72, true);
+    draw_wire(118, 92, 150, 90);
+    draw_wire(150, 114, 124, 114);
+    draw_ground(124, 114);
+    draw_res_h(212, 101, 274, "8");
+    draw_res_v(274, 101, 172, "12");
+    draw_wire(42, 172, 274, 172);
+    draw_wire(212, 101, 212, 101);
+    label("v1", 124, 76);
+    label("v2", 186, 76);
+    draw_vo_marks(292, 118, 150, "vo");
+}
+
+static void draw_ant_iv_5_29_circuit(void) {
+    draw_voltage_source(42, 100, 172, "vi");
+    draw_res_h(42, 100, 130, "R1");
+    draw_res_v(130, 100, 172, "R2");
+    draw_opamp(166, 82, true);
+    draw_wire(130, 100, 166, 100);
+    draw_wire(228, 111, 282, 111);
+    draw_res_v(198, 134, 172, "R1");
+    draw_res_h(198, 134, 250, "R2");
+    draw_wire(198, 134, 166, 124);
+    draw_wire(250, 134, 250, 111);
+    draw_wire(42, 172, 282, 172);
+    draw_terminal(286, 111, "+");
+    draw_terminal(286, 172, "-");
+    draw_ground(130, 172);
+    label("vo", 296, 136);
+}
+
+static void draw_ant_iv_5_31_circuit(void) {
+    draw_current_source_v_dir(42, 88, 172, "4mA", true);
+    draw_res_v(88, 88, 172, "3k");
+    draw_res_h(88, 88, 178, "6k");
+    draw_res_v(178, 88, 172, "6k");
+    draw_res_h(88, 62, 236, "12k");
+    draw_wire(88, 62, 88, 88);
+    draw_wire(236, 62, 236, 113);
+    draw_opamp(198, 84, true);
+    draw_wire(178, 88, 198, 102);
+    draw_wire(198, 126, 178, 126);
+    draw_arrow_v(166, 106, 136, "ix", false);
+    draw_wire(42, 172, 280, 172);
+    draw_wire(260, 113, 280, 113);
+    draw_terminal(284, 113, "vo");
+}
+
+static void draw_ant_iv_6_17_circuit(void) {
+    label("(a)", 24, 66);
+    draw_cap_h(62, 72, 130, "4F");
+    draw_cap_v(90, 72, 118, "3F");
+    draw_cap_h(130, 72, 210, "12F");
+    draw_cap_v(164, 72, 118, "6F");
+    draw_cap_h(164, 118, 230, "4F");
+    draw_wire(50, 118, 230, 118);
+    label("(b)", 24, 112);
+    draw_cap_v(84, 128, 166, "5F");
+    draw_cap_h(84, 128, 180, "6F");
+    draw_cap_v(180, 128, 166, "4F");
+    draw_cap_v(232, 128, 166, "2F");
+    draw_wire(52, 128, 232, 128);
+    draw_wire(52, 166, 232, 166);
+    label("(c)", 24, 154);
+    draw_cap_h(54, 174, 116, "2F");
+    draw_cap_h(116, 174, 176, "3F");
+    draw_cap_h(176, 174, 236, "6F");
+    draw_cap_v(142, 174, 184, "4F");
+    draw_cap_v(246, 174, 184, "3F");
+    draw_wire(54, 184, 246, 184);
+}
+
+static void draw_ant_iv_6_19_circuit(void) {
+    draw_terminal(28, 96, "a");
+    draw_terminal(28, 166, "b");
+    draw_cap_h(46, 96, 112, "12");
+    draw_cap_v(112, 96, 166, "12");
+    draw_cap_h(112, 76, 190, "80");
+    draw_cap_h(112, 96, 190, "40");
+    draw_cap_h(112, 126, 190, "50");
+    draw_cap_h(112, 156, 190, "30");
+    draw_cap_h(190, 126, 270, "20");
+    draw_cap_v(270, 96, 166, "10");
+    draw_cap_h(112, 166, 190, "60");
+    draw_wire(190, 76, 190, 166);
+    draw_wire(190, 96, 270, 96);
+    draw_wire(190, 166, 270, 166);
+}
+
+static void draw_ant_iv_6_21_circuit(void) {
+    draw_terminal(28, 92, "a");
+    draw_terminal(28, 170, "b");
+    draw_cap_h(46, 92, 106, "5uF");
+    draw_cap_h(106, 92, 168, "6uF");
+    draw_cap_h(168, 92, 230, "4uF");
+    draw_cap_v(136, 92, 170, "2uF");
+    draw_cap_v(198, 92, 170, "3uF");
+    draw_cap_v(254, 92, 170, "12uF");
+    draw_wire(28, 170, 254, 170);
+    draw_wire(230, 92, 254, 92);
+}
+
+static void draw_ant_iv_6_49_circuit(void) {
+    draw_terminal(60, 70, "a");
+    draw_terminal(60, 170, "b");
+    draw_ind_v(100, 70, 120, "10");
+    draw_ind_v(100, 120, 170, "10");
+    draw_ind_h(100, 120, 180, "10");
+    draw_ind_v(180, 120, 170, "10");
+    draw_ind_v(250, 70, 170, "10");
+    draw_wire(60, 70, 250, 70);
+    draw_wire(60, 170, 250, 170);
+    draw_wire(180, 70, 180, 120);
+}
+
+static void draw_ant_iv_6_51_circuit(void) {
+    draw_terminal(36, 142, "a");
+    draw_ind_h(50, 142, 122, "25mH");
+    draw_ind_h(122, 82, 240, "10mH");
+    draw_ind_h(122, 112, 240, "60mH");
+    draw_ind_h(122, 142, 240, "20mH");
+    draw_ind_h(122, 172, 240, "30mH");
+    draw_wire(122, 82, 122, 172);
+    draw_wire(240, 82, 240, 172);
+    draw_wire(240, 142, 274, 142);
+    draw_terminal(278, 142, "b");
+}
+
+static void draw_ant_iv_6_55_circuit(void) {
+    label("(a)", 24, 66);
+    draw_ind_h(56, 82, 118, "L");
+    draw_ind_v(142, 82, 126, "L");
+    draw_ind_v(142, 126, 170, "L");
+    draw_ind_v(206, 98, 170, "L");
+    draw_ind_v(242, 98, 170, "L");
+    draw_wire(118, 82, 242, 82);
+    draw_wire(56, 170, 242, 170);
+    label("(b)", 180, 66);
+    draw_ind_h(172, 130, 220, "L");
+    draw_ind_h(220, 130, 270, "L");
+    draw_wire(172, 96, 220, 130);
+    draw_wire(172, 164, 220, 130);
+    draw_wire(270, 96, 220, 130);
+    draw_wire(270, 164, 220, 130);
+}
+
+static void draw_ant_iv_7_3_circuit(void) {
+    draw_cap_v(48, 90, 170, "100pF");
+    draw_res_h(48, 90, 142, "10k");
+    draw_res_h(142, 90, 238, "20k");
+    draw_res_v(142, 90, 170, "40k");
+    draw_res_v(238, 90, 170, "30k");
+    draw_wire(48, 170, 238, 170);
+}
+
+static void draw_ant_iv_7_14_circuit(void) {
+    draw_res_v(64, 92, 168, "40k");
+    draw_res_h(64, 92, 150, "20k");
+    draw_ind_v(150, 92, 168, "5mH");
+    draw_res_h(150, 92, 240, "10k");
+    draw_res_v(240, 92, 168, "30k");
+    draw_wire(64, 168, 240, 168);
+}
+
+static void draw_ant_iv_7_9_circuit(void) {
+    draw_voltage_source(50, 104, 174, "6V");
+    draw_res_h(50, 104, 132, "2k");
+    draw_switch_open_h(132, 104, 190, "t=0");
+    draw_res_v(190, 104, 174, "4k");
+    draw_cap_v(256, 104, 174, "3mF");
+    draw_wire(190, 104, 256, 104);
+    draw_wire(50, 174, 256, 174);
+    draw_vo_marks(172, 120, 146, "vo");
+}
+
+static void draw_ant_iv_7_39_circuit(void) {
+    label("(a)", 28, 70);
+    draw_cap_h(74, 82, 150, "2F");
+    draw_switch_open_h(150, 82, 214, "t=0");
+    draw_res_v(214, 82, 148, "6");
+    draw_wire(74, 148, 214, 148);
+    label("(b)", 28, 136);
+    draw_voltage_source(62, 148, 184, "12V");
+    draw_cap_h(62, 148, 126, "2F");
+    draw_switch_open_h(126, 148, 184, "t=0");
+    draw_res_v(228, 148, 184, "4");
+    draw_current_source_v_dir(282, 148, 184, "2A", true);
+    draw_res_h(62, 184, 126, "3");
+    draw_wire(184, 148, 282, 148);
+    draw_wire(126, 184, 282, 184);
+}
+
+static void draw_ant_iv_7_45_circuit(void) {
+    draw_voltage_source(46, 92, 170, "vs");
+    draw_res_h(46, 92, 136, "20k");
+    draw_res_v(136, 92, 170, "40k");
+    draw_res_h(136, 92, 226, "10k");
+    draw_cap_v(226, 92, 170, "3uF");
+    draw_wire(46, 170, 226, 170);
+    draw_vo_marks(246, 112, 148, "vo");
+}
+
+static void draw_ant_iv_7_11_circuit(void) {
+    draw_voltage_source(46, 104, 174, "24V");
+    draw_res_h(46, 104, 128, "4");
+    draw_switch_open_h(128, 104, 178, "t=0");
+    draw_res_v(178, 104, 174, "4");
+    draw_ind_h(178, 104, 252, "4H");
+    draw_res_v(252, 104, 174, "8");
+    draw_wire(46, 174, 252, 174);
+    draw_arrow_v(270, 112, 154, "io", false);
+}
+
+static void draw_ant_iv_7_13_circuit(void) {
+    draw_res_v(92, 92, 170, "R");
+    draw_ind_v(210, 92, 170, "L");
+    draw_wire(92, 92, 210, 92);
+    draw_wire(92, 170, 210, 170);
+    draw_arrow_h(190, 80, 112, "i", false);
+    draw_vo_marks(226, 116, 144, "v");
+}
+
+static void draw_ant_iv_7_17_circuit(void) {
+    draw_voltage_source(56, 92, 172, "v(t)");
+    draw_res_h(56, 92, 152, "1");
+    draw_res_v(152, 92, 132, "3");
+    draw_ind_v(152, 132, 172, "1/4H");
+    draw_wire(56, 172, 240, 172);
+    draw_wire(152, 92, 240, 92);
+    draw_terminal(244, 92, "+");
+    draw_terminal(244, 172, "-");
+    draw_arrow_v(164, 112, 150, "i(t)", false);
+    label("vo(t)", 262, 124);
+}
+
+static void draw_ant_iv_7_53_circuit(void) {
+    label("(a)", 24, 68);
+    draw_voltage_source(42, 84, 150, "25V");
+    draw_res_h(42, 84, 104, "3");
+    draw_switch_open_h(104, 84, 156, "t=0");
+    draw_res_h(156, 84, 224, "2");
+    draw_ind_v(224, 84, 150, "4H");
+    draw_wire(42, 150, 224, 150);
+    label("(b)", 160, 68);
+    draw_current_source_v_dir(168, 98, 170, "6A", true);
+    draw_switch_open_h(212, 98, 266, "t=0");
+    draw_res_v(212, 98, 170, "4");
+    draw_res_v(266, 98, 170, "2");
+    draw_ind_v(292, 98, 170, "3H");
+    draw_wire(168, 98, 292, 98);
+    draw_wire(168, 170, 292, 170);
+}
+
+static void draw_ant_iv_7_59_circuit(void) {
+    draw_voltage_source(50, 94, 174, "vs");
+    draw_res_h(50, 94, 144, "6");
+    draw_res_v(144, 94, 174, "3");
+    draw_res_v(232, 94, 134, "4");
+    draw_ind_v(232, 134, 174, "1.5H");
+    draw_wire(144, 94, 232, 94);
+    draw_wire(50, 174, 232, 174);
+    draw_vo_marks(250, 118, 148, "vo");
+}
+
+static void draw_ant_iv_7_63_circuit(void) {
+    draw_voltage_source(48, 100, 172, "10u(-t)");
+    draw_res_h(48, 100, 128, "5");
+    draw_res_v(128, 100, 172, "20");
+    draw_ind_v(220, 100, 172, "0.5H");
+    draw_wire(128, 100, 220, 100);
+    draw_wire(48, 172, 220, 172);
+    draw_arrow_h(150, 86, 202, "i", true);
+    draw_vo_marks(240, 120, 148, "v");
+}
+
+static void draw_ant_iv_5_11_circuit(void) {
+    draw_voltage_source(46, 104, 170, "V");
+    draw_res_h(46, 92, 118, "R1");
+    draw_res_h(46, 122, 118, "R3");
+    draw_opamp(118, 90, false);
+    draw_res_h(118, 62, 218, "R2");
+    draw_wire(118, 62, 118, 108);
+    draw_wire(218, 62, 218, 119);
+    draw_wire(180, 119, 258, 119);
+    draw_res_v(118, 138, 170, "R4");
+    draw_res_v(258, 119, 170, "R5");
+    draw_wire(46, 170, 258, 170);
+    draw_wire(118, 132, 118, 140);
+    draw_ground(118, 170);
+    draw_arrow_h(226, 112, 260, "io", true);
+    draw_vo_marks(278, 135, 162, "vo");
+}
+
+static void draw_ant_iv_5_13_circuit(void) {
+    draw_voltage_source(46, 88, 170, "1V");
+    draw_res_v(98, 88, 124, "10k");
+    draw_res_v(98, 124, 170, "90k");
+    draw_opamp(154, 108, true);
+    draw_wire(98, 124, 154, 126);
+    draw_res_v(154, 146, 170, "50k");
+    draw_res_h(154, 150, 224, "100k");
+    draw_wire(224, 150, 224, 137);
+    draw_wire(216, 137, 270, 137);
+    draw_res_v(270, 137, 170, "10k");
+    draw_wire(46, 88, 98, 88);
+    draw_wire(46, 170, 270, 170);
+    draw_arrow_h(220, 128, 252, "io", true);
+    draw_vo_marks(292, 144, 166, "vo");
+    draw_ground(154, 170);
+}
+
+static void draw_ant_pv_norton_circuit(void) {
+    draw_voltage_source(48, 78, 176, "120V");
+    draw_res_h(48, 78, 118, "40");
+    draw_current_source_h_dir(118, 78, 200, "2A", false);
+    draw_res_h(118, 118, 200, "20");
+    draw_wire(118, 78, 118, 118);
+    draw_wire(200, 78, 200, 118);
+    draw_res_v(200, 78, 176, "12");
+    draw_wire(48, 176, 248, 176);
+    draw_terminal(248, 78, "a");
+    draw_terminal(248, 176, "b");
+    draw_wire(200, 78, 248, 78);
+    draw_node(118, 78);
+    draw_node(200, 78);
+    draw_node(200, 176);
+}
+
+static void draw_ant_pv_thev_norton_circuit(void) {
+    draw_wire(40, 174, 268, 174);
+    draw_current_source_v_dir(40, 82, 174, "1A", true);
+    draw_res_v(92, 82, 174, "6");
+    draw_voltage_source_h(92, 82, 150, "14V");
+    draw_res_h(150, 82, 210, "14");
+    draw_current_source_v_dir(210, 82, 174, "3A", false);
+    draw_res_v(250, 82, 174, "5");
+    draw_wire(210, 82, 268, 82);
+    draw_terminal(268, 82, "a");
+    draw_terminal(268, 174, "b");
+    draw_node(92, 82);
+    draw_node(92, 174);
+    draw_node(210, 82);
+    draw_node(210, 174);
+}
+
+static void draw_ant_pv_amp_inv_circuit(void) {
+    draw_opamp(148, 72, false);
+    draw_voltage_source(42, 104, 176, "3V");
+    draw_res_h(42, 104, 148, "4k");
+    draw_wire(210, 101, 282, 101);
+    draw_terminal(284, 101, "vo");
+    draw_wire(148, 89, 116, 89);
+    draw_wire(116, 89, 116, 48);
+    draw_res_h(116, 48, 210, "10k");
+    draw_wire(210, 48, 210, 101);
+    draw_wire(148, 113, 122, 113);
+    draw_ground(122, 113);
+}
+
+static void draw_ant_pv_amp_nao_inv_circuit(void) {
+    draw_opamp(136, 58, true);
+    draw_voltage_source(42, 96, 178, "Vs");
+    draw_res_h(42, 96, 136, "20k");
+    draw_wire(198, 87, 286, 87);
+    draw_terminal(288, 87, "vo");
+    draw_wire(136, 99, 104, 99);
+    draw_wire(104, 99, 104, 154);
+    draw_res_v(226, 87, 126, "10k");
+    draw_res_v(226, 126, 178, "10k");
+    draw_wire(226, 126, 104, 126);
+    draw_wire(226, 178, 42, 178);
+    draw_ground(226, 178);
+}
+
+static void draw_ant_pv_cap_eq_circuit(void) {
+    draw_terminal(26, 82, "a");
+    draw_terminal(26, 172, "b");
+    draw_cap_h(34, 82, 78, "12uF");
+    draw_cap_v(78, 82, 172, "12uF");
+    draw_cap_h(78, 82, 202, "40uF");
+    draw_cap_h(78, 50, 202, "80uF");
+    draw_wire(78, 82, 78, 50);
+    draw_wire(202, 82, 202, 50);
+    draw_cap_h(78, 172, 138, "60uF");
+    draw_cap_v(138, 82, 172, "30uF");
+    draw_cap_h(202, 172, 268, "10uF");
+    draw_cap_h(202, 126, 268, "20uF");
+    draw_wire(202, 82, 268, 82);
+    draw_wire(268, 82, 268, 172);
+    draw_wire(26, 172, 78, 172);
+    draw_wire(138, 172, 268, 172);
+    draw_cap_h(78, 126, 202, "50uF");
+    draw_node(78, 82);
+    draw_node(78, 172);
+    draw_node(202, 82);
+    draw_node(138, 172);
+}
+
+static void draw_ant_pv_ind_eq_circuit(void) {
+    draw_terminal(38, 92, "a");
+    draw_terminal(254, 92, "b");
+    draw_ind_h(44, 48, 248, "10mH");
+    draw_wire(38, 92, 38, 48);
+    draw_wire(254, 92, 254, 48);
+    draw_ind_h(44, 92, 92, "25mH");
+    draw_ind_h(92, 92, 180, "20mH");
+    draw_ind_h(92, 126, 180, "60mH");
+    draw_ind_h(92, 170, 180, "30mH");
+    draw_wire(92, 92, 92, 170);
+    draw_wire(180, 92, 180, 170);
+    draw_wire(180, 92, 254, 92);
+    draw_node(92, 92);
+    draw_node(180, 92);
+}
+
+static void draw_ant_pv_cte_tempo_circuit(void) {
+    draw_voltage_source(54, 84, 174, "50V");
+    draw_res_h(54, 84, 130, "120");
+    draw_res_v(130, 84, 174, "80");
+    draw_res_h(130, 84, 206, "12");
+    draw_cap_v(260, 84, 174, "0.5mF");
+    draw_wire(206, 84, 260, 84);
+    draw_wire(54, 174, 260, 174);
+    draw_ground(130, 174);
+    draw_node(130, 84);
+    draw_node(130, 174);
+}
+
+static void draw_ant_pv_resp_rc_circuit(void) {
+    draw_voltage_source(52, 86, 178, "40V");
+    draw_switch_open_h(52, 86, 96, "t=0");
+    draw_res_h(96, 86, 156, "10k");
+    draw_res_v(156, 86, 178, "2k");
+    draw_cap_v(244, 86, 178, "40uF");
+    draw_wire(156, 86, 244, 86);
+    draw_wire(52, 178, 244, 178);
+    draw_ground(156, 178);
+    label("v(t)", 262, 126);
+}
+
+static void draw_ant_pv_energy_cc_circuit(void) {
+    draw_current_source_v_dir(48, 72, 176, "3A", true);
+    draw_res_v(112, 72, 176, "4");
+    draw_res_h(112, 72, 188, "2");
+    draw_cap_v(188, 72, 124, "2F");
+    draw_res_v(188, 124, 176, "5");
+    draw_ind_v(256, 72, 176, "0.5H");
+    draw_wire(48, 72, 112, 72);
+    draw_wire(48, 176, 256, 176);
+    draw_wire(188, 72, 256, 72);
+    draw_node(112, 72);
+    draw_node(188, 72);
+    label("vC", 206, 98);
+    label("iL", 274, 104);
+}
+
+static void draw_ant_v1_req_mista_circuit(void) {
+    draw_terminal(24, 58, "a");
+    draw_terminal(24, 174, "b");
+    draw_arrow_h(8, 104, 42, "Req", true);
+    draw_res_h(30, 58, 92, "10R");
+    draw_wire(28, 174, 92, 174);
+    draw_res_h(92, 58, 172, "30R");
+    draw_res_h(172, 58, 248, "10R");
+    draw_res_v(248, 58, 174, "50R");
+    draw_wire(248, 174, 172, 174);
+    draw_res_v(92, 58, 174, "20R");
+    draw_res_v(172, 58, 174, "30R");
+    draw_wire(92, 174, 172, 174);
+    draw_wire(92, 58, 142, 116);
+    draw_res_h(92, 87, 142, "20R");
+    draw_wire(92, 174, 142, 116);
+    draw_res_h(92, 145, 142, "10R");
+    draw_wire(142, 116, 172, 58);
+    draw_wire(142, 116, 172, 174);
+    draw_node(92, 58);
+    draw_node(92, 174);
+    draw_node(172, 58);
+    draw_node(172, 174);
+    draw_node(248, 58);
+    draw_node(248, 174);
+    draw_node(142, 116);
+}
+
+static void draw_ant_v1_fonte_20v_circuit(void) {
+    draw_voltage_source(42, 56, 168, "20V");
+    draw_res_h(42, 56, 112, "20R");
+    draw_res_h(112, 56, 186, "28R");
+    draw_res_h(186, 56, 262, "60R");
+    draw_res_v(112, 56, 168, "160R");
+    draw_res_v(186, 56, 168, "160R");
+    draw_res_v(262, 56, 168, "80R");
+    draw_wire(42, 168, 112, 168);
+    draw_res_h(112, 168, 186, "52R");
+    draw_res_h(186, 168, 262, "20R");
+    draw_node(42, 56);
+    draw_node(42, 168);
+    draw_node(112, 56);
+    draw_node(112, 168);
+    draw_node(186, 56);
+    draw_node(186, 168);
+    draw_node(262, 56);
+    draw_node(262, 168);
+    draw_arrow_h(58, 35, 96, "i", true);
+}
+
 static void draw_e_2_43_v0_circuit(void) {
     draw_terminal(30, 90, "a");
     draw_wire(30, 90, 40, 90);
@@ -1279,6 +2143,180 @@ static const PageTemplate rec_q5_pages[] = {
       rec_q5_pg2_lines, COUNT_OF(rec_q5_pg2_lines), 0, 0, 0 },
     { "Resultado", "Final",
       rec_q5_pg3_lines, COUNT_OF(rec_q5_pg3_lines), "i = 555 mA", 104, 0 }
+};
+
+static const TextLine pv1rec_q2_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine pv1rec_q2_pg1_lines[] = {
+    { "Usando associacoes serie/paralelo,", 14, 62, COL_BLACK },
+    { "ache a resistencia equivalente vista", 14, 82, COL_BLACK },
+    { "pela fonte de 200 V (Fig. 2.98) e a", 14, 102, COL_BLACK },
+    { "potencia total dissipada na rede.", 14, 122, COL_BLACK },
+};
+
+static const TextLine pv1rec_q2_pg2_lines[] = {
+    { "Reduzir pela direita:", 14, 62, COL_BLUE },
+    { "80 + 20 em serie = 100 ohm", 14, 82, COL_BLACK },
+    { "100 || 160 = 61.54 ohm", 14, 102, COL_BLACK },
+    { "+ 52 em serie = 113.54 ohm", 14, 122, COL_BLACK },
+    { "160 da esquerda em paralelo:", 14, 142, COL_BLUE },
+    { "160 || 113.54 = Req", 14, 162, COL_BLACK },
+    { "Req = 66.4 ohm", 14, 182, COL_RED },
+};
+
+static const TextLine pv1rec_q2_pg3_lines[] = {
+    { "Potencia total: P = V^2 / Req", 14, 62, COL_BLUE },
+    { "P = 200^2 / 66.4", 14, 82, COL_BLACK },
+    { "P = 602.3 W", 14, 102, COL_RED },
+};
+
+static const TextLine pv1rec_q2_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Req = 66.4 ohm", 14, 82, COL_RED },
+    { "P = 602.3 W", 14, 102, COL_RED },
+};
+
+static const PageTemplate pv1rec_q2_pages[] = {
+    { "Circuito", "",
+      pv1rec_q2_pg0_lines, COUNT_OF(pv1rec_q2_pg0_lines), 0, 0, draw_pv1rec_q2_circuit },
+    { "Enunciado", "",
+      pv1rec_q2_pg1_lines, COUNT_OF(pv1rec_q2_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      pv1rec_q2_pg2_lines, COUNT_OF(pv1rec_q2_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      pv1rec_q2_pg3_lines, COUNT_OF(pv1rec_q2_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      pv1rec_q2_pg4_lines, COUNT_OF(pv1rec_q2_pg4_lines), "Req=66.4 ohm; P=602.3 W", 124, 0 }
+};
+
+static const TextLine pv1rec_q1_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine pv1rec_q1_pg1_lines[] = {
+    { "No circuito da Fig. 2.84 a fonte de", 14, 62, COL_BLACK },
+    { "54 V alimenta um resistor de 22 ohm", 14, 82, COL_BLACK },
+    { "e uma fonte de tensao controlada", 14, 102, COL_BLACK },
+    { "5io. Determine io.", 14, 122, COL_BLACK },
+};
+
+static const TextLine pv1rec_q1_pg2_lines[] = {
+    { "LKT na malha unica (sentido de io):", 14, 62, COL_BLUE },
+    { "-54 + 22 io + 5 io = 0", 14, 82, COL_BLACK },
+    { "Agrupar os termos em io:", 14, 102, COL_BLUE },
+    { "27 io = 54", 14, 122, COL_BLACK },
+    { "io = 2 A", 14, 142, COL_RED },
+    { "Tensao da fonte dependente:", 14, 162, COL_BLUE },
+    { "5 io = 5 x 2 = 10 V", 14, 182, COL_BLACK },
+};
+
+static const TextLine pv1rec_q1_pg3_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "io = 2 A", 14, 82, COL_RED },
+    { "5io = 10 V", 14, 102, COL_RED },
+};
+
+static const PageTemplate pv1rec_q1_pages[] = {
+    { "Circuito", "",
+      pv1rec_q1_pg0_lines, COUNT_OF(pv1rec_q1_pg0_lines), 0, 0, draw_pv1rec_q1_circuit },
+    { "Enunciado", "",
+      pv1rec_q1_pg1_lines, COUNT_OF(pv1rec_q1_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "passo a passo",
+      pv1rec_q1_pg2_lines, COUNT_OF(pv1rec_q1_pg2_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      pv1rec_q1_pg3_lines, COUNT_OF(pv1rec_q1_pg3_lines), "io = 2 A; 5io = 10 V", 124, 0 }
+};
+
+static const TextLine prova1a_q3_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine prova1a_q3_pg1_lines[] = {
+    { "Para o circuito da Fig. 3.51 obtenha", 14, 62, COL_BLACK },
+    { "v1 e v2 por analise nodal. Fontes:", 14, 82, COL_BLACK },
+    { "3 A horizontal (de V1 para V2) e", 14, 102, COL_BLACK },
+    { "6 A vertical (entra em V2).", 14, 122, COL_BLACK },
+};
+
+static const TextLine prova1a_q3_pg2_lines[] = {
+    { "KCL no no V1 (correntes saindo):", 14, 62, COL_BLUE },
+    { "V1/10 + V1/5 + (V1-V2)/2 + 3 = 0", 14, 82, COL_BLACK },
+    { "x10:  8 V1 - 5 V2 = -30   (I)", 14, 102, COL_BLACK },
+    { "KCL no no V2 (correntes saindo):", 14, 122, COL_BLUE },
+    { "V2/4 + (V2-V1)/2 - 3 - 6 = 0", 14, 142, COL_BLACK },
+    { "x4:  -2 V1 + 3 V2 = 36    (II)", 14, 162, COL_BLACK },
+    { "Resolver o sistema (I),(II):", 14, 182, COL_BLUE },
+};
+
+static const TextLine prova1a_q3_pg3_lines[] = {
+    { "V1 = 6.43 V", 14, 62, COL_RED },
+    { "V2 = 16.29 V", 14, 82, COL_RED },
+};
+
+static const TextLine prova1a_q3_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "V1 = 6.43 V", 14, 82, COL_RED },
+    { "V2 = 16.29 V", 14, 102, COL_RED },
+};
+
+static const PageTemplate prova1a_q3_pages[] = {
+    { "Circuito", "",
+      prova1a_q3_pg0_lines, COUNT_OF(prova1a_q3_pg0_lines), 0, 0, draw_prova1a_q3_circuit },
+    { "Enunciado", "",
+      prova1a_q3_pg1_lines, COUNT_OF(prova1a_q3_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      prova1a_q3_pg2_lines, COUNT_OF(prova1a_q3_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      prova1a_q3_pg3_lines, COUNT_OF(prova1a_q3_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      prova1a_q3_pg4_lines, COUNT_OF(prova1a_q3_pg4_lines), "V1=6.43 V; V2=16.29 V", 124, 0 }
+};
+
+static const TextLine prova1b_q3_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine prova1b_q3_pg1_lines[] = {
+    { "Fig. 3.51 com as fontes invertidas:", 14, 62, COL_BLACK },
+    { "6 A horizontal (de V1 para V2) e", 14, 82, COL_BLACK },
+    { "3 A vertical (entra em V2). Obtenha", 14, 102, COL_BLACK },
+    { "v1 e v2 por analise nodal.", 14, 122, COL_BLACK },
+};
+
+static const TextLine prova1b_q3_pg2_lines[] = {
+    { "KCL no no V1 (correntes saindo):", 14, 62, COL_BLUE },
+    { "V1/10 + V1/5 + (V1-V2)/2 + 6 = 0", 14, 82, COL_BLACK },
+    { "x10:  8 V1 - 5 V2 = -60   (I)", 14, 102, COL_BLACK },
+    { "KCL no no V2 (correntes saindo):", 14, 122, COL_BLUE },
+    { "V2/4 + (V2-V1)/2 - 6 - 3 = 0", 14, 142, COL_BLACK },
+    { "x4:  -2 V1 + 3 V2 = 36    (II)", 14, 162, COL_BLACK },
+    { "Resolver o sistema (I),(II):", 14, 182, COL_BLUE },
+};
+
+static const TextLine prova1b_q3_pg3_lines[] = {
+    { "V1 = 0 V", 14, 62, COL_RED },
+    { "V2 = 12 V", 14, 82, COL_RED },
+};
+
+static const TextLine prova1b_q3_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "V1 = 0 V", 14, 82, COL_RED },
+    { "V2 = 12 V", 14, 102, COL_RED },
+};
+
+static const PageTemplate prova1b_q3_pages[] = {
+    { "Circuito", "",
+      prova1b_q3_pg0_lines, COUNT_OF(prova1b_q3_pg0_lines), 0, 0, draw_prova1b_q3_circuit },
+    { "Enunciado", "",
+      prova1b_q3_pg1_lines, COUNT_OF(prova1b_q3_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      prova1b_q3_pg2_lines, COUNT_OF(prova1b_q3_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      prova1b_q3_pg3_lines, COUNT_OF(prova1b_q3_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      prova1b_q3_pg4_lines, COUNT_OF(prova1b_q3_pg4_lines), "V1=0 V; V2=12 V", 124, 0 }
 };
 
 static const TextLine e_1_1_pg0_lines[] = {
@@ -3480,6 +4518,2797 @@ static const PageTemplate e_4_31_pages[] = {
       e_4_31_pg3_lines, COUNT_OF(e_4_31_pg3_lines), "vo = vx = 3.652 V", 104, 0 }
 };
 
+static const TextLine ant_iv_4_33_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_33_pg1_lines[] = {
+    { "Fig 4.101 pag 1", 14, 62, COL_BLACK },
+    { "Achar Thev e I no resistor 5.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_33_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Retire a carga de 5ohm.", 14, 82, COL_BLACK },
+    { "Em aberto, nao ha I no 10 serie.", 14, 102, COL_BLACK },
+    { "Vth = tensao no 10ohm vertical.", 14, 122, COL_BLACK },
+    { "Rth: fonte I aberta.", 14, 142, COL_BLACK },
+    { "Visto da carga: 10ohm + 10ohm.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_33_pg3_lines[] = {
+    { "Vth = 4A*10ohm = 40V", 14, 62, COL_BLACK },
+    { "Rth = 10 + 10 = 20ohm", 14, 82, COL_BLACK },
+    { "Com a carga: I=Vth/(Rth+RL)", 14, 102, COL_BLACK },
+    { "I = 40/(20+5) = 1.6A", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Thevenin: 40V em serie com 20ohm.", 14, 162, COL_BLACK },
+    { "Corrente no resistor de 5ohm:", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_33_pg4_lines[] = {
+    { "I5 = 1.6A no sentido da queda Vth.", 14, 62, COL_BLACK },
+    { "Se inverter referencia, muda o sinal.", 14, 82, COL_BLACK },
+    { "40V  20ohm  I=1.6A", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_33_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "40V  20ohm  I=1.6A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_33_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_33_pg0_lines, COUNT_OF(ant_iv_4_33_pg0_lines), 0, 0, draw_ant_iv_4_33_circuit },
+    { "Enunciado", "",
+      ant_iv_4_33_pg1_lines, COUNT_OF(ant_iv_4_33_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_33_pg2_lines, COUNT_OF(ant_iv_4_33_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_33_pg3_lines, COUNT_OF(ant_iv_4_33_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_33_pg4_lines, COUNT_OF(ant_iv_4_33_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_33_pg5_lines, COUNT_OF(ant_iv_4_33_pg5_lines), "40V  20ohm  I=1.6A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_35_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_35_pg1_lines[] = {
+    { "Fig 4.80 pag 3", 14, 62, COL_BLACK },
+    { "Use Thevenin para achar vo.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_35_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Defina E no lado + de vo.", 14, 82, COL_BLACK },
+    { "Defina D no lado - de vo.", 14, 102, COL_BLACK },
+    { "vo = E - D pela polaridade dada.", 14, 122, COL_BLACK },
+    { "A fonte 2A vai de D para E.", 14, 142, COL_BLACK },
+    { "Use KCL nos dois nos desconhecidos.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_35_pg3_lines[] = {
+    { "E: (E-12)/6+E/3+(E-D)/5-2=0", 14, 62, COL_BLACK },
+    { "D: (D-19)/4+D/12+(D-E)/5+2=0", 14, 82, COL_BLACK },
+    { "Solucao: E=8.05V, D=8.175V", 14, 102, COL_BLACK },
+    { "vo = E - D = -0.125V", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "-0.125V = -125mV.", 14, 162, COL_BLACK },
+    { "O sinal negativo vem da referencia.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_35_pg4_lines[] = {
+    { "A tensao real esta oposta ao + de vo.", 14, 62, COL_BLACK },
+    { "Resultado confere com o livro.", 14, 82, COL_BLACK },
+    { "vo = -125 mV", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_35_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo = -125 mV", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_35_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_35_pg0_lines, COUNT_OF(ant_iv_4_35_pg0_lines), 0, 0, draw_ant_iv_4_35_circuit },
+    { "Enunciado", "",
+      ant_iv_4_35_pg1_lines, COUNT_OF(ant_iv_4_35_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_35_pg2_lines, COUNT_OF(ant_iv_4_35_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_35_pg3_lines, COUNT_OF(ant_iv_4_35_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_35_pg4_lines, COUNT_OF(ant_iv_4_35_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_35_pg5_lines, COUNT_OF(ant_iv_4_35_pg5_lines), "vo = -125 mV", 104, 0 }
+};
+
+static const TextLine ant_iv_4_37_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_37_pg1_lines[] = {
+    { "Fig 4.104 pag 5", 14, 62, COL_BLACK },
+    { "Achar Norton nos terminais a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_37_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para RN: desligue fontes", 14, 82, COL_BLACK },
+    { "independentes.", 14, 102, COL_BLACK },
+    { "Fonte V vira curto; fonte I abre.", 14, 122, COL_BLACK },
+    { "RN = 12 || (20+40)", 14, 142, COL_BLACK },
+    { "RN = 12 || 60 = 10ohm", 14, 162, COL_BLACK },
+    { "Para IN, curto entre a-b.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_37_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "No no x: (x-120)/20 + x/40 -2=0", 14, 82, COL_BLACK },
+    { "x = 106.67V", 14, 102, COL_BLACK },
+    { "IN = x/40 - 2", 14, 122, COL_BLACK },
+    { "IN = 2.667 - 2 = 0.667A", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "Norton e fonte IN paralela a RN.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_37_pg4_lines[] = {
+    { "IN = 0.6667A = 666.7mA.", 14, 62, COL_BLACK },
+    { "RN = 10ohm.", 14, 82, COL_BLACK },
+    { "Sentido segue a seta escolhida.", 14, 102, COL_BLACK },
+    { "RN=10ohm  IN=666.7mA", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_4_37_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN=10ohm  IN=666.7mA", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_37_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_37_pg0_lines, COUNT_OF(ant_iv_4_37_pg0_lines), 0, 0, draw_ant_iv_4_37_circuit },
+    { "Enunciado", "",
+      ant_iv_4_37_pg1_lines, COUNT_OF(ant_iv_4_37_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_37_pg2_lines, COUNT_OF(ant_iv_4_37_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_37_pg3_lines, COUNT_OF(ant_iv_4_37_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_37_pg4_lines, COUNT_OF(ant_iv_4_37_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_37_pg5_lines, COUNT_OF(ant_iv_4_37_pg5_lines), "RN=10ohm  IN=666.7mA", 104, 0 }
+};
+
+static const TextLine ant_iv_4_39_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_39_pg1_lines[] = {
+    { "Fig 4.106 pag 7", 14, 62, COL_BLACK },
+    { "Obter Thevenin em a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_39_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Abra os terminais a-b para Vth.", 14, 82, COL_BLACK },
+    { "Use nos A, B e C no topo do circuito.", 14, 102, COL_BLACK },
+    { "A: (A-24)/10+(A-B)/10-3=0", 14, 122, COL_BLACK },
+    { "B: (B-A)/10+B/5+(B-C)/16=0", 14, 142, COL_BLACK },
+    { "C: (C-B)/16+3=0", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_39_pg3_lines[] = {
+    { "Solucao nodal: C = -49.2V", 14, 62, COL_BLACK },
+    { "Logo Vth = Vab = -49.2V", 14, 82, COL_BLACK },
+    { "Para Rth: fonte V curto, I aberta.", 14, 102, COL_BLACK },
+    { "Rth = 16 + (5 || (10+10))", 14, 122, COL_BLACK },
+    { "Rth = 16 + 4 = 20ohm", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "O sinal de Vth e negativo.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_39_pg4_lines[] = {
+    { "Isso indica polaridade oposta a a-b.", 14, 62, COL_BLACK },
+    { "Equivalente: -49.2V serie 20ohm.", 14, 82, COL_BLACK },
+    { "20ohm  Vth=-49.2V", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_39_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "20ohm  Vth=-49.2V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_39_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_39_pg0_lines, COUNT_OF(ant_iv_4_39_pg0_lines), 0, 0, draw_ant_iv_4_39_circuit },
+    { "Enunciado", "",
+      ant_iv_4_39_pg1_lines, COUNT_OF(ant_iv_4_39_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_39_pg2_lines, COUNT_OF(ant_iv_4_39_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_39_pg3_lines, COUNT_OF(ant_iv_4_39_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_39_pg4_lines, COUNT_OF(ant_iv_4_39_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_39_pg5_lines, COUNT_OF(ant_iv_4_39_pg5_lines), "20ohm  Vth=-49.2V", 104, 0 }
+};
+
+static const TextLine ant_iv_4_41_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_41_pg1_lines[] = {
+    { "Fig 4.108 pag 8", 14, 62, COL_BLACK },
+    { "Achar Thevenin e Norton.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_41_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para Rth: fontes I abrem.", 14, 82, COL_BLACK },
+    { "Fonte de tensao vira curto.", 14, 102, COL_BLACK },
+    { "Rth = RN = 5 || (14+6)", 14, 122, COL_BLACK },
+    { "Rth = 5 || 20 = 4ohm", 14, 142, COL_BLACK },
+    { "Para Vth, deixe a-b em aberto.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_41_pg3_lines[] = {
+    { "KCL no no a com referencia em b.", 14, 62, COL_BLACK },
+    { "(14+6-Vth)/20 = 3 + Vth/5", 14, 82, COL_BLACK },
+    { "Vth = -8V", 14, 102, COL_BLACK },
+    { "Converta Thevenin para Norton.", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "IN = Vth/Rth = -8/4", 14, 162, COL_BLACK },
+    { "IN = -2A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_41_pg4_lines[] = {
+    { "Sinal negativo: sentido oposto.", 14, 62, COL_BLACK },
+    { "R=4ohm Vth=-8V IN=-2A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_4_41_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "R=4ohm Vth=-8V IN=-2A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_41_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_41_pg0_lines, COUNT_OF(ant_iv_4_41_pg0_lines), 0, 0, draw_ant_iv_4_41_circuit },
+    { "Enunciado", "",
+      ant_iv_4_41_pg1_lines, COUNT_OF(ant_iv_4_41_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_41_pg2_lines, COUNT_OF(ant_iv_4_41_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_41_pg3_lines, COUNT_OF(ant_iv_4_41_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_41_pg4_lines, COUNT_OF(ant_iv_4_41_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_41_pg5_lines, COUNT_OF(ant_iv_4_41_pg5_lines), "R=4ohm Vth=-8V IN=-2A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_43_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_43_pg1_lines[] = {
+    { "Fig 4.110 pag 10", 14, 62, COL_BLACK },
+    { "Thevenin em a-b e corrente ix.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_43_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Remova o resistor entre a-b.", 14, 82, COL_BLACK },
+    { "Calcule Vab em aberto.", 14, 102, COL_BLACK },
+    { "Por KCL nos nos a e b: Vab = 0V", 14, 122, COL_BLACK },
+    { "Entao Vth = 0V", 14, 142, COL_BLACK },
+    { "A fonte de 2A fica ativa no calculo.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_43_pg3_lines[] = {
+    { "Para Rth: desligue fontes indep.", 14, 62, COL_BLACK },
+    { "20V vira curto; 2A vira aberto.", 14, 82, COL_BLACK },
+    { "A resistencia vista entre a-b reduz:", 14, 102, COL_BLACK },
+    { "Rth = 10ohm", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Como Vth = 0V, a carga em a-b", 14, 162, COL_BLACK },
+    { "nao recebe tensao de Thevenin.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_43_pg4_lines[] = {
+    { "Logo ix fica nula com a carga dada.", 14, 62, COL_BLACK },
+    { "O equivalente e 0V serie 10ohm.", 14, 82, COL_BLACK },
+    { "Rth=10ohm  Vth=0V", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_43_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Rth=10ohm  Vth=0V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_43_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_43_pg0_lines, COUNT_OF(ant_iv_4_43_pg0_lines), 0, 0, draw_ant_iv_4_43_circuit },
+    { "Enunciado", "",
+      ant_iv_4_43_pg1_lines, COUNT_OF(ant_iv_4_43_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_43_pg2_lines, COUNT_OF(ant_iv_4_43_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_43_pg3_lines, COUNT_OF(ant_iv_4_43_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_43_pg4_lines, COUNT_OF(ant_iv_4_43_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_43_pg5_lines, COUNT_OF(ant_iv_4_43_pg5_lines), "Rth=10ohm  Vth=0V", 104, 0 }
+};
+
+static const TextLine ant_iv_4_45_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_45_pg1_lines[] = {
+    { "Fig 4.112 pag 11", 14, 62, COL_BLACK },
+    { "Achar Norton nos terminais a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_45_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para RN: abra a fonte de corrente.", 14, 82, COL_BLACK },
+    { "Visto de a-b sobram dois ramos 6ohm.", 14, 102, COL_BLACK },
+    { "RN = 6 || 6", 14, 122, COL_BLACK },
+    { "RN = 3ohm", 14, 142, COL_BLACK },
+    { "Para IN: curto direto entre a-b.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_45_pg3_lines[] = {
+    { "O resistor 4ohm fica bypassado.", 14, 62, COL_BLACK },
+    { "A fonte de 4A divide em dois 6ohm.", 14, 82, COL_BLACK },
+    { "IN = 4A/2 = 2A", 14, 102, COL_BLACK },
+    { "Norton final:", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "fonte de 2A paralela com 3ohm.", 14, 162, COL_BLACK },
+    { "O sentido da fonte segue a-b.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_45_pg4_lines[] = {
+    { "Se trocar a referencia, muda o sinal.", 14, 62, COL_BLACK },
+    { "RN=3ohm  IN=2A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_4_45_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN=3ohm  IN=2A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_45_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_45_pg0_lines, COUNT_OF(ant_iv_4_45_pg0_lines), 0, 0, draw_ant_iv_4_45_circuit },
+    { "Enunciado", "",
+      ant_iv_4_45_pg1_lines, COUNT_OF(ant_iv_4_45_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_45_pg2_lines, COUNT_OF(ant_iv_4_45_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_45_pg3_lines, COUNT_OF(ant_iv_4_45_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_45_pg4_lines, COUNT_OF(ant_iv_4_45_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_45_pg5_lines, COUNT_OF(ant_iv_4_45_pg5_lines), "RN=3ohm  IN=2A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_47_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_47_pg1_lines[] = {
+    { "Fig 4.114 pag 13", 14, 62, COL_BLACK },
+    { "Achar Thevenin e Norton.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_47_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Fonte dependente nunca e desligada.", 14, 82, COL_BLACK },
+    { "Com a-b aberto, Vx = Vth.", 14, 102, COL_BLACK },
+    { "KCL: (Vx-30)/12 + Vx/60 + 2Vx=0", 14, 122, COL_BLACK },
+    { "Vth = Vx = 1.1905V", 14, 142, COL_BLACK },
+    { "Agora aplique fonte teste Vt em a-b.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_47_pg3_lines[] = {
+    { "A fonte de 30V vira curto.", 14, 62, COL_BLACK },
+    { "It = Vt/12 + Vt/60 + 2Vt", 14, 82, COL_BLACK },
+    { "It = 2.1Vt", 14, 102, COL_BLACK },
+    { "Rth = Vt/It = 0.4762ohm", 14, 122, COL_BLACK },
+    { "Norton vem da conversao direta.", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "IN = Vth/Rth", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_47_pg4_lines[] = {
+    { "IN = 1.1905/0.4762 = 2.5A", 14, 62, COL_BLACK },
+    { "Rth = 476.2mohm.", 14, 82, COL_BLACK },
+    { "V=1.1905 R=476.2mohm I=2.5A", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_47_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "V=1.1905 R=476.2mohm I=2.5A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_47_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_47_pg0_lines, COUNT_OF(ant_iv_4_47_pg0_lines), 0, 0, draw_ant_iv_4_47_circuit },
+    { "Enunciado", "",
+      ant_iv_4_47_pg1_lines, COUNT_OF(ant_iv_4_47_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_47_pg2_lines, COUNT_OF(ant_iv_4_47_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_47_pg3_lines, COUNT_OF(ant_iv_4_47_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_47_pg4_lines, COUNT_OF(ant_iv_4_47_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_47_pg5_lines, COUNT_OF(ant_iv_4_47_pg5_lines), "V=1.1905 R=476.2mohm I=2.5A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_49_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_49_pg1_lines[] = {
+    { "Fig 4.102 pag 14", 14, 62, COL_BLACK },
+    { "Achar Norton para V,I,R1,R2,R3.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_49_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Use V=40V, I=3A, R1=10ohm.", 14, 82, COL_BLACK },
+    { "R2=40ohm e R3=20ohm.", 14, 102, COL_BLACK },
+    { "Para RN: V curto e I aberta.", 14, 122, COL_BLACK },
+    { "RN = R3 + (R1 || R2)", 14, 142, COL_BLACK },
+    { "RN = 20 + (10 || 40) = 28ohm", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_49_pg3_lines[] = {
+    { "Para IN: curto entre a-b.", 14, 62, COL_BLACK },
+    { "No x: (x-40)/10+x/40+x/20+3=0", 14, 82, COL_BLACK },
+    { "x = 5.714V", 14, 102, COL_BLACK },
+    { "IN = x/20 + 3 = 3.286A", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Norton: 3.286A em paralelo", 14, 162, COL_BLACK },
+    { "com RN = 28ohm.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_49_pg4_lines[] = {
+    { "Os sinais seguem o sentido da fonte", 14, 62, COL_BLACK },
+    { "I.", 14, 82, COL_BLACK },
+    { "RN=28ohm  IN=3.286A", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_49_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN=28ohm  IN=3.286A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_49_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_49_pg0_lines, COUNT_OF(ant_iv_4_49_pg0_lines), 0, 0, draw_ant_iv_4_49_circuit },
+    { "Enunciado", "",
+      ant_iv_4_49_pg1_lines, COUNT_OF(ant_iv_4_49_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_49_pg2_lines, COUNT_OF(ant_iv_4_49_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_49_pg3_lines, COUNT_OF(ant_iv_4_49_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_49_pg4_lines, COUNT_OF(ant_iv_4_49_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_49_pg5_lines, COUNT_OF(ant_iv_4_49_pg5_lines), "RN=28ohm  IN=3.286A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_53_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_53_pg1_lines[] = {
+    { "Fig 4.119 pag 15", 14, 62, COL_BLACK },
+    { "Achar Norton em a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_53_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "A fonte 0.25vo e dependente.", 14, 82, COL_BLACK },
+    { "Ela permanece ativa nos calculos.", 14, 102, COL_BLACK },
+    { "Curto em a-b para achar IN.", 14, 122, COL_BLACK },
+    { "Com a=0, use vo no resistor 3ohm.", 14, 142, COL_BLACK },
+    { "KCL no no x da rede.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_53_pg3_lines[] = {
+    { "(x-18)/6 + x/3 + x/2 -0.25x=0", 14, 62, COL_BLACK },
+    { "x = 4V", 14, 82, COL_BLACK },
+    { "Corrente no curto: x/2 -0.25x", 14, 102, COL_BLACK },
+    { "IN = 2 - 1 = 1A", 14, 122, COL_BLACK },
+    { "Para RN, use fonte teste em a-b.", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "O calculo da rede da RN = 3ohm.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_53_pg4_lines[] = {
+    { "Equivalente final: 1A || 3ohm.", 14, 62, COL_BLACK },
+    { "Fonte dependente justifica o teste.", 14, 82, COL_BLACK },
+    { "RN=3ohm  IN=1A", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_4_53_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN=3ohm  IN=1A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_53_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_53_pg0_lines, COUNT_OF(ant_iv_4_53_pg0_lines), 0, 0, draw_ant_iv_4_53_circuit },
+    { "Enunciado", "",
+      ant_iv_4_53_pg1_lines, COUNT_OF(ant_iv_4_53_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_53_pg2_lines, COUNT_OF(ant_iv_4_53_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_53_pg3_lines, COUNT_OF(ant_iv_4_53_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_53_pg4_lines, COUNT_OF(ant_iv_4_53_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_53_pg5_lines, COUNT_OF(ant_iv_4_53_pg5_lines), "RN=3ohm  IN=1A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_57_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_57_pg1_lines[] = {
+    { "Fig 4.123 pag 17", 14, 62, COL_BLACK },
+    { "Achar Thevenin e Norton.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_57_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Mantenha a fonte 0.5vx ativa.", 14, 82, COL_BLACK },
+    { "Abra os terminais a-b para Vth.", 14, 102, COL_BLACK },
+    { "Use vx no resistor de 6ohm.", 14, 122, COL_BLACK },
+    { "KCL dos nos fornece Vth = 166.67V", 14, 142, COL_BLACK },
+    { "Para Rth, use uma fonte teste.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_57_pg3_lines[] = {
+    { "Fontes independentes desligadas.", 14, 62, COL_BLACK },
+    { "A dependente continua ativa.", 14, 82, COL_BLACK },
+    { "Rth = Vteste/Iteste = 10ohm", 14, 102, COL_BLACK },
+    { "Norton e conversao:", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "IN = Vth/Rth", 14, 162, COL_BLACK },
+    { "IN = 166.67/10 = 16.667A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_57_pg4_lines[] = {
+    { "Rth = RN = 10ohm.", 14, 62, COL_BLACK },
+    { "R=10ohm V=166.67V I=16.667A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_4_57_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "R=10ohm V=166.67V I=16.667A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_57_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_57_pg0_lines, COUNT_OF(ant_iv_4_57_pg0_lines), 0, 0, draw_ant_iv_4_57_circuit },
+    { "Enunciado", "",
+      ant_iv_4_57_pg1_lines, COUNT_OF(ant_iv_4_57_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_57_pg2_lines, COUNT_OF(ant_iv_4_57_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_57_pg3_lines, COUNT_OF(ant_iv_4_57_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_57_pg4_lines, COUNT_OF(ant_iv_4_57_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_57_pg5_lines, COUNT_OF(ant_iv_4_57_pg5_lines), "R=10ohm V=166.67V I=16.667A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_61_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_61_pg1_lines[] = {
+    { "Fig 4.127 pag 18", 14, 62, COL_BLACK },
+    { "Achar Thevenin e Norton.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_61_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Abra a-b e resolva por supernos.", 14, 82, COL_BLACK },
+    { "As fontes de 12V fixam diferencas.", 14, 102, COL_BLACK },
+    { "KCL nos supernos da rede.", 14, 122, COL_BLACK },
+    { "Vth = Vab = 9.6V", 14, 142, COL_BLACK },
+    { "Para Rth, desligue fontes de 12V.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_61_pg3_lines[] = {
+    { "Cada fonte de tensao vira curto.", 14, 62, COL_BLACK },
+    { "A rede resistiva reduz para:", 14, 82, COL_BLACK },
+    { "Rth = RN = 1.2ohm", 14, 102, COL_BLACK },
+    { "Converta para Norton.", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "IN = Vth/Rth", 14, 162, COL_BLACK },
+    { "IN = 9.6/1.2 = 8A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_61_pg4_lines[] = {
+    { "Equivalentes usam a mesma RN.", 14, 62, COL_BLACK },
+    { "R=1.2ohm V=9.6V I=8A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_4_61_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "R=1.2ohm V=9.6V I=8A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_61_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_61_pg0_lines, COUNT_OF(ant_iv_4_61_pg0_lines), 0, 0, draw_ant_iv_4_61_circuit },
+    { "Enunciado", "",
+      ant_iv_4_61_pg1_lines, COUNT_OF(ant_iv_4_61_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_61_pg2_lines, COUNT_OF(ant_iv_4_61_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_61_pg3_lines, COUNT_OF(ant_iv_4_61_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_61_pg4_lines, COUNT_OF(ant_iv_4_61_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_61_pg5_lines, COUNT_OF(ant_iv_4_61_pg5_lines), "R=1.2ohm V=9.6V I=8A", 104, 0 }
+};
+
+static const TextLine ant_iv_4_63_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_63_pg1_lines[] = {
+    { "Fig 4.129 pag 20", 14, 62, COL_BLACK },
+    { "Achar Norton com fonte dependente.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_63_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Nao ha fonte independente na rede.", 14, 82, COL_BLACK },
+    { "Entao Vth em aberto e 0V.", 14, 102, COL_BLACK },
+    { "Como Vth=0, IN=Vth/RN=0A.", 14, 122, COL_BLACK },
+    { "Ainda e preciso achar RN.", 14, 142, COL_BLACK },
+    { "Use fonte teste Vt nos terminais.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_4_63_pg3_lines[] = {
+    { "A fonte dependente 0.5vo fica ativa.", 14, 62, COL_BLACK },
+    { "Pela KCL, It = -0.3Vt", 14, 82, COL_BLACK },
+    { "RN = Vt/It = -3.333ohm", 14, 102, COL_BLACK },
+    { "Resistencia negativa pode ocorrer", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "quando ha fonte dependente ativa.", 14, 162, COL_BLACK },
+    { "Equivalente Norton: IN=0A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_4_63_pg4_lines[] = {
+    { "em paralelo com -3.333ohm.", 14, 62, COL_BLACK },
+    { "RN=-3.333ohm  IN=0A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_4_63_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN=-3.333ohm  IN=0A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_4_63_pages[] = {
+    { "Circuito", "",
+      ant_iv_4_63_pg0_lines, COUNT_OF(ant_iv_4_63_pg0_lines), 0, 0, draw_ant_iv_4_63_circuit },
+    { "Enunciado", "",
+      ant_iv_4_63_pg1_lines, COUNT_OF(ant_iv_4_63_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_4_63_pg2_lines, COUNT_OF(ant_iv_4_63_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_4_63_pg3_lines, COUNT_OF(ant_iv_4_63_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_4_63_pg4_lines, COUNT_OF(ant_iv_4_63_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_4_63_pg5_lines, COUNT_OF(ant_iv_4_63_pg5_lines), "RN=-3.333ohm  IN=0A", 104, 0 }
+};
+
+static const TextLine ant_iv_5_15_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_15_pg1_lines[] = {
+    { "Fig 5.54 pag 40", 14, 62, COL_BLACK },
+    { "Razao vo/io em AOP inversor.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_15_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "AOP ideal: i+ = i- = 0.", 14, 82, COL_BLACK },
+    { "Entrada nao inversora aterrada.", 14, 102, COL_BLACK },
+    { "Logo v- = v+ = 0V.", 14, 122, COL_BLACK },
+    { "Use KCL nos nos de R1, R2 e R3.", 14, 142, COL_BLACK },
+    { "A saida fornece a corrente io.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_15_pg3_lines[] = {
+    { "Das KCLs, isole a transresistencia:", 14, 62, COL_BLACK },
+    { "vo/io = -(R1 + R3 + R1R3/R2)", 14, 82, COL_BLACK },
+    { "Substitua R1=20k R2=25k R3=40k.", 14, 102, COL_BLACK },
+    { "vo/io = -(20k+40k+800/25 k)", 14, 122, COL_BLACK },
+    { "vo/io = -92kohm", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "O sinal negativo e de inversao.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_15_pg4_lines[] = {
+    { "A unidade e ohm pois e V/A.", 14, 62, COL_BLACK },
+    { "(a) formula geral.", 14, 82, COL_BLACK },
+    { "(b) com valores: -92kohm.", 14, 102, COL_BLACK },
+    { "vo/io = -92 kohm", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_5_15_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo/io = -92 kohm", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_15_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_15_pg0_lines, COUNT_OF(ant_iv_5_15_pg0_lines), 0, 0, draw_ant_iv_5_15_circuit },
+    { "Enunciado", "",
+      ant_iv_5_15_pg1_lines, COUNT_OF(ant_iv_5_15_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_15_pg2_lines, COUNT_OF(ant_iv_5_15_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_15_pg3_lines, COUNT_OF(ant_iv_5_15_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_15_pg4_lines, COUNT_OF(ant_iv_5_15_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_15_pg5_lines, COUNT_OF(ant_iv_5_15_pg5_lines), "vo/io = -92 kohm", 104, 0 }
+};
+
+static const TextLine ant_iv_5_17_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_17_pg1_lines[] = {
+    { "Fig 5.56 pag 41", 14, 62, COL_BLACK },
+    { "Ganho vo/vi para 3 posicoes.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_17_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "AOP ideal com v+ aterrado.", 14, 82, COL_BLACK },
+    { "O no inversor fica em terra virtual.", 14, 102, COL_BLACK },
+    { "Ri = 5kohm.", 14, 122, COL_BLACK },
+    { "Av = vo/vi = -Rf/Ri", 14, 142, COL_BLACK },
+    { "A carga 10k nao altera Av ideal.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_17_pg3_lines[] = {
+    { "Pos 1: Rf=12k -> Av=-12/5", 14, 62, COL_BLACK },
+    { "Pos 2: Rf=80k -> Av=-80/5", 14, 82, COL_BLACK },
+    { "Pos 3: Rf=2M -> Av=-2000/5", 14, 102, COL_BLACK },
+    { "Use todos os valores em kohm.", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "(a) Av = -2.4", 14, 162, COL_BLACK },
+    { "(b) Av = -16", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_17_pg4_lines[] = {
+    { "(c) Av = -400", 14, 62, COL_BLACK },
+    { "Sinal negativo: amplificador", 14, 82, COL_BLACK },
+    { "inversor.", 14, 102, COL_BLACK },
+    { "Av: -2.4, -16, -400", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_5_17_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Av: -2.4, -16, -400", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_17_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_17_pg0_lines, COUNT_OF(ant_iv_5_17_pg0_lines), 0, 0, draw_ant_iv_5_17_circuit },
+    { "Enunciado", "",
+      ant_iv_5_17_pg1_lines, COUNT_OF(ant_iv_5_17_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_17_pg2_lines, COUNT_OF(ant_iv_5_17_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_17_pg3_lines, COUNT_OF(ant_iv_5_17_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_17_pg4_lines, COUNT_OF(ant_iv_5_17_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_17_pg5_lines, COUNT_OF(ant_iv_5_17_pg5_lines), "Av: -2.4, -16, -400", 104, 0 }
+};
+
+static const TextLine ant_iv_5_19_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_19_pg1_lines[] = {
+    { "Fig 5.58 pag 43", 14, 62, COL_BLACK },
+    { "Determine io no circuito.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_19_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Com realimentacao, use AOP ideal.", 14, 82, COL_BLACK },
+    { "Entrada + esta no terra.", 14, 102, COL_BLACK },
+    { "Logo o no - fica em 0V virtual.", 14, 122, COL_BLACK },
+    { "Corrente de entrada do AOP e nula.", 14, 142, COL_BLACK },
+    { "Use Ohm em cada resistor ligado ao", 14, 162, COL_BLACK },
+    { "no.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_19_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "A rede de 750mV fixa correntes.", 14, 82, COL_BLACK },
+    { "A corrente pelo 10k chega ao no -.", 14, 102, COL_BLACK },
+    { "KCL no no de saida soma carga 2k.", 14, 122, COL_BLACK },
+    { "O sinal de io depende da seta dada.", 14, 142, COL_BLACK },
+    { "A soma das correntes fornece:", 14, 162, COL_BLACK },
+    { "3) Fechamento", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_19_pg4_lines[] = {
+    { "io = -562.5uA", 14, 62, COL_BLACK },
+    { "Negativo: corrente real oposta a", 14, 82, COL_BLACK },
+    { "seta.", 14, 102, COL_BLACK },
+    { "Livro usa essa referencia.", 14, 122, COL_BLACK },
+    { "io = -562.5 uA", 14, 142, COL_RED },
+};
+
+static const TextLine ant_iv_5_19_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "io = -562.5 uA", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_19_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_19_pg0_lines, COUNT_OF(ant_iv_5_19_pg0_lines), 0, 0, draw_ant_iv_5_19_circuit },
+    { "Enunciado", "",
+      ant_iv_5_19_pg1_lines, COUNT_OF(ant_iv_5_19_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_19_pg2_lines, COUNT_OF(ant_iv_5_19_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_19_pg3_lines, COUNT_OF(ant_iv_5_19_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_19_pg4_lines, COUNT_OF(ant_iv_5_19_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_19_pg5_lines, COUNT_OF(ant_iv_5_19_pg5_lines), "io = -562.5 uA", 104, 0 }
+};
+
+static const TextLine ant_iv_5_21_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_21_pg1_lines[] = {
+    { "Fig 5.60 pag 45", 14, 62, COL_BLACK },
+    { "Calcule vo no AOP.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_21_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Entrada + esta presa em 1V.", 14, 82, COL_BLACK },
+    { "Com realimentacao negativa:", 14, 102, COL_BLACK },
+    { "v- = v+ = 1V.", 14, 122, COL_BLACK },
+    { "Nao entra corrente no terminal do", 14, 142, COL_BLACK },
+    { "AOP.", 14, 162, COL_BLACK },
+    { "Aplique KCL no no inversor.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_21_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "KCL: (1-3)/4k + (1-vo)/10k = 0", 14, 82, COL_BLACK },
+    { "(1-vo)/10k = 0.5mA", 14, 102, COL_BLACK },
+    { "1 - vo = 5V", 14, 122, COL_BLACK },
+    { "vo = -4V", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "O sinal negativo nao e chute.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_21_pg4_lines[] = {
+    { "Ele sai da KCL com v-=1V.", 14, 62, COL_BLACK },
+    { "A saida precisa cair para manter", 14, 82, COL_BLACK },
+    { "o curto virtual do AOP.", 14, 102, COL_BLACK },
+    { "vo = -4 V", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_5_21_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo = -4 V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_21_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_21_pg0_lines, COUNT_OF(ant_iv_5_21_pg0_lines), 0, 0, draw_ant_iv_5_21_circuit },
+    { "Enunciado", "",
+      ant_iv_5_21_pg1_lines, COUNT_OF(ant_iv_5_21_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_21_pg2_lines, COUNT_OF(ant_iv_5_21_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_21_pg3_lines, COUNT_OF(ant_iv_5_21_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_21_pg4_lines, COUNT_OF(ant_iv_5_21_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_21_pg5_lines, COUNT_OF(ant_iv_5_21_pg5_lines), "vo = -4 V", 104, 0 }
+};
+
+static const TextLine ant_iv_5_23_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_23_pg1_lines[] = {
+    { "Fig 5.61 pag 47", 14, 62, COL_BLACK },
+    { "Determine ganho vo/vs.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_23_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "AOP ideal: v- = v+ e i=0.", 14, 82, COL_BLACK },
+    { "O divisor R1/R2 define o no de", 14, 102, COL_BLACK },
+    { "entrada.", 14, 122, COL_BLACK },
+    { "A malha de realimentacao contem Rf.", 14, 142, COL_BLACK },
+    { "Escreva KCL no no inversor.", 14, 162, COL_BLACK },
+    { "A corrente de R2 nao entra no AOP.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_23_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "KCL reduz para relacao de ganho.", 14, 82, COL_BLACK },
+    { "vo/vs = -Rf/R1", 14, 102, COL_BLACK },
+    { "R2 apenas fixa o ponto de referencia.", 14, 122, COL_BLACK },
+    { "Por isso cancela na expressao final.", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "Resultado pedido e simbolico.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_23_pg4_lines[] = {
+    { "O sinal - indica inversao.", 14, 62, COL_BLACK },
+    { "Sem valores numericos, pare na", 14, 82, COL_BLACK },
+    { "formula.", 14, 102, COL_BLACK },
+    { "vo/vs = -Rf/R1", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_5_23_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo/vs = -Rf/R1", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_23_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_23_pg0_lines, COUNT_OF(ant_iv_5_23_pg0_lines), 0, 0, draw_ant_iv_5_23_circuit },
+    { "Enunciado", "",
+      ant_iv_5_23_pg1_lines, COUNT_OF(ant_iv_5_23_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_23_pg2_lines, COUNT_OF(ant_iv_5_23_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_23_pg3_lines, COUNT_OF(ant_iv_5_23_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_23_pg4_lines, COUNT_OF(ant_iv_5_23_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_23_pg5_lines, COUNT_OF(ant_iv_5_23_pg5_lines), "vo/vs = -Rf/R1", 104, 0 }
+};
+
+static const TextLine ant_iv_5_25_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_25_pg1_lines[] = {
+    { "Fig 5.63 pag 48", 14, 62, COL_BLACK },
+    { "Determine tensao de saida vo.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_25_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Use modelo de AOP ideal.", 14, 82, COL_BLACK },
+    { "Correntes de entrada sao nulas.", 14, 102, COL_BLACK },
+    { "Com realimentacao, v- = v+.", 14, 122, COL_BLACK },
+    { "A carga nao muda o no virtual.", 14, 142, COL_BLACK },
+    { "Monte KCL no no de realimentacao.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_25_pg3_lines[] = {
+    { "Aplique divisor visto pela entrada +.", 14, 62, COL_BLACK },
+    { "Depois relacione esse no com vo.", 14, 82, COL_BLACK },
+    { "Substituindo os valores do circuito:", 14, 102, COL_BLACK },
+    { "vo = 2.312V", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Resultado positivo segue a", 14, 162, COL_BLACK },
+    { "polaridade.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_25_pg4_lines[] = {
+    { "Se a referencia de vo fosse", 14, 62, COL_BLACK },
+    { "invertida,", 14, 82, COL_BLACK },
+    { "o valor numerico teria sinal oposto.", 14, 102, COL_BLACK },
+    { "Resposta do livro: 2.312V.", 14, 122, COL_BLACK },
+    { "vo = 2.312 V", 14, 142, COL_RED },
+};
+
+static const TextLine ant_iv_5_25_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo = 2.312 V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_25_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_25_pg0_lines, COUNT_OF(ant_iv_5_25_pg0_lines), 0, 0, draw_ant_iv_5_25_circuit },
+    { "Enunciado", "",
+      ant_iv_5_25_pg1_lines, COUNT_OF(ant_iv_5_25_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_25_pg2_lines, COUNT_OF(ant_iv_5_25_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_25_pg3_lines, COUNT_OF(ant_iv_5_25_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_25_pg4_lines, COUNT_OF(ant_iv_5_25_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_25_pg5_lines, COUNT_OF(ant_iv_5_25_pg5_lines), "vo = 2.312 V", 104, 0 }
+};
+
+static const TextLine ant_iv_5_27_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_27_pg1_lines[] = {
+    { "Fig 5.65 pag 50", 14, 62, COL_BLACK },
+    { "Determine vo no AOP.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_27_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Primeiro ache v1 no divisor 16/24.", 14, 82, COL_BLACK },
+    { "Entrada do AOP nao consome corrente.", 14, 102, COL_BLACK },
+    { "v1 = 7.5 * 24/(16+24)", 14, 122, COL_BLACK },
+    { "v1 = 4.5V", 14, 142, COL_BLACK },
+    { "O AOP esta como seguidor ideal.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_27_pg3_lines[] = {
+    { "Assim v2 = v1 = 4.5V.", 14, 62, COL_BLACK },
+    { "A saida vo fica no divisor 8/12.", 14, 82, COL_BLACK },
+    { "vo = v2 * 12/(8+12)", 14, 102, COL_BLACK },
+    { "vo = 4.5 * 12/20 = 2.7V", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "A polaridade de vo e a do resistor", 14, 162, COL_BLACK },
+    { "12.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_27_pg4_lines[] = {
+    { "Valor final: vo = 2.7V.", 14, 62, COL_BLACK },
+    { "AOP isolou o divisor de entrada.", 14, 82, COL_BLACK },
+    { "vo = 2.7 V", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_5_27_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo = 2.7 V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_27_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_27_pg0_lines, COUNT_OF(ant_iv_5_27_pg0_lines), 0, 0, draw_ant_iv_5_27_circuit },
+    { "Enunciado", "",
+      ant_iv_5_27_pg1_lines, COUNT_OF(ant_iv_5_27_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_27_pg2_lines, COUNT_OF(ant_iv_5_27_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_27_pg3_lines, COUNT_OF(ant_iv_5_27_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_27_pg4_lines, COUNT_OF(ant_iv_5_27_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_27_pg5_lines, COUNT_OF(ant_iv_5_27_pg5_lines), "vo = 2.7 V", 104, 0 }
+};
+
+static const TextLine ant_iv_5_29_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_29_pg1_lines[] = {
+    { "Fig 5.67 pag 52", 14, 62, COL_BLACK },
+    { "Determine ganho vo/vi.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_29_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Entrada + recebe divisor R1/R2.", 14, 82, COL_BLACK },
+    { "Como i+ = 0, divisor nao carrega.", 14, 102, COL_BLACK },
+    { "v+ = vi * R2/(R1+R2)", 14, 122, COL_BLACK },
+    { "Com realimentacao, v- = v+.", 14, 142, COL_BLACK },
+    { "O ramo de saida e nao inversor.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_29_pg3_lines[] = {
+    { "Ganho do feedback: 1 + R2/R1", 14, 62, COL_BLACK },
+    { "vo = v+ * (1+R2/R1)", 14, 82, COL_BLACK },
+    { "Substitua v+ na expressao.", 14, 102, COL_BLACK },
+    { "vo/vi = R2/R1", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "O resultado parece simples porque", 14, 162, COL_BLACK },
+    { "o divisor de entrada cancela o +1.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_29_pg4_lines[] = {
+    { "Nao esquecer que e ganho positivo.", 14, 62, COL_BLACK },
+    { "vo/vi = R2/R1", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_5_29_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo/vi = R2/R1", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_29_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_29_pg0_lines, COUNT_OF(ant_iv_5_29_pg0_lines), 0, 0, draw_ant_iv_5_29_circuit },
+    { "Enunciado", "",
+      ant_iv_5_29_pg1_lines, COUNT_OF(ant_iv_5_29_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_29_pg2_lines, COUNT_OF(ant_iv_5_29_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_29_pg3_lines, COUNT_OF(ant_iv_5_29_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_29_pg4_lines, COUNT_OF(ant_iv_5_29_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_29_pg5_lines, COUNT_OF(ant_iv_5_29_pg5_lines), "vo/vi = R2/R1", 104, 0 }
+};
+
+static const TextLine ant_iv_5_31_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_31_pg1_lines[] = {
+    { "Fig 5.69 pag 54", 14, 62, COL_BLACK },
+    { "Determine ix.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_31_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Use v+ = v- e i+ = i- = 0.", 14, 82, COL_BLACK },
+    { "A fonte de 4mA injeta corrente no no.", 14, 102, COL_BLACK },
+    { "Monte KCL nos resistores 3k,6k,12k.", 14, 122, COL_BLACK },
+    { "O resistor pedido e o 6k de ix.", 14, 142, COL_BLACK },
+    { "A solucao nodal da rede da:", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_31_pg3_lines[] = {
+    { "v no resistor de ix = 4.363V", 14, 62, COL_BLACK },
+    { "ix = v/6k", 14, 82, COL_BLACK },
+    { "ix = 4.363/6000", 14, 102, COL_BLACK },
+    { "ix = 727.2uA", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "O sentido e o da seta desenhada.", 14, 162, COL_BLACK },
+    { "Se a corrente calculada desse", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_31_pg4_lines[] = {
+    { "negativa,", 14, 62, COL_BLACK },
+    { "ela estaria no sentido contrario.", 14, 82, COL_BLACK },
+    { "ix = 727.2 uA", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_5_31_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "ix = 727.2 uA", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_31_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_31_pg0_lines, COUNT_OF(ant_iv_5_31_pg0_lines), 0, 0, draw_ant_iv_5_31_circuit },
+    { "Enunciado", "",
+      ant_iv_5_31_pg1_lines, COUNT_OF(ant_iv_5_31_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_31_pg2_lines, COUNT_OF(ant_iv_5_31_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_31_pg3_lines, COUNT_OF(ant_iv_5_31_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_31_pg4_lines, COUNT_OF(ant_iv_5_31_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_31_pg5_lines, COUNT_OF(ant_iv_5_31_pg5_lines), "ix = 727.2 uA", 104, 0 }
+};
+
+static const TextLine ant_iv_6_17_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_17_pg1_lines[] = {
+    { "Fig 6.51 pag 66", 14, 62, COL_BLACK },
+    { "Ceq em tres circuitos.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_17_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Capacitor em paralelo soma direto.", 14, 82, COL_BLACK },
+    { "Capacitor em serie usa inversos.", 14, 102, COL_BLACK },
+    { "Paralelo: Ceq = C1+C2+...", 14, 122, COL_BLACK },
+    { "Serie: 1/Ceq = soma(1/Ck)", 14, 142, COL_BLACK },
+    { "Reduza cada figura pelos mesmos nos.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_6_17_pg3_lines[] = {
+    { "Item (a): redesenhe em blocos.", 14, 62, COL_BLACK },
+    { "Combine series/paralelos restantes.", 14, 82, COL_BLACK },
+    { "A reducao final da figura (a):", 14, 102, COL_BLACK },
+    { "Ceq(a) = 3F", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Item (b): mesmos nos em paralelo.", 14, 162, COL_BLACK },
+    { "Depois combine a serie equivalente.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_17_pg4_lines[] = {
+    { "Ceq(b) = 8F", 14, 62, COL_BLACK },
+    { "Item (c): reducao final Ceq(c)=1F.", 14, 82, COL_BLACK },
+    { "Ceq: 3F, 8F, 1F", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_6_17_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Ceq: 3F, 8F, 1F", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_17_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_17_pg0_lines, COUNT_OF(ant_iv_6_17_pg0_lines), 0, 0, draw_ant_iv_6_17_circuit },
+    { "Enunciado", "",
+      ant_iv_6_17_pg1_lines, COUNT_OF(ant_iv_6_17_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_17_pg2_lines, COUNT_OF(ant_iv_6_17_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_17_pg3_lines, COUNT_OF(ant_iv_6_17_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_17_pg4_lines, COUNT_OF(ant_iv_6_17_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_17_pg5_lines, COUNT_OF(ant_iv_6_17_pg5_lines), "Ceq: 3F, 8F, 1F", 104, 0 }
+};
+
+static const TextLine ant_iv_6_19_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_19_pg1_lines[] = {
+    { "Fig 6.53 pag 67", 14, 62, COL_BLACK },
+    { "Ceq entre a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_19_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Marque todos os nos ligados por fio.", 14, 82, COL_BLACK },
+    { "Capacitores entre mesmos nos:", 14, 102, COL_BLACK },
+    { "paralelo.", 14, 122, COL_BLACK },
+    { "Capacitores em caminho unico: serie.", 14, 142, COL_BLACK },
+    { "Use uF em todos os termos.", 14, 162, COL_BLACK },
+    { "Comece pelo lado direito da malha.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_19_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "10uF, 20uF e 30uF entram no bloco.", 14, 82, COL_BLACK },
+    { "Reducoes sucessivas formam blocos", 14, 102, COL_BLACK },
+    { "60uF.", 14, 122, COL_BLACK },
+    { "Dois blocos de 60uF em serie:", 14, 142, COL_BLACK },
+    { "C = 60*60/(60+60) = 30uF", 14, 162, COL_BLACK },
+    { "3) Fechamento", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_6_19_pg4_lines[] = {
+    { "Depois some os paralelos restantes.", 14, 62, COL_BLACK },
+    { "A rede central equivale a 120uF.", 14, 82, COL_BLACK },
+    { "Aplicando a serie final com 12uF:", 14, 102, COL_BLACK },
+    { "Ceq = 10uF", 14, 122, COL_BLACK },
+    { "Ceq = 10 uF", 14, 142, COL_RED },
+};
+
+static const TextLine ant_iv_6_19_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Ceq = 10 uF", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_19_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_19_pg0_lines, COUNT_OF(ant_iv_6_19_pg0_lines), 0, 0, draw_ant_iv_6_19_circuit },
+    { "Enunciado", "",
+      ant_iv_6_19_pg1_lines, COUNT_OF(ant_iv_6_19_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_19_pg2_lines, COUNT_OF(ant_iv_6_19_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_19_pg3_lines, COUNT_OF(ant_iv_6_19_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_19_pg4_lines, COUNT_OF(ant_iv_6_19_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_19_pg5_lines, COUNT_OF(ant_iv_6_19_pg5_lines), "Ceq = 10 uF", 104, 0 }
+};
+
+static const TextLine ant_iv_6_21_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_21_pg1_lines[] = {
+    { "Fig 6.55 pag 69", 14, 62, COL_BLACK },
+    { "Ceq entre a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_21_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Trate o circuito como uma escada.", 14, 82, COL_BLACK },
+    { "Comece pelo lado mais distante de", 14, 102, COL_BLACK },
+    { "a-b.", 14, 122, COL_BLACK },
+    { "No final: 4uF em serie com 12uF.", 14, 142, COL_BLACK },
+    { "C = 4*12/(4+12) = 3uF", 14, 162, COL_BLACK },
+    { "Esse bloco fica em paralelo com 3uF.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_21_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "3uF + 3uF = 6uF", 14, 82, COL_BLACK },
+    { "Agora combine com o capacitor de 6uF.", 14, 102, COL_BLACK },
+    { "Serie: 6*6/(6+6) = 3uF", 14, 122, COL_BLACK },
+    { "Some o ramo de 2uF quando aplicavel.", 14, 142, COL_BLACK },
+    { "A reducao antes de 5uF da 5uF.", 14, 162, COL_BLACK },
+    { "3) Fechamento", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_6_21_pg4_lines[] = {
+    { "Por fim: 5uF em serie com 5uF.", 14, 62, COL_BLACK },
+    { "Ceq = 5*5/(5+5)", 14, 82, COL_BLACK },
+    { "Ceq = 2.5uF", 14, 102, COL_BLACK },
+    { "Ceq = 2.5 uF", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_6_21_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Ceq = 2.5 uF", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_21_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_21_pg0_lines, COUNT_OF(ant_iv_6_21_pg0_lines), 0, 0, draw_ant_iv_6_21_circuit },
+    { "Enunciado", "",
+      ant_iv_6_21_pg1_lines, COUNT_OF(ant_iv_6_21_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_21_pg2_lines, COUNT_OF(ant_iv_6_21_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_21_pg3_lines, COUNT_OF(ant_iv_6_21_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_21_pg4_lines, COUNT_OF(ant_iv_6_21_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_21_pg5_lines, COUNT_OF(ant_iv_6_21_pg5_lines), "Ceq = 2.5 uF", 104, 0 }
+};
+
+static const TextLine ant_iv_6_49_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_49_pg1_lines[] = {
+    { "Fig 6.72 pag 72", 14, 62, COL_BLACK },
+    { "Leq com indutores de 10mH.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_49_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Indutor equivalente segue resistor.", 14, 82, COL_BLACK },
+    { "Serie: Leq = L1+L2+...", 14, 102, COL_BLACK },
+    { "Paralelo: 1/Leq = soma(1/Lk)", 14, 122, COL_BLACK },
+    { "Todos os indutores valem 10mH.", 14, 142, COL_BLACK },
+    { "Reduza os ramos por mesmos nos.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_6_49_pg3_lines[] = {
+    { "O ramo central cria paralelo interno.", 14, 62, COL_BLACK },
+    { "A rede reduz a dois blocos em", 14, 82, COL_BLACK },
+    { "paralelo.", 14, 102, COL_BLACK },
+    { "Aplicando a regra dos inversos:", 14, 122, COL_BLACK },
+    { "Leq = 3.75mH", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "Use mH em toda a conta.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_49_pg4_lines[] = {
+    { "Nao use regra de capacitor aqui.", 14, 62, COL_BLACK },
+    { "Indutor em paralelo diminui Leq.", 14, 82, COL_BLACK },
+    { "Resposta final: 3.75mH.", 14, 102, COL_BLACK },
+    { "Leq = 3.75 mH", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_6_49_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Leq = 3.75 mH", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_49_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_49_pg0_lines, COUNT_OF(ant_iv_6_49_pg0_lines), 0, 0, draw_ant_iv_6_49_circuit },
+    { "Enunciado", "",
+      ant_iv_6_49_pg1_lines, COUNT_OF(ant_iv_6_49_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_49_pg2_lines, COUNT_OF(ant_iv_6_49_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_49_pg3_lines, COUNT_OF(ant_iv_6_49_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_49_pg4_lines, COUNT_OF(ant_iv_6_49_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_49_pg5_lines, COUNT_OF(ant_iv_6_49_pg5_lines), "Leq = 3.75 mH", 104, 0 }
+};
+
+static const TextLine ant_iv_6_51_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_51_pg1_lines[] = {
+    { "Fig 6.73 pag 73", 14, 62, COL_BLACK },
+    { "Leq nos terminais a-b.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_51_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Indutores 60,20,30mH estao paralelos.", 14, 82, COL_BLACK },
+    { "Use inversos como em resistores.", 14, 102, COL_BLACK },
+    { "1/L = 1/60 + 1/20 + 1/30", 14, 122, COL_BLACK },
+    { "1/L = 1/10 -> L = 10mH", 14, 142, COL_BLACK },
+    { "Esse bloco fica em serie com 25mH.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_6_51_pg3_lines[] = {
+    { "Ramo inferior: 25 + 10 = 35mH", 14, 62, COL_BLACK },
+    { "Ramo superior: 10mH", 14, 82, COL_BLACK },
+    { "Os dois ramos estao em paralelo.", 14, 102, COL_BLACK },
+    { "Leq = 10 || 35", 14, 122, COL_BLACK },
+    { "Leq = 10*35/(10+35)", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "Leq = 350/45 = 7.778mH", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_51_pg4_lines[] = {
+    { "Esse e o equivalente entre a-b.", 14, 62, COL_BLACK },
+    { "Leq = 7.778 mH", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_6_51_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Leq = 7.778 mH", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_51_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_51_pg0_lines, COUNT_OF(ant_iv_6_51_pg0_lines), 0, 0, draw_ant_iv_6_51_circuit },
+    { "Enunciado", "",
+      ant_iv_6_51_pg1_lines, COUNT_OF(ant_iv_6_51_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_51_pg2_lines, COUNT_OF(ant_iv_6_51_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_51_pg3_lines, COUNT_OF(ant_iv_6_51_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_51_pg4_lines, COUNT_OF(ant_iv_6_51_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_51_pg5_lines, COUNT_OF(ant_iv_6_51_pg5_lines), "Leq = 7.778 mH", 104, 0 }
+};
+
+static const TextLine ant_iv_6_55_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_55_pg1_lines[] = {
+    { "Fig 6.77 pag 74", 14, 62, COL_BLACK },
+    { "Leq em dois circuitos.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_55_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Resolva simbolicamente em funcao de", 14, 82, COL_BLACK },
+    { "L.", 14, 102, COL_BLACK },
+    { "Mantenha a mesma unidade em todos.", 14, 122, COL_BLACK },
+    { "Serie soma L; paralelo usa inverso.", 14, 142, COL_BLACK },
+    { "No fim escreva multiplo de L.", 14, 162, COL_BLACK },
+    { "Item (a): reduza o ramo direito.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_55_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "O paralelo equivalente fica com ramo", 14, 82, COL_BLACK },
+    { "em serie com os indutores centrais.", 14, 102, COL_BLACK },
+    { "Aplicando serie/paralelo:", 14, 122, COL_BLACK },
+    { "Leq(a) = 1.4L", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "Item (b): circuito simetrico.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_6_55_pg4_lines[] = {
+    { "Metades iguais ficam em paralelo.", 14, 62, COL_BLACK },
+    { "A reducao final fica Leq(b)=0.5L.", 14, 82, COL_BLACK },
+    { "Resultados: 1.4L e 0.5L.", 14, 102, COL_BLACK },
+    { "Leq: 1.4L e 0.5L", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_6_55_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Leq: 1.4L e 0.5L", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_6_55_pages[] = {
+    { "Circuito", "",
+      ant_iv_6_55_pg0_lines, COUNT_OF(ant_iv_6_55_pg0_lines), 0, 0, draw_ant_iv_6_55_circuit },
+    { "Enunciado", "",
+      ant_iv_6_55_pg1_lines, COUNT_OF(ant_iv_6_55_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_6_55_pg2_lines, COUNT_OF(ant_iv_6_55_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_6_55_pg3_lines, COUNT_OF(ant_iv_6_55_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_6_55_pg4_lines, COUNT_OF(ant_iv_6_55_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_6_55_pg5_lines, COUNT_OF(ant_iv_6_55_pg5_lines), "Leq: 1.4L e 0.5L", 104, 0 }
+};
+
+static const TextLine ant_iv_7_3_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_3_pg1_lines[] = {
+    { "Fig 7.83 pag 88", 14, 62, COL_BLACK },
+    { "Determine tau do circuito RC.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_3_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para tau, olhe pelos terminais de C.", 14, 82, COL_BLACK },
+    { "Nao ha fonte independente no", 14, 102, COL_BLACK },
+    { "circuito.", 14, 122, COL_BLACK },
+    { "Rth = 10k + (40k || (20k+30k))", 14, 142, COL_BLACK },
+    { "Rth = 10k + (40k || 50k)", 14, 162, COL_BLACK },
+    { "C = 100pF", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_3_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "40k || 50k = 22.222k", 14, 82, COL_BLACK },
+    { "Rth = 32.222kohm", 14, 102, COL_BLACK },
+    { "tau = Rth*C", 14, 122, COL_BLACK },
+    { "tau = 32.222k * 100pF", 14, 142, COL_BLACK },
+    { "tau = 3.222 * 10^-6 s", 14, 162, COL_BLACK },
+    { "3) Fechamento", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_3_pg4_lines[] = {
+    { "tau = 3.222us", 14, 62, COL_BLACK },
+    { "Use s, ms ou us conforme escala.", 14, 82, COL_BLACK },
+    { "Resposta do livro: 3.222us.", 14, 102, COL_BLACK },
+    { "tau = 3.222 us", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_7_3_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "tau = 3.222 us", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_3_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_3_pg0_lines, COUNT_OF(ant_iv_7_3_pg0_lines), 0, 0, draw_ant_iv_7_3_circuit },
+    { "Enunciado", "",
+      ant_iv_7_3_pg1_lines, COUNT_OF(ant_iv_7_3_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_3_pg2_lines, COUNT_OF(ant_iv_7_3_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_3_pg3_lines, COUNT_OF(ant_iv_7_3_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_3_pg4_lines, COUNT_OF(ant_iv_7_3_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_3_pg5_lines, COUNT_OF(ant_iv_7_3_pg5_lines), "tau = 3.222 us", 104, 0 }
+};
+
+static const TextLine ant_iv_7_14_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_14_pg1_lines[] = {
+    { "Fig 7.94 pag 97", 14, 62, COL_BLACK },
+    { "Constante de tempo RL.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_14_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para RL, tau = L/Rth.", 14, 82, COL_BLACK },
+    { "Remova o indutor e olhe seus", 14, 102, COL_BLACK },
+    { "terminais.", 14, 122, COL_BLACK },
+    { "Rth = (20k+40k) || (10k+30k)", 14, 142, COL_BLACK },
+    { "Rth = 60k || 40k", 14, 162, COL_BLACK },
+    { "L = 5mH", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_14_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "Rth = 60k*40k/(60k+40k)", 14, 82, COL_BLACK },
+    { "Rth = 24kohm", 14, 102, COL_BLACK },
+    { "tau = L/Rth", 14, 122, COL_BLACK },
+    { "tau = 5mH/24kohm", 14, 142, COL_BLACK },
+    { "tau = 2.08e-7s", 14, 162, COL_BLACK },
+    { "3) Fechamento", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_14_pg4_lines[] = {
+    { "tau = 0.208us", 14, 62, COL_BLACK },
+    { "Livro nao traz resposta para par.", 14, 82, COL_BLACK },
+    { "Este valor vem da reducao direta.", 14, 102, COL_BLACK },
+    { "tau = 0.208 us", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_7_14_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "tau = 0.208 us", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_14_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_14_pg0_lines, COUNT_OF(ant_iv_7_14_pg0_lines), 0, 0, draw_ant_iv_7_14_circuit },
+    { "Enunciado", "",
+      ant_iv_7_14_pg1_lines, COUNT_OF(ant_iv_7_14_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_14_pg2_lines, COUNT_OF(ant_iv_7_14_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_14_pg3_lines, COUNT_OF(ant_iv_7_14_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_14_pg4_lines, COUNT_OF(ant_iv_7_14_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_14_pg5_lines, COUNT_OF(ant_iv_7_14_pg5_lines), "tau = 0.208 us", 104, 0 }
+};
+
+static const TextLine ant_iv_7_9_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_9_pg1_lines[] = {
+    { "Fig 7.89 pag 92", 14, 62, COL_BLACK },
+    { "Chave abre: determine vo.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_9_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Antes de t=0 a chave ficou fechada.", 14, 82, COL_BLACK },
+    { "Capacitor em CC vira circuito aberto.", 14, 102, COL_BLACK },
+    { "vo(0-) = divisor 6V com 2k e 4k", 14, 122, COL_BLACK },
+    { "vo(0-) = 6*4/(2+4) = 4V", 14, 142, COL_BLACK },
+    { "Continuidade: vo(0+) = 4V.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_9_pg3_lines[] = {
+    { "Depois de abrir, C descarrega por 4k.", 14, 62, COL_BLACK },
+    { "tau = R*C", 14, 82, COL_BLACK },
+    { "tau = 4k * 3mF = 12s", 14, 102, COL_BLACK },
+    { "Resposta natural: vo=V0e^(-t/tau)", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "vo(t) = 4 exp(-t/12) V", 14, 162, COL_BLACK },
+    { "Valida para t > 0.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_9_pg4_lines[] = {
+    { "Nao ha valor final diferente de zero.", 14, 62, COL_BLACK },
+    { "vo=4exp(-t/12)V", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_7_9_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo=4exp(-t/12)V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_9_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_9_pg0_lines, COUNT_OF(ant_iv_7_9_pg0_lines), 0, 0, draw_ant_iv_7_9_circuit },
+    { "Enunciado", "",
+      ant_iv_7_9_pg1_lines, COUNT_OF(ant_iv_7_9_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_9_pg2_lines, COUNT_OF(ant_iv_7_9_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_9_pg3_lines, COUNT_OF(ant_iv_7_9_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_9_pg4_lines, COUNT_OF(ant_iv_7_9_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_9_pg5_lines, COUNT_OF(ant_iv_7_9_pg5_lines), "vo=4exp(-t/12)V", 104, 0 }
+};
+
+static const TextLine ant_iv_7_39_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_39_pg1_lines[] = {
+    { "Fig 7.106 pag 100", 14, 62, COL_BLACK },
+    { "Tensao no capacitor antes/depois.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_39_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Use resposta completa de 1a ordem.", 14, 82, COL_BLACK },
+    { "vC(t)=Vf+(V0-Vf)e^(-t/tau)", 14, 102, COL_BLACK },
+    { "V0 vem de t<0 em regime CC.", 14, 122, COL_BLACK },
+    { "Vf vem do circuito em t->infinito.", 14, 142, COL_BLACK },
+    { "tau = Rth*C em cada item.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_39_pg3_lines[] = {
+    { "Item (a): V0=4V, Vf=20V.", 14, 62, COL_BLACK },
+    { "tau = 8s", 14, 82, COL_BLACK },
+    { "vC = 20 + (4-20)e^(-t/8)", 14, 102, COL_BLACK },
+    { "vC = 20 -16e^(-t/8)", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Item (b): V0=4V, Vf=12V.", 14, 162, COL_BLACK },
+    { "tau = 6s", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_39_pg4_lines[] = {
+    { "vC = 12 + (4-12)e^(-t/6)", 14, 62, COL_BLACK },
+    { "vC = 12 - 8e^(-t/6)", 14, 82, COL_BLACK },
+    { "ver itens (a) e (b)", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_7_39_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "ver itens (a) e (b)", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_39_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_39_pg0_lines, COUNT_OF(ant_iv_7_39_pg0_lines), 0, 0, draw_ant_iv_7_39_circuit },
+    { "Enunciado", "",
+      ant_iv_7_39_pg1_lines, COUNT_OF(ant_iv_7_39_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_39_pg2_lines, COUNT_OF(ant_iv_7_39_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_39_pg3_lines, COUNT_OF(ant_iv_7_39_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_39_pg4_lines, COUNT_OF(ant_iv_7_39_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_39_pg5_lines, COUNT_OF(ant_iv_7_39_pg5_lines), "ver itens (a) e (b)", 104, 0 }
+};
+
+static const TextLine ant_iv_7_45_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_45_pg1_lines[] = {
+    { "Fig 7.112 pag 104", 14, 62, COL_BLACK },
+    { "Determine vo com vs=30u(t).", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_45_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Dado do enunciado: vo(0)=5V.", 14, 82, COL_BLACK },
+    { "Para t->infinito, C fica aberto.", 14, 102, COL_BLACK },
+    { "Vf = 30 * 40k/(20k+40k)", 14, 122, COL_BLACK },
+    { "Vf = 20V", 14, 142, COL_BLACK },
+    { "Agora ache Rth visto pelo capacitor.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_45_pg3_lines[] = {
+    { "Fonte de tensao vira curto.", 14, 62, COL_BLACK },
+    { "Rth = 10k + (20k || 40k)", 14, 82, COL_BLACK },
+    { "Rth = 23.333kohm", 14, 102, COL_BLACK },
+    { "tau = Rth*C = 23.333k*3uF", 14, 122, COL_BLACK },
+    { "1/tau = 14.286", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "vo = Vf + (V0-Vf)e^(-t/tau)", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_45_pg4_lines[] = {
+    { "vo = 20 + (5-20)e^(-14.286t)", 14, 62, COL_BLACK },
+    { "vo=[20-15e^(-14.286t)]u(t) V", 14, 82, COL_BLACK },
+    { "vo=[20-15e^-14.286t]u(t)", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_7_45_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo=[20-15e^-14.286t]u(t)", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_45_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_45_pg0_lines, COUNT_OF(ant_iv_7_45_pg0_lines), 0, 0, draw_ant_iv_7_45_circuit },
+    { "Enunciado", "",
+      ant_iv_7_45_pg1_lines, COUNT_OF(ant_iv_7_45_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_45_pg2_lines, COUNT_OF(ant_iv_7_45_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_45_pg3_lines, COUNT_OF(ant_iv_7_45_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_45_pg4_lines, COUNT_OF(ant_iv_7_45_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_45_pg5_lines, COUNT_OF(ant_iv_7_45_pg5_lines), "vo=[20-15e^-14.286t]u(t)", 104, 0 }
+};
+
+static const TextLine ant_iv_7_11_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_11_pg1_lines[] = {
+    { "Fig 7.91 pag 94", 14, 62, COL_BLACK },
+    { "Determine io para t > 0.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_11_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Antes de t=0, indutor e curto em CC.", 14, 82, COL_BLACK },
+    { "Calcule a corrente inicial no ramo.", 14, 102, COL_BLACK },
+    { "iL(0-) = iL(0+) = 1.2A", 14, 122, COL_BLACK },
+    { "Continuidade de indutor conserva I.", 14, 142, COL_BLACK },
+    { "Depois da chave, resposta natural.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_11_pg3_lines[] = {
+    { "Olhe Rth pelos terminais do indutor.", 14, 62, COL_BLACK },
+    { "Rth = 12ohm", 14, 82, COL_BLACK },
+    { "tau = L/Rth = 4/12 = 1/3s", 14, 102, COL_BLACK },
+    { "1/tau = 3", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "io(t)=I0e^(-t/tau)", 14, 162, COL_BLACK },
+    { "io(t)=1.2e^(-3t) A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_11_pg4_lines[] = {
+    { "Valido para t > 0.", 14, 62, COL_BLACK },
+    { "io=1.2exp(-3t)A", 14, 82, COL_RED },
+};
+
+static const TextLine ant_iv_7_11_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "io=1.2exp(-3t)A", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_11_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_11_pg0_lines, COUNT_OF(ant_iv_7_11_pg0_lines), 0, 0, draw_ant_iv_7_11_circuit },
+    { "Enunciado", "",
+      ant_iv_7_11_pg1_lines, COUNT_OF(ant_iv_7_11_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_11_pg2_lines, COUNT_OF(ant_iv_7_11_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_11_pg3_lines, COUNT_OF(ant_iv_7_11_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_11_pg4_lines, COUNT_OF(ant_iv_7_11_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_11_pg5_lines, COUNT_OF(ant_iv_7_11_pg5_lines), "io=1.2exp(-3t)A", 104, 0 }
+};
+
+static const TextLine ant_iv_7_13_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_13_pg1_lines[] = {
+    { "Fig 7.93 pag 96", 14, 62, COL_BLACK },
+    { "Determine R, L, tau e energia.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_13_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Compare com resposta natural RL.", 14, 82, COL_BLACK },
+    { "i(t)=I0e^(-t/tau)", 14, 102, COL_BLACK },
+    { "Expoente 1000t -> tau = 1ms", 14, 122, COL_BLACK },
+    { "R = v/i = 80V/5mA", 14, 142, COL_BLACK },
+    { "R = 16kohm", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_13_pg3_lines[] = {
+    { "Para circuito RL: tau = L/R.", 14, 62, COL_BLACK },
+    { "L = tau*R", 14, 82, COL_BLACK },
+    { "L = 1ms * 16kohm", 14, 102, COL_BLACK },
+    { "L = 16H", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Energia dissipada e integral de p(t).", 14, 162, COL_BLACK },
+    { "p(t)=v(t)i(t)", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_13_pg4_lines[] = {
+    { "Integre de 0 a 0.5ms.", 14, 62, COL_BLACK },
+    { "W = 126.42uJ", 14, 82, COL_BLACK },
+    { "R=16k L=16H tau=1ms W=126.42uJ", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_7_13_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "R=16k L=16H tau=1ms W=126.42uJ", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_13_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_13_pg0_lines, COUNT_OF(ant_iv_7_13_pg0_lines), 0, 0, draw_ant_iv_7_13_circuit },
+    { "Enunciado", "",
+      ant_iv_7_13_pg1_lines, COUNT_OF(ant_iv_7_13_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_13_pg2_lines, COUNT_OF(ant_iv_7_13_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_13_pg3_lines, COUNT_OF(ant_iv_7_13_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_13_pg4_lines, COUNT_OF(ant_iv_7_13_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_13_pg5_lines, COUNT_OF(ant_iv_7_13_pg5_lines), "R=16k L=16H tau=1ms W=126.42uJ", 104, 0 }
+};
+
+static const TextLine ant_iv_7_17_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_17_pg1_lines[] = {
+    { "Fig 7.97 pag 98", 14, 62, COL_BLACK },
+    { "Determine vo(t), i(0)=6A.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_17_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para t>0, a fonte v(t) vale zero.", 14, 82, COL_BLACK },
+    { "O indutor fica em resposta natural.", 14, 102, COL_BLACK },
+    { "Rth visto pelo indutor = 4ohm", 14, 122, COL_BLACK },
+    { "L = 1/4H", 14, 142, COL_BLACK },
+    { "tau = L/Rth = 0.25/4 = 1/16s", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_17_pg3_lines[] = {
+    { "i(t)=6e^(-16t)u(t)", 14, 62, COL_BLACK },
+    { "Use polaridade de vo no desenho.", 14, 82, COL_BLACK },
+    { "vo e queda no resistor equivalente.", 14, 102, COL_BLACK },
+    { "vo(t) = -6e^(-16t)u(t) V", 14, 122, COL_BLACK },
+    { "Sinal - vem da polaridade marcada.", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "A corrente inicial do indutor e 6A.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_17_pg4_lines[] = {
+    { "A exponencial zera para t grande.", 14, 62, COL_BLACK },
+    { "Resposta do livro confere.", 14, 82, COL_BLACK },
+    { "vo=-6exp(-16t)u(t)V", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_7_17_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo=-6exp(-16t)u(t)V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_17_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_17_pg0_lines, COUNT_OF(ant_iv_7_17_pg0_lines), 0, 0, draw_ant_iv_7_17_circuit },
+    { "Enunciado", "",
+      ant_iv_7_17_pg1_lines, COUNT_OF(ant_iv_7_17_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_17_pg2_lines, COUNT_OF(ant_iv_7_17_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_17_pg3_lines, COUNT_OF(ant_iv_7_17_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_17_pg4_lines, COUNT_OF(ant_iv_7_17_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_17_pg5_lines, COUNT_OF(ant_iv_7_17_pg5_lines), "vo=-6exp(-16t)u(t)V", 104, 0 }
+};
+
+static const TextLine ant_iv_7_53_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_53_pg1_lines[] = {
+    { "Fig 7.119 pag 106", 14, 62, COL_BLACK },
+    { "Corrente no indutor em (a)(b).", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_53_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Para t<0, indutor e curto em CC.", 14, 82, COL_BLACK },
+    { "Use isso para achar iL(0-).", 14, 102, COL_BLACK },
+    { "Continuidade: iL(0+)=iL(0-).", 14, 122, COL_BLACK },
+    { "Para t>0: i=I0e^(-t/tau)", 14, 142, COL_BLACK },
+    { "tau = L/Rth de cada circuito.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_53_pg3_lines[] = {
+    { "Item (a): I0=5A.", 14, 62, COL_BLACK },
+    { "Rth=2ohm, L=4H", 14, 82, COL_BLACK },
+    { "tau=4/2=2s", 14, 102, COL_BLACK },
+    { "i(t)=5e^(-t/2)u(t) A", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Item (b): I0=6A.", 14, 162, COL_BLACK },
+    { "Rth=2ohm, L=3H", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_53_pg4_lines[] = {
+    { "tau=3/2s", 14, 62, COL_BLACK },
+    { "i(t)=6e^(-2t/3)u(t) A", 14, 82, COL_BLACK },
+    { "iL itens (a) e (b)", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_7_53_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "iL itens (a) e (b)", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_53_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_53_pg0_lines, COUNT_OF(ant_iv_7_53_pg0_lines), 0, 0, draw_ant_iv_7_53_circuit },
+    { "Enunciado", "",
+      ant_iv_7_53_pg1_lines, COUNT_OF(ant_iv_7_53_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_53_pg2_lines, COUNT_OF(ant_iv_7_53_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_53_pg3_lines, COUNT_OF(ant_iv_7_53_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_53_pg4_lines, COUNT_OF(ant_iv_7_53_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_53_pg5_lines, COUNT_OF(ant_iv_7_53_pg5_lines), "iL itens (a) e (b)", 104, 0 }
+};
+
+static const TextLine ant_iv_7_59_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_59_pg1_lines[] = {
+    { "Fig 7.124 pag 109", 14, 62, COL_BLACK },
+    { "Resposta ao degrau vo(t).", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_59_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Entrada: vs = 18u(t).", 14, 82, COL_BLACK },
+    { "Antes do degrau, energia inicial", 14, 102, COL_BLACK },
+    { "zero.", 14, 122, COL_BLACK },
+    { "iL(0-) = iL(0+) = 0.", 14, 142, COL_BLACK },
+    { "Ache Rth visto pelo indutor.", 14, 162, COL_BLACK },
+    { "Rth = 6ohm", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_59_pg3_lines[] = {
+    { "2) Calculo", 14, 62, COL_BLUE },
+    { "tau = L/Rth = 1.5/6 = 0.25s", 14, 82, COL_BLACK },
+    { "1/tau = 4", 14, 102, COL_BLACK },
+    { "Use resposta de primeira ordem.", 14, 122, COL_BLACK },
+    { "vo decai com a mesma constante.", 14, 142, COL_BLACK },
+    { "3) Fechamento", 14, 162, COL_BLUE },
+    { "vo(t)=6e^(-4t)u(t) V", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_59_pg4_lines[] = {
+    { "O fator 6V sai do valor inicial", 14, 62, COL_BLACK },
+    { "da tensao no resistor indicado.", 14, 82, COL_BLACK },
+    { "Resposta do livro: 6e^(-4t).", 14, 102, COL_BLACK },
+    { "vo=6exp(-4t)u(t)V", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_7_59_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo=6exp(-4t)u(t)V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_59_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_59_pg0_lines, COUNT_OF(ant_iv_7_59_pg0_lines), 0, 0, draw_ant_iv_7_59_circuit },
+    { "Enunciado", "",
+      ant_iv_7_59_pg1_lines, COUNT_OF(ant_iv_7_59_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_59_pg2_lines, COUNT_OF(ant_iv_7_59_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_59_pg3_lines, COUNT_OF(ant_iv_7_59_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_59_pg4_lines, COUNT_OF(ant_iv_7_59_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_59_pg5_lines, COUNT_OF(ant_iv_7_59_pg5_lines), "vo=6exp(-4t)u(t)V", 104, 0 }
+};
+
+static const TextLine ant_iv_7_63_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_63_pg1_lines[] = {
+    { "Fig 7.128 pag 110", 14, 62, COL_BLACK },
+    { "Obtenha v(t) e i(t).", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_63_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Fonte 10u(-t): ativa antes de zero.", 14, 82, COL_BLACK },
+    { "Para t>0, a fonte vira zero.", 14, 102, COL_BLACK },
+    { "Indutor continua com i(0+)=i(0-).", 14, 122, COL_BLACK },
+    { "Em CC anterior, indutor vira curto.", 14, 142, COL_BLACK },
+    { "Depois de t=0, resposta natural.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_7_63_pg3_lines[] = {
+    { "Rth visto pelo indutor: 5 || 20", 14, 62, COL_BLACK },
+    { "Rth = 4ohm", 14, 82, COL_BLACK },
+    { "tau = L/Rth = 0.5/4 = 0.125s", 14, 102, COL_BLACK },
+    { "1/tau = 8", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "I0 = 10V/5ohm = 2A", 14, 162, COL_BLACK },
+    { "i(t)=2e^(-8t)u(t) A", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_7_63_pg4_lines[] = {
+    { "v(t) segue a polaridade do indutor.", 14, 62, COL_BLACK },
+    { "v(t)=-8e^(-8t)u(t) V", 14, 82, COL_BLACK },
+    { "Sinal - vem da queda escolhida.", 14, 102, COL_BLACK },
+    { "i=2e^-8tA v=-8e^-8tV", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_7_63_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "i=2e^-8tA v=-8e^-8tV", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_7_63_pages[] = {
+    { "Circuito", "",
+      ant_iv_7_63_pg0_lines, COUNT_OF(ant_iv_7_63_pg0_lines), 0, 0, draw_ant_iv_7_63_circuit },
+    { "Enunciado", "",
+      ant_iv_7_63_pg1_lines, COUNT_OF(ant_iv_7_63_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_7_63_pg2_lines, COUNT_OF(ant_iv_7_63_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_7_63_pg3_lines, COUNT_OF(ant_iv_7_63_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_7_63_pg4_lines, COUNT_OF(ant_iv_7_63_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_7_63_pg5_lines, COUNT_OF(ant_iv_7_63_pg5_lines), "i=2e^-8tA v=-8e^-8tV", 104, 0 }
+};
+
+static const TextLine ant_iv_5_11_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_11_pg1_lines[] = {
+    { "Fig 5.50 pag 36", 14, 62, COL_BLACK },
+    { "Exercicio-modelo de projeto AOP.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_11_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "O livro aceita varias respostas.", 14, 82, COL_BLACK },
+    { "Aqui fica um modelo de resolucao.", 14, 102, COL_BLACK },
+    { "AOP ideal: v- = v+ e i+=i-=0.", 14, 122, COL_BLACK },
+    { "Defina vp = v+.", 14, 142, COL_BLACK },
+    { "vp vem do divisor R3/R4.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_11_pg3_lines[] = {
+    { "vp = V*R4/(R3+R4)", 14, 62, COL_BLACK },
+    { "Como v-=v+, o no inversor vale vp.", 14, 82, COL_BLACK },
+    { "KCL no no inversor:", 14, 102, COL_BLACK },
+    { "(vp-V)/R1 + (vp-vo)/R2 = 0", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Isolando a saida:", 14, 162, COL_BLACK },
+    { "vo = vp + (R2/R1)(vp - V)", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_11_pg4_lines[] = {
+    { "io = (vo-vp)/R2 + vo/R5", 14, 62, COL_BLACK },
+    { "Esse conjunto fecha um problema", 14, 82, COL_BLACK },
+    { "valido.", 14, 102, COL_BLACK },
+    { "modelo simbolico", 14, 122, COL_RED },
+};
+
+static const TextLine ant_iv_5_11_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "modelo simbolico", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_11_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_11_pg0_lines, COUNT_OF(ant_iv_5_11_pg0_lines), 0, 0, draw_ant_iv_5_11_circuit },
+    { "Enunciado", "",
+      ant_iv_5_11_pg1_lines, COUNT_OF(ant_iv_5_11_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_11_pg2_lines, COUNT_OF(ant_iv_5_11_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_11_pg3_lines, COUNT_OF(ant_iv_5_11_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_11_pg4_lines, COUNT_OF(ant_iv_5_11_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_11_pg5_lines, COUNT_OF(ant_iv_5_11_pg5_lines), "modelo simbolico", 104, 0 }
+};
+
+static const TextLine ant_iv_5_13_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_13_pg1_lines[] = {
+    { "Fig 5.52 pag 38", 14, 62, COL_BLACK },
+    { "Determine vo e io.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_13_pg2_lines[] = {
+    { "1) Montagem", 14, 62, COL_BLUE },
+    { "Entrada + vem do divisor 10k/90k.", 14, 82, COL_BLACK },
+    { "AOP ideal nao carrega o divisor.", 14, 102, COL_BLACK },
+    { "v+ = 1V * 90/(10+90)", 14, 122, COL_BLACK },
+    { "v+ = 0.9V", 14, 142, COL_BLACK },
+    { "Com realimentacao, v- = v+ = 0.9V.", 14, 162, COL_BLACK },
+    { "2) Calculo", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_iv_5_13_pg3_lines[] = {
+    { "Malha de feedback: 100k sobre 50k.", 14, 62, COL_BLACK },
+    { "Ganho nao inversor = 1 + 100/50", 14, 82, COL_BLACK },
+    { "Av = 3", 14, 102, COL_BLACK },
+    { "vo = 0.9*3 = 2.7V", 14, 122, COL_BLACK },
+    { "3) Fechamento", 14, 142, COL_BLUE },
+    { "Saida soma carga e feedback.", 14, 162, COL_BLACK },
+    { "i10k = 2.7/10k = 270uA", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_iv_5_13_pg4_lines[] = {
+    { "i100k = (2.7-0.9)/100k = 18uA", 14, 62, COL_BLACK },
+    { "io = 270uA + 18uA = 288uA", 14, 82, COL_BLACK },
+    { "vo=2.7V  io=288uA", 14, 102, COL_RED },
+};
+
+static const TextLine ant_iv_5_13_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "vo=2.7V  io=288uA", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_iv_5_13_pages[] = {
+    { "Circuito", "",
+      ant_iv_5_13_pg0_lines, COUNT_OF(ant_iv_5_13_pg0_lines), 0, 0, draw_ant_iv_5_13_circuit },
+    { "Enunciado", "",
+      ant_iv_5_13_pg1_lines, COUNT_OF(ant_iv_5_13_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_iv_5_13_pg2_lines, COUNT_OF(ant_iv_5_13_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_iv_5_13_pg3_lines, COUNT_OF(ant_iv_5_13_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_iv_5_13_pg4_lines, COUNT_OF(ant_iv_5_13_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_iv_5_13_pg5_lines, COUNT_OF(ant_iv_5_13_pg5_lines), "vo=2.7V  io=288uA", 104, 0 }
+};
+
+static const TextLine ant_pv_norton_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_norton_pg1_lines[] = {
+    { "Norton em a-b", 14, 62, COL_BLACK },
+    { "Prova_02 Ex1", 14, 82, COL_BLACK },
+    { "Objetivo: achar RN e IN.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_norton_pg2_lines[] = {
+    { "1) Resistencia de Norton", 14, 62, COL_BLUE },
+    { "Fonte V vira curto.", 14, 82, COL_BLACK },
+    { "Fonte I vira circuito aberto.", 14, 102, COL_BLACK },
+    { "Visto entre a-b:", 14, 122, COL_BLACK },
+    { "RN = 12 || (40 + 20)", 14, 142, COL_RED },
+    { "RN = 12 || 60 = 10 ohm", 14, 162, COL_RED },
+    { "2) Corrente de Norton", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_pv_norton_pg3_lines[] = {
+    { "Transforme 2A || 20ohm:", 14, 62, COL_BLACK },
+    { "V = I*R = 2*20 = 40V", 14, 82, COL_BLACK },
+    { "Malha equivalente:", 14, 102, COL_BLACK },
+    { "-120 + 40 + (40+20)IN = 0", 14, 122, COL_RED },
+    { "IN = 80/60 = 1.33A", 14, 142, COL_RED },
+};
+
+static const TextLine ant_pv_norton_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RN = 10 ohm", 14, 82, COL_RED },
+    { "Norton: 1.33A || 10ohm", 14, 102, COL_RED },
+};
+
+static const PageTemplate ant_pv_norton_pages[] = {
+    { "Circuito", "",
+      ant_pv_norton_pg0_lines, COUNT_OF(ant_pv_norton_pg0_lines), 0, 0, draw_ant_pv_norton_circuit },
+    { "Enunciado", "",
+      ant_pv_norton_pg1_lines, COUNT_OF(ant_pv_norton_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_norton_pg2_lines, COUNT_OF(ant_pv_norton_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_norton_pg3_lines, COUNT_OF(ant_pv_norton_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_norton_pg4_lines, COUNT_OF(ant_pv_norton_pg4_lines), "Norton: 1.33A || 10ohm", 124, 0 }
+};
+
+static const TextLine ant_pv_thev_norton_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_thev_norton_pg1_lines[] = {
+    { "Thevenin e Norton", 14, 62, COL_BLACK },
+    { "Prova_02_Rec Ex1", 14, 82, COL_BLACK },
+    { "Objetivo: RTH, VTH e IN.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_thev_norton_pg2_lines[] = {
+    { "1) Resistencia equivalente", 14, 62, COL_BLUE },
+    { "Desligando fontes independentes:", 14, 82, COL_BLACK },
+    { "fontes I abrem; fonte V vira curto.", 14, 102, COL_BLACK },
+    { "RTH = RN = 5 || (14 + 6)", 14, 122, COL_RED },
+    { "RTH = RN = 5 || 20 = 4 ohm", 14, 142, COL_RED },
+    { "2) Tensao de Thevenin", 14, 162, COL_BLUE },
+    { "Pelo gabarito, aplicando KCL:", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_pv_thev_norton_pg3_lines[] = {
+    { "(14+6-VTH)/(6+14)=3+VTH/5", 14, 62, COL_RED },
+    { "VTH = -8 V", 14, 82, COL_RED },
+    { "Sinal negativo: polaridade a-b ficou", 14, 102, COL_BLACK },
+    { "oposta ao sentido escolhido.", 14, 122, COL_BLACK },
+    { "3) Corrente de Norton", 14, 142, COL_BLUE },
+    { "IN = VTH/RTH", 14, 162, COL_RED },
+    { "IN = (-8)/4 = -2 A", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_thev_norton_pg4_lines[] = {
+    { "Sinal negativo: corrente real no", 14, 62, COL_BLACK },
+    { "sentido contrario ao escolhido.", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_pv_thev_norton_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RTH = RN = 4 ohm", 14, 82, COL_RED },
+    { "VTH=-8V  IN=-2A  R=4ohm", 14, 102, COL_RED },
+};
+
+static const PageTemplate ant_pv_thev_norton_pages[] = {
+    { "Circuito", "",
+      ant_pv_thev_norton_pg0_lines, COUNT_OF(ant_pv_thev_norton_pg0_lines), 0, 0, draw_ant_pv_thev_norton_circuit },
+    { "Enunciado", "",
+      ant_pv_thev_norton_pg1_lines, COUNT_OF(ant_pv_thev_norton_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_pv_thev_norton_pg2_lines, COUNT_OF(ant_pv_thev_norton_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_pv_thev_norton_pg3_lines, COUNT_OF(ant_pv_thev_norton_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_pv_thev_norton_pg4_lines, COUNT_OF(ant_pv_thev_norton_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_thev_norton_pg5_lines, COUNT_OF(ant_pv_thev_norton_pg5_lines), "VTH=-8V  IN=-2A  R=4ohm", 124, 0 }
+};
+
+static const TextLine ant_pv_amp_inv_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_amp_inv_pg1_lines[] = {
+    { "Amplificador inversor", 14, 62, COL_BLACK },
+    { "Prova_02 Ex2", 14, 82, COL_BLACK },
+    { "Pede a tensao de saida Vout.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_amp_inv_pg2_lines[] = {
+    { "1) Ganho do inversor", 14, 62, COL_BLUE },
+    { "Av = -Rf/Ri", 14, 82, COL_RED },
+    { "Av = -10k/4k = -2.5", 14, 102, COL_RED },
+    { "O sinal negativo indica inversao.", 14, 122, COL_BLACK },
+    { "Se pedirem modulo, use |Av|.", 14, 142, COL_BLACK },
+    { "2) Saida", 14, 162, COL_BLUE },
+    { "Vout = Av*Vin", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_amp_inv_pg3_lines[] = {
+    { "Vout = -2.5*3 = -7.5V", 14, 62, COL_RED },
+    { "Gabarito destaca o modulo:", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_pv_amp_inv_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "|Vout| = 7.5 V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_amp_inv_pages[] = {
+    { "Circuito", "",
+      ant_pv_amp_inv_pg0_lines, COUNT_OF(ant_pv_amp_inv_pg0_lines), 0, 0, draw_ant_pv_amp_inv_circuit },
+    { "Enunciado", "",
+      ant_pv_amp_inv_pg1_lines, COUNT_OF(ant_pv_amp_inv_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_amp_inv_pg2_lines, COUNT_OF(ant_pv_amp_inv_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_amp_inv_pg3_lines, COUNT_OF(ant_pv_amp_inv_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_amp_inv_pg4_lines, COUNT_OF(ant_pv_amp_inv_pg4_lines), "|Vout| = 7.5 V", 104, 0 }
+};
+
+static const TextLine ant_pv_amp_nao_inv_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_amp_nao_inv_pg1_lines[] = {
+    { "Amplificador nao inversor", 14, 62, COL_BLACK },
+    { "Prova_02_Rec Ex2", 14, 82, COL_BLACK },
+    { "Dado Vs = 110mV, calcular Vo.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_amp_nao_inv_pg2_lines[] = {
+    { "1) Ganho", 14, 62, COL_BLUE },
+    { "Por divisor:", 14, 82, COL_BLACK },
+    { "Vs = Vo*(10/(10+10))", 14, 102, COL_BLACK },
+    { "Vo/Vs = 2", 14, 122, COL_RED },
+    { "Av = 1 + Rf/Ri = 2", 14, 142, COL_RED },
+    { "2) Saida", 14, 162, COL_BLUE },
+    { "Vout = Vs*Av", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_amp_nao_inv_pg3_lines[] = {
+    { "Vout = 110mV*2", 14, 62, COL_RED },
+    { "Vout = 220mV", 14, 82, COL_RED },
+};
+
+static const TextLine ant_pv_amp_nao_inv_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Vo = 220 mV", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_amp_nao_inv_pages[] = {
+    { "Circuito", "",
+      ant_pv_amp_nao_inv_pg0_lines, COUNT_OF(ant_pv_amp_nao_inv_pg0_lines), 0, 0, draw_ant_pv_amp_nao_inv_circuit },
+    { "Enunciado", "",
+      ant_pv_amp_nao_inv_pg1_lines, COUNT_OF(ant_pv_amp_nao_inv_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_amp_nao_inv_pg2_lines, COUNT_OF(ant_pv_amp_nao_inv_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_amp_nao_inv_pg3_lines, COUNT_OF(ant_pv_amp_nao_inv_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_amp_nao_inv_pg4_lines, COUNT_OF(ant_pv_amp_nao_inv_pg4_lines), "Vo = 220 mV", 104, 0 }
+};
+
+static const TextLine ant_pv_cap_eq_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_cap_eq_pg1_lines[] = {
+    { "Capacitancia equivalente", 14, 62, COL_BLACK },
+    { "Exercicio repetido nas provas", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_pv_cap_eq_pg2_lines[] = {
+    { "1) Reduza o lado direito", 14, 62, COL_BLUE },
+    { "10uF, 20uF e 30uF em paralelo:", 14, 82, COL_BLACK },
+    { "C = 10 + 20 + 30 = 60uF", 14, 102, COL_RED },
+    { "Esse 60uF fica em serie com 60uF.", 14, 122, COL_BLACK },
+    { "Cserie = 30uF", 14, 142, COL_RED },
+    { "2) Novos paralelos", 14, 162, COL_BLUE },
+    { "30uF || 50uF = 80uF", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_cap_eq_pg3_lines[] = {
+    { "80uF || 40uF = 120uF", 14, 62, COL_RED },
+    { "O circuito reduz para:", 14, 82, COL_BLACK },
+    { "12uF em serie com uma rede", 14, 102, COL_BLACK },
+    { "12uF, 120uF e 80uF.", 14, 122, COL_BLACK },
+    { "3) Resultado final", 14, 142, COL_BLUE },
+    { "Aplicando serie/paralelo restantes:", 14, 162, COL_BLACK },
+    { "Ceq = 10 uF", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_cap_eq_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Ceq = 10 uF", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_cap_eq_pages[] = {
+    { "Circuito", "",
+      ant_pv_cap_eq_pg0_lines, COUNT_OF(ant_pv_cap_eq_pg0_lines), 0, 0, draw_ant_pv_cap_eq_circuit },
+    { "Enunciado", "",
+      ant_pv_cap_eq_pg1_lines, COUNT_OF(ant_pv_cap_eq_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_cap_eq_pg2_lines, COUNT_OF(ant_pv_cap_eq_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_cap_eq_pg3_lines, COUNT_OF(ant_pv_cap_eq_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_cap_eq_pg4_lines, COUNT_OF(ant_pv_cap_eq_pg4_lines), "Ceq = 10 uF", 104, 0 }
+};
+
+static const TextLine ant_pv_ind_eq_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_ind_eq_pg1_lines[] = {
+    { "Indutancia equivalente", 14, 62, COL_BLACK },
+    { "Prova_02 Ex4", 14, 82, COL_BLACK },
+};
+
+static const TextLine ant_pv_ind_eq_pg2_lines[] = {
+    { "1) Paralelo interno", 14, 62, COL_BLUE },
+    { "1/L = 1/60 + 1/20 + 1/30", 14, 82, COL_RED },
+    { "1/L = 1/10", 14, 102, COL_RED },
+    { "L = 10 mH", 14, 122, COL_RED },
+    { "Esse bloco fica em serie com 25mH.", 14, 142, COL_BLACK },
+    { "2) Resultado final", 14, 162, COL_BLUE },
+    { "Ramo inferior: 25 + 10 = 35mH.", 14, 182, COL_BLACK },
+};
+
+static const TextLine ant_pv_ind_eq_pg3_lines[] = {
+    { "Esse ramo esta em paralelo com 10mH.", 14, 62, COL_BLACK },
+    { "Leq = 10 || 35 = 10*35/45", 14, 82, COL_RED },
+    { "Leq = 7.778 mH", 14, 102, COL_RED },
+};
+
+static const TextLine ant_pv_ind_eq_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Leq = 7.778 mH", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_ind_eq_pages[] = {
+    { "Circuito", "",
+      ant_pv_ind_eq_pg0_lines, COUNT_OF(ant_pv_ind_eq_pg0_lines), 0, 0, draw_ant_pv_ind_eq_circuit },
+    { "Enunciado", "",
+      ant_pv_ind_eq_pg1_lines, COUNT_OF(ant_pv_ind_eq_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_ind_eq_pg2_lines, COUNT_OF(ant_pv_ind_eq_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_ind_eq_pg3_lines, COUNT_OF(ant_pv_ind_eq_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_ind_eq_pg4_lines, COUNT_OF(ant_pv_ind_eq_pg4_lines), "Leq = 7.778 mH", 104, 0 }
+};
+
+static const TextLine ant_pv_cte_tempo_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_cte_tempo_pg1_lines[] = {
+    { "Constante de tempo", 14, 62, COL_BLACK },
+    { "Prova_02_Rec Ex4", 14, 82, COL_BLACK },
+    { "Objetivo: tau do capacitor.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_cte_tempo_pg2_lines[] = {
+    { "1) Rth visto pelo capacitor", 14, 62, COL_BLUE },
+    { "Fonte de tensao vira curto.", 14, 82, COL_BLACK },
+    { "Vendo pelos terminais do capacitor:", 14, 102, COL_BLACK },
+    { "Rth = 120 || 80 + 12", 14, 122, COL_RED },
+    { "Rth = 48 + 12 = 60 ohm", 14, 142, COL_RED },
+    { "2) Calcule tau", 14, 162, COL_BLUE },
+    { "tau = Rth*C", 14, 182, COL_RED },
+};
+
+static const TextLine ant_pv_cte_tempo_pg3_lines[] = {
+    { "tau = 60*0.5*10^-3", 14, 62, COL_RED },
+    { "tau = 0.030 s = 30 ms", 14, 82, COL_RED },
+};
+
+static const TextLine ant_pv_cte_tempo_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "tau = 30 ms", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_cte_tempo_pages[] = {
+    { "Circuito", "",
+      ant_pv_cte_tempo_pg0_lines, COUNT_OF(ant_pv_cte_tempo_pg0_lines), 0, 0, draw_ant_pv_cte_tempo_circuit },
+    { "Enunciado", "",
+      ant_pv_cte_tempo_pg1_lines, COUNT_OF(ant_pv_cte_tempo_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_cte_tempo_pg2_lines, COUNT_OF(ant_pv_cte_tempo_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_cte_tempo_pg3_lines, COUNT_OF(ant_pv_cte_tempo_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_cte_tempo_pg4_lines, COUNT_OF(ant_pv_cte_tempo_pg4_lines), "tau = 30 ms", 104, 0 }
+};
+
+static const TextLine ant_pv_resp_rc_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_resp_rc_pg1_lines[] = {
+    { "Resposta natural RC", 14, 62, COL_BLACK },
+    { "Prova_02 Ex5", 14, 82, COL_BLACK },
+    { "Chave fechada ha muito tempo.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_resp_rc_pg2_lines[] = {
+    { "1) Valor inicial", 14, 62, COL_BLUE },
+    { "O capacitor esta em aberto em CC.", 14, 82, COL_BLACK },
+    { "Use divisor de tensao no resistor 2k.", 14, 102, COL_BLACK },
+    { "v(0) = 6.6 V", 14, 122, COL_RED },
+    { "Este e o valor inicial usado no", 14, 142, COL_BLACK },
+    { "gabarito fornecido.", 14, 162, COL_BLACK },
+    { "2) Resposta para t >= 0", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_pv_resp_rc_pg3_lines[] = {
+    { "Apos abrir, C descarrega por 2k.", 14, 62, COL_BLACK },
+    { "tau = R*C = 2k*40uF", 14, 82, COL_RED },
+    { "tau = 0.08 s", 14, 102, COL_RED },
+    { "v(t)=6.6*e^(-12.5t) V", 14, 122, COL_RED },
+};
+
+static const TextLine ant_pv_resp_rc_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "v(t)=6.6e^(-12.5t) V", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_resp_rc_pages[] = {
+    { "Circuito", "",
+      ant_pv_resp_rc_pg0_lines, COUNT_OF(ant_pv_resp_rc_pg0_lines), 0, 0, draw_ant_pv_resp_rc_circuit },
+    { "Enunciado", "",
+      ant_pv_resp_rc_pg1_lines, COUNT_OF(ant_pv_resp_rc_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_resp_rc_pg2_lines, COUNT_OF(ant_pv_resp_rc_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_resp_rc_pg3_lines, COUNT_OF(ant_pv_resp_rc_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_resp_rc_pg4_lines, COUNT_OF(ant_pv_resp_rc_pg4_lines), "v(t)=6.6e^(-12.5t) V", 104, 0 }
+};
+
+static const TextLine ant_pv_energy_cc_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_pv_energy_cc_pg1_lines[] = {
+    { "Energia em regime CC", 14, 62, COL_BLACK },
+    { "Prova_02_Rec Ex5", 14, 82, COL_BLACK },
+    { "Achar vC, iL, WC e WL.", 14, 102, COL_BLACK },
+};
+
+static const TextLine ant_pv_energy_cc_pg2_lines[] = {
+    { "1) Equivalente em CC", 14, 62, COL_BLUE },
+    { "Capacitor -> circuito aberto.", 14, 82, COL_BLACK },
+    { "Indutor -> curto-circuito.", 14, 102, COL_BLACK },
+    { "Sobra divisor de corrente 4ohm/2ohm.", 14, 122, COL_BLACK },
+    { "iL = 4/(4+2) * 3 = 2A", 14, 142, COL_RED },
+    { "vC = 0V", 14, 162, COL_RED },
+    { "2) Energia armazenada", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_pv_energy_cc_pg3_lines[] = {
+    { "WL = 1/2 * L * iL^2", 14, 62, COL_RED },
+    { "WL = 1/2 * 0.5 * 2^2 = 1J", 14, 82, COL_RED },
+    { "WC = 1/2 * C * vC^2", 14, 102, COL_RED },
+    { "WC = 1/2 * 2 * 0^2 = 0J", 14, 122, COL_RED },
+};
+
+static const TextLine ant_pv_energy_cc_pg4_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "iL=2A  vC=0V  WL=1J  WC=0J", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_pv_energy_cc_pages[] = {
+    { "Circuito", "",
+      ant_pv_energy_cc_pg0_lines, COUNT_OF(ant_pv_energy_cc_pg0_lines), 0, 0, draw_ant_pv_energy_cc_circuit },
+    { "Enunciado", "",
+      ant_pv_energy_cc_pg1_lines, COUNT_OF(ant_pv_energy_cc_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/2",
+      ant_pv_energy_cc_pg2_lines, COUNT_OF(ant_pv_energy_cc_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/2",
+      ant_pv_energy_cc_pg3_lines, COUNT_OF(ant_pv_energy_cc_pg3_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_pv_energy_cc_pg4_lines, COUNT_OF(ant_pv_energy_cc_pg4_lines), "iL=2A  vC=0V  WL=1J  WC=0J", 104, 0 }
+};
+
+static const TextLine ant_v1_req_mista_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_v1_req_mista_pg1_lines[] = {
+    { "Rede mista para Req entre a e b", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_v1_req_mista_pg2_lines[] = {
+    { "Primeiro reduza a direita.", 14, 62, COL_BLUE },
+    { "Req1 = 50 + 10", 14, 82, COL_RED },
+    { "Req1 = 60 ohm", 14, 102, COL_RED },
+    { "Req2 = 60 || 30", 14, 122, COL_RED },
+    { "Req2 = 20 ohm", 14, 142, COL_RED },
+    { "|| indica associacao em paralelo.", 14, 162, COL_BLACK },
+    { "Continue substituindo pelos", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_v1_req_mista_pg3_lines[] = {
+    { "equivalentes.", 14, 62, COL_BLUE },
+    { "Req3 = 20 || 10", 14, 82, COL_RED },
+    { "Req3 = 6.66 ohm", 14, 102, COL_RED },
+    { "Req4 = 6.66 + 30", 14, 122, COL_RED },
+    { "Req4 = 36.66 ohm", 14, 142, COL_RED },
+    { "Fechamento da reducao.", 14, 162, COL_BLUE },
+    { "Req5 = 36.66 || 20 || 20", 14, 182, COL_RED },
+};
+
+static const TextLine ant_v1_req_mista_pg4_lines[] = {
+    { "Req5 = 7.85 ohm", 14, 62, COL_RED },
+    { "Req6 = 7.85 + 10", 14, 82, COL_RED },
+    { "Req6 = 17.85 ohm", 14, 102, COL_RED },
+};
+
+static const TextLine ant_v1_req_mista_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "Rab = 17.85 ohm", 14, 82, COL_RED },
+};
+
+static const PageTemplate ant_v1_req_mista_pages[] = {
+    { "Circuito", "",
+      ant_v1_req_mista_pg0_lines, COUNT_OF(ant_v1_req_mista_pg0_lines), 0, 0, draw_ant_v1_req_mista_circuit },
+    { "Enunciado", "",
+      ant_v1_req_mista_pg1_lines, COUNT_OF(ant_v1_req_mista_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_v1_req_mista_pg2_lines, COUNT_OF(ant_v1_req_mista_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_v1_req_mista_pg3_lines, COUNT_OF(ant_v1_req_mista_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_v1_req_mista_pg4_lines, COUNT_OF(ant_v1_req_mista_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_v1_req_mista_pg5_lines, COUNT_OF(ant_v1_req_mista_pg5_lines), "Rab = 17.85 ohm", 104, 0 }
+};
+
+static const TextLine ant_v1_fonte_20v_pg0_lines[] = {
+    { "", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_v1_fonte_20v_pg1_lines[] = {
+    { "Fonte 20V com rede resistiva", 14, 62, COL_BLACK },
+};
+
+static const TextLine ant_v1_fonte_20v_pg2_lines[] = {
+    { "Reduza o ramo superior direito.", 14, 62, COL_BLUE },
+    { "Req1 = 20 + 80 + 60", 14, 82, COL_RED },
+    { "Req1 = 160 ohm", 14, 102, COL_RED },
+    { "Req2 = 160 || 160", 14, 122, COL_RED },
+    { "Req2 = 80 ohm", 14, 142, COL_RED },
+    { "A etapa Req2 esta em paralelo.", 14, 162, COL_BLACK },
+    { "Agora reduza o outro caminho.", 14, 182, COL_BLUE },
+};
+
+static const TextLine ant_v1_fonte_20v_pg3_lines[] = {
+    { "Req3 = 28 + 80 + 52", 14, 62, COL_RED },
+    { "Req3 = 160 ohm", 14, 82, COL_RED },
+    { "Req4 = 160 || 160", 14, 102, COL_RED },
+    { "Req4 = 80 ohm", 14, 122, COL_RED },
+    { "Resistencia total e corrente.", 14, 142, COL_BLUE },
+    { "RTOTAL = 20 + 80", 14, 162, COL_RED },
+    { "RT = 100 ohm", 14, 182, COL_RED },
+};
+
+static const TextLine ant_v1_fonte_20v_pg4_lines[] = {
+    { "i = E/R = 20 / 100", 14, 62, COL_RED },
+    { "i = 0.2 A = 200 mA", 14, 82, COL_RED },
+    { "Potencia dissipada pelo circuito.", 14, 102, COL_BLUE },
+    { "P = E x i", 14, 122, COL_RED },
+    { "P = 20 x 200x10^-3", 14, 142, COL_RED },
+    { "P = 20 x 0.2", 14, 162, COL_RED },
+    { "P = 4 W", 14, 182, COL_RED },
+};
+
+static const TextLine ant_v1_fonte_20v_pg5_lines[] = {
+    { "Resposta final:", 14, 62, COL_BLUE },
+    { "RT = 100 ohm", 14, 82, COL_RED },
+    { "i = 0.2 A = 200 mA", 14, 102, COL_RED },
+    { "P = 4 W", 14, 122, COL_RED },
+};
+
+static const PageTemplate ant_v1_fonte_20v_pages[] = {
+    { "Circuito", "",
+      ant_v1_fonte_20v_pg0_lines, COUNT_OF(ant_v1_fonte_20v_pg0_lines), 0, 0, draw_ant_v1_fonte_20v_circuit },
+    { "Enunciado", "",
+      ant_v1_fonte_20v_pg1_lines, COUNT_OF(ant_v1_fonte_20v_pg1_lines), 0, 0, 0 },
+    { "Resolucao", "parte 1/3",
+      ant_v1_fonte_20v_pg2_lines, COUNT_OF(ant_v1_fonte_20v_pg2_lines), 0, 0, 0 },
+    { "Resolucao", "parte 2/3",
+      ant_v1_fonte_20v_pg3_lines, COUNT_OF(ant_v1_fonte_20v_pg3_lines), 0, 0, 0 },
+    { "Resolucao", "parte 3/3",
+      ant_v1_fonte_20v_pg4_lines, COUNT_OF(ant_v1_fonte_20v_pg4_lines), 0, 0, 0 },
+    { "Resultado", "Final",
+      ant_v1_fonte_20v_pg5_lines, COUNT_OF(ant_v1_fonte_20v_pg5_lines), "P = 4 W", 144, 0 }
+};
+
 static const Exercise subject_tensao_pot[] = {
     { "Prova01 Q2", p1_q2_pages, COUNT_OF(p1_q2_pages) },
     { "Ex 1.1", e_1_1_pages, COUNT_OF(e_1_1_pages) },
@@ -3495,6 +7324,7 @@ static const Exercise subject_tensao_pot[] = {
 };
 
 static const Exercise subject_leis_kirchhoff[] = {
+    { "PV1Rec Q1", pv1rec_q1_pages, COUNT_OF(pv1rec_q1_pages) },
     { "Ex 2.5", e_2_5_pages, COUNT_OF(e_2_5_pages) },
     { "Ex 2.7", e_2_7_pages, COUNT_OF(e_2_7_pages) },
     { "Ex 2.9", e_2_9_pages, COUNT_OF(e_2_9_pages) },
@@ -3510,6 +7340,7 @@ static const Exercise subject_leis_kirchhoff[] = {
 static const Exercise subject_serie_paralelo[] = {
     { "Prova01 Q1", p1_q1_pages, COUNT_OF(p1_q1_pages) },
     { "Rec01 Q1", rec_q1_pages, COUNT_OF(rec_q1_pages) },
+    { "PV1Rec Q2", pv1rec_q2_pages, COUNT_OF(pv1rec_q2_pages) },
     { "Ex 2.27", e_2_27_pages, COUNT_OF(e_2_27_pages) },
     { "Ex 2.29", e_2_29_pages, COUNT_OF(e_2_29_pages) },
     { "Ex 2.31", e_2_31_pages, COUNT_OF(e_2_31_pages) },
@@ -3531,6 +7362,8 @@ static const Exercise subject_estrela_triang[] = {
 static const Exercise subject_analise_nodal[] = {
     { "Prova01 Q3", p1_q3_pages, COUNT_OF(p1_q3_pages) },
     { "Rec01 Q4", rec_q4_pages, COUNT_OF(rec_q4_pages) },
+    { "Prova1A Q3", prova1a_q3_pages, COUNT_OF(prova1a_q3_pages) },
+    { "Prova1B Q3", prova1b_q3_pages, COUNT_OF(prova1b_q3_pages) },
     { "Ex 3.3", e_3_3_pages, COUNT_OF(e_3_3_pages) },
     { "Ex 3.5", e_3_5_pages, COUNT_OF(e_3_5_pages) },
     { "Ex 3.7", e_3_7_pages, COUNT_OF(e_3_7_pages) },
@@ -3568,6 +7401,76 @@ static const Exercise subject_transf_fontes[] = {
     { "Ex 4.31", e_4_31_pages, COUNT_OF(e_4_31_pages) },
 };
 
+static const Exercise subject_thevenin_norton[] = {
+    { "Ivan 4.33", ant_iv_4_33_pages, COUNT_OF(ant_iv_4_33_pages) },
+    { "Ivan 4.35", ant_iv_4_35_pages, COUNT_OF(ant_iv_4_35_pages) },
+    { "Ivan 4.37", ant_iv_4_37_pages, COUNT_OF(ant_iv_4_37_pages) },
+    { "Ivan 4.39", ant_iv_4_39_pages, COUNT_OF(ant_iv_4_39_pages) },
+    { "Ivan 4.41", ant_iv_4_41_pages, COUNT_OF(ant_iv_4_41_pages) },
+    { "Ivan 4.43", ant_iv_4_43_pages, COUNT_OF(ant_iv_4_43_pages) },
+    { "Ivan 4.45", ant_iv_4_45_pages, COUNT_OF(ant_iv_4_45_pages) },
+    { "Ivan 4.47", ant_iv_4_47_pages, COUNT_OF(ant_iv_4_47_pages) },
+    { "Ivan 4.49", ant_iv_4_49_pages, COUNT_OF(ant_iv_4_49_pages) },
+    { "Ivan 4.53", ant_iv_4_53_pages, COUNT_OF(ant_iv_4_53_pages) },
+    { "Ivan 4.57", ant_iv_4_57_pages, COUNT_OF(ant_iv_4_57_pages) },
+    { "Ivan 4.61", ant_iv_4_61_pages, COUNT_OF(ant_iv_4_61_pages) },
+    { "Ivan 4.63", ant_iv_4_63_pages, COUNT_OF(ant_iv_4_63_pages) },
+    { "Prova02 Norton", ant_pv_norton_pages, COUNT_OF(ant_pv_norton_pages) },
+    { "Prova02 Thevenin Norton", ant_pv_thev_norton_pages, COUNT_OF(ant_pv_thev_norton_pages) },
+};
+
+static const Exercise subject_amplificadores[] = {
+    { "Ivan 5.15", ant_iv_5_15_pages, COUNT_OF(ant_iv_5_15_pages) },
+    { "Ivan 5.17", ant_iv_5_17_pages, COUNT_OF(ant_iv_5_17_pages) },
+    { "Ivan 5.19", ant_iv_5_19_pages, COUNT_OF(ant_iv_5_19_pages) },
+    { "Ivan 5.21", ant_iv_5_21_pages, COUNT_OF(ant_iv_5_21_pages) },
+    { "Ivan 5.23", ant_iv_5_23_pages, COUNT_OF(ant_iv_5_23_pages) },
+    { "Ivan 5.25", ant_iv_5_25_pages, COUNT_OF(ant_iv_5_25_pages) },
+    { "Ivan 5.27", ant_iv_5_27_pages, COUNT_OF(ant_iv_5_27_pages) },
+    { "Ivan 5.29", ant_iv_5_29_pages, COUNT_OF(ant_iv_5_29_pages) },
+    { "Ivan 5.31", ant_iv_5_31_pages, COUNT_OF(ant_iv_5_31_pages) },
+    { "Ivan 5.11", ant_iv_5_11_pages, COUNT_OF(ant_iv_5_11_pages) },
+    { "Ivan 5.13", ant_iv_5_13_pages, COUNT_OF(ant_iv_5_13_pages) },
+    { "Prova02 Amplificador inversor", ant_pv_amp_inv_pages, COUNT_OF(ant_pv_amp_inv_pages) },
+    { "Prova02 Amp nao inversor", ant_pv_amp_nao_inv_pages, COUNT_OF(ant_pv_amp_nao_inv_pages) },
+};
+
+static const Exercise subject_capacitancia[] = {
+    { "Ivan 6.17", ant_iv_6_17_pages, COUNT_OF(ant_iv_6_17_pages) },
+    { "Ivan 6.19", ant_iv_6_19_pages, COUNT_OF(ant_iv_6_19_pages) },
+    { "Ivan 6.21", ant_iv_6_21_pages, COUNT_OF(ant_iv_6_21_pages) },
+    { "Prova02 Capacitancia equivalente", ant_pv_cap_eq_pages, COUNT_OF(ant_pv_cap_eq_pages) },
+};
+
+static const Exercise subject_indutancia[] = {
+    { "Ivan 6.49", ant_iv_6_49_pages, COUNT_OF(ant_iv_6_49_pages) },
+    { "Ivan 6.51", ant_iv_6_51_pages, COUNT_OF(ant_iv_6_51_pages) },
+    { "Ivan 6.55", ant_iv_6_55_pages, COUNT_OF(ant_iv_6_55_pages) },
+    { "Prova02 Indutancia equivalente", ant_pv_ind_eq_pages, COUNT_OF(ant_pv_ind_eq_pages) },
+};
+
+static const Exercise subject_resp_rc_rl[] = {
+    { "Ivan 7.3", ant_iv_7_3_pages, COUNT_OF(ant_iv_7_3_pages) },
+    { "Ivan 7.14", ant_iv_7_14_pages, COUNT_OF(ant_iv_7_14_pages) },
+    { "Ivan 7.9", ant_iv_7_9_pages, COUNT_OF(ant_iv_7_9_pages) },
+    { "Ivan 7.39", ant_iv_7_39_pages, COUNT_OF(ant_iv_7_39_pages) },
+    { "Ivan 7.45", ant_iv_7_45_pages, COUNT_OF(ant_iv_7_45_pages) },
+    { "Ivan 7.11", ant_iv_7_11_pages, COUNT_OF(ant_iv_7_11_pages) },
+    { "Ivan 7.13", ant_iv_7_13_pages, COUNT_OF(ant_iv_7_13_pages) },
+    { "Ivan 7.17", ant_iv_7_17_pages, COUNT_OF(ant_iv_7_17_pages) },
+    { "Ivan 7.53", ant_iv_7_53_pages, COUNT_OF(ant_iv_7_53_pages) },
+    { "Ivan 7.59", ant_iv_7_59_pages, COUNT_OF(ant_iv_7_59_pages) },
+    { "Ivan 7.63", ant_iv_7_63_pages, COUNT_OF(ant_iv_7_63_pages) },
+    { "Prova02 Constante de tempo", ant_pv_cte_tempo_pages, COUNT_OF(ant_pv_cte_tempo_pages) },
+    { "Prova02 Resposta natural RC", ant_pv_resp_rc_pages, COUNT_OF(ant_pv_resp_rc_pages) },
+    { "Prova02 Energia em regime CC", ant_pv_energy_cc_pages, COUNT_OF(ant_pv_energy_cc_pages) },
+};
+
+static const Exercise subject_antigos_v1[] = {
+    { "Req rede mista", ant_v1_req_mista_pages, COUNT_OF(ant_v1_req_mista_pages) },
+    { "Fonte 20V Req/I/P", ant_v1_fonte_20v_pages, COUNT_OF(ant_v1_fonte_20v_pages) },
+};
+
 const Subject subjects[] = {
     { "Tensao Pot", subject_tensao_pot, COUNT_OF(subject_tensao_pot), 0, 0 },
     { "Leis Kirchhoff", subject_leis_kirchhoff, COUNT_OF(subject_leis_kirchhoff), 0, 0 },
@@ -3577,11 +7480,143 @@ const Subject subjects[] = {
     { "Analise Malhas", subject_analise_malhas, COUNT_OF(subject_analise_malhas), 0, 0 },
     { "Superposicao", subject_superposicao, COUNT_OF(subject_superposicao), 0, 0 },
     { "Transf Fontes", subject_transf_fontes, COUNT_OF(subject_transf_fontes), 0, 0 },
+    { "Thevenin/Norton", subject_thevenin_norton, COUNT_OF(subject_thevenin_norton), 0, 0 },
+    { "Amplificadores", subject_amplificadores, COUNT_OF(subject_amplificadores), 0, 0 },
+    { "Capacitancia", subject_capacitancia, COUNT_OF(subject_capacitancia), 0, 0 },
+    { "Indutancia", subject_indutancia, COUNT_OF(subject_indutancia), 0, 0 },
+    { "Resp RC/RL", subject_resp_rc_rl, COUNT_OF(subject_resp_rc_rl), 0, 0 },
+    { "Antigos v1", subject_antigos_v1, COUNT_OF(subject_antigos_v1), 0, 0 },
 };
 
 const uint8_t subject_count = COUNT_OF(subjects);
 
+const ExEntry all_exercises[] = {
+    { &subject_tensao_pot[0], "Tensao Pot", { 2, 1, 1, 0, 0 } },
+    { &subject_tensao_pot[1], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[2], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[3], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[4], "Tensao Pot", { 5, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[5], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[6], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[7], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[8], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[9], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_tensao_pot[10], "Tensao Pot", { 0, 0, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[0], "Leis Kirchhoff", { 1, 2, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[1], "Leis Kirchhoff", { 0, 0, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[2], "Leis Kirchhoff", { 4, 1, 1, 0, 0 } },
+    { &subject_leis_kirchhoff[3], "Leis Kirchhoff", { 0, 0, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[4], "Leis Kirchhoff", { 4, 1, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[5], "Leis Kirchhoff", { 0, 0, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[6], "Leis Kirchhoff", { 1, 4, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[7], "Leis Kirchhoff", { 2, 3, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[8], "Leis Kirchhoff", { 1, 3, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[9], "Leis Kirchhoff", { 3, 2, 0, 0, 0 } },
+    { &subject_leis_kirchhoff[10], "Leis Kirchhoff", { 8, 0, 1, 0, 0 } },
+    { &subject_serie_paralelo[0], "Serie/Paralelo", { 8, 0, 1, 0, 0 } },
+    { &subject_serie_paralelo[1], "Serie/Paralelo", { 8, 0, 0, 0, 0 } },
+    { &subject_serie_paralelo[2], "Serie/Paralelo", { 5, 1, 0, 0, 0 } },
+    { &subject_serie_paralelo[3], "Serie/Paralelo", { 3, 1, 0, 0, 0 } },
+    { &subject_serie_paralelo[4], "Serie/Paralelo", { 6, 0, 0, 0, 0 } },
+    { &subject_serie_paralelo[5], "Serie/Paralelo", { 4, 1, 0, 0, 0 } },
+    { &subject_serie_paralelo[6], "Serie/Paralelo", { 5, 0, 1, 0, 0 } },
+    { &subject_serie_paralelo[7], "Serie/Paralelo", { 4, 1, 0, 0, 0 } },
+    { &subject_serie_paralelo[8], "Serie/Paralelo", { 2, 2, 0, 0, 0 } },
+    { &subject_serie_paralelo[9], "Serie/Paralelo", { 7, 0, 0, 0, 0 } },
+    { &subject_serie_paralelo[10], "Serie/Paralelo", { 5, 0, 0, 0, 0 } },
+    { &subject_serie_paralelo[11], "Serie/Paralelo", { 8, 0, 0, 0, 0 } },
+    { &subject_serie_paralelo[12], "Serie/Paralelo", { 6, 0, 0, 0, 0 } },
+    { &subject_estrela_triang[0], "Estrela Triang", { 3, 0, 0, 0, 0 } },
+    { &subject_estrela_triang[1], "Estrela Triang", { 6, 0, 0, 0, 0 } },
+    { &subject_estrela_triang[2], "Estrela Triang", { 6, 1, 0, 0, 0 } },
+    { &subject_analise_nodal[0], "Analise Nodal", { 4, 2, 0, 0, 0 } },
+    { &subject_analise_nodal[1], "Analise Nodal", { 3, 2, 0, 0, 0 } },
+    { &subject_analise_nodal[2], "Analise Nodal", { 4, 0, 2, 0, 0 } },
+    { &subject_analise_nodal[3], "Analise Nodal", { 4, 0, 2, 0, 0 } },
+    { &subject_analise_nodal[4], "Analise Nodal", { 4, 0, 2, 0, 0 } },
+    { &subject_analise_nodal[5], "Analise Nodal", { 3, 2, 0, 0, 0 } },
+    { &subject_analise_nodal[6], "Analise Nodal", { 2, 0, 2, 0, 0 } },
+    { &subject_analise_nodal[7], "Analise Nodal", { 3, 2, 0, 0, 0 } },
+    { &subject_analise_nodal[8], "Analise Nodal", { 3, 1, 1, 0, 0 } },
+    { &subject_analise_nodal[9], "Analise Nodal", { 4, 1, 1, 0, 0 } },
+    { &subject_analise_nodal[10], "Analise Nodal", { 5, 1, 1, 0, 0 } },
+    { &subject_analise_nodal[11], "Analise Nodal", { 3, 1, 1, 0, 0 } },
+    { &subject_analise_nodal[12], "Analise Nodal", { 4, 2, 1, 0, 0 } },
+    { &subject_analise_malhas[0], "Analise Malhas", { 5, 3, 0, 0, 0 } },
+    { &subject_analise_malhas[1], "Analise Malhas", { 3, 2, 0, 0, 0 } },
+    { &subject_analise_malhas[2], "Analise Malhas", { 3, 1, 0, 0, 0 } },
+    { &subject_analise_malhas[3], "Analise Malhas", { 5, 2, 0, 0, 0 } },
+    { &subject_analise_malhas[4], "Analise Malhas", { 6, 1, 1, 0, 0 } },
+    { &subject_analise_malhas[5], "Analise Malhas", { 3, 1, 0, 0, 0 } },
+    { &subject_superposicao[0], "Superposicao", { 5, 2, 1, 0, 0 } },
+    { &subject_superposicao[1], "Superposicao", { 5, 2, 1, 0, 0 } },
+    { &subject_superposicao[2], "Superposicao", { 4, 1, 0, 0, 0 } },
+    { &subject_superposicao[3], "Superposicao", { 4, 0, 1, 0, 0 } },
+    { &subject_superposicao[4], "Superposicao", { 6, 1, 0, 0, 0 } },
+    { &subject_superposicao[5], "Superposicao", { 4, 1, 0, 0, 0 } },
+    { &subject_transf_fontes[0], "Transf Fontes", { 4, 1, 1, 0, 0 } },
+    { &subject_transf_fontes[1], "Transf Fontes", { 2, 1, 1, 0, 0 } },
+    { &subject_transf_fontes[2], "Transf Fontes", { 4, 1, 1, 0, 0 } },
+    { &subject_transf_fontes[3], "Transf Fontes", { 4, 1, 3, 0, 0 } },
+    { &subject_transf_fontes[4], "Transf Fontes", { 3, 2, 0, 0, 0 } },
+    { &subject_thevenin_norton[0], "Thevenin/Norton", { 3, 0, 1, 0, 0 } },
+    { &subject_thevenin_norton[1], "Thevenin/Norton", { 5, 2, 1, 0, 0 } },
+    { &subject_thevenin_norton[2], "Thevenin/Norton", { 3, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[3], "Thevenin/Norton", { 4, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[4], "Thevenin/Norton", { 3, 1, 2, 0, 0 } },
+    { &subject_thevenin_norton[5], "Thevenin/Norton", { 4, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[6], "Thevenin/Norton", { 3, 0, 1, 0, 0 } },
+    { &subject_thevenin_norton[7], "Thevenin/Norton", { 2, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[8], "Thevenin/Norton", { 3, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[9], "Thevenin/Norton", { 3, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[10], "Thevenin/Norton", { 4, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[11], "Thevenin/Norton", { 6, 3, 0, 0, 0 } },
+    { &subject_thevenin_norton[12], "Thevenin/Norton", { 2, 0, 1, 0, 0 } },
+    { &subject_thevenin_norton[13], "Thevenin/Norton", { 3, 1, 1, 0, 0 } },
+    { &subject_thevenin_norton[14], "Thevenin/Norton", { 3, 1, 2, 0, 0 } },
+    { &subject_amplificadores[0], "Amplificadores", { 3, 0, 1, 0, 0 } },
+    { &subject_amplificadores[1], "Amplificadores", { 5, 1, 0, 0, 0 } },
+    { &subject_amplificadores[2], "Amplificadores", { 5, 1, 0, 0, 0 } },
+    { &subject_amplificadores[3], "Amplificadores", { 2, 2, 0, 0, 0 } },
+    { &subject_amplificadores[4], "Amplificadores", { 3, 1, 0, 0, 0 } },
+    { &subject_amplificadores[5], "Amplificadores", { 2, 0, 0, 0, 0 } },
+    { &subject_amplificadores[6], "Amplificadores", { 4, 1, 0, 0, 0 } },
+    { &subject_amplificadores[7], "Amplificadores", { 4, 1, 0, 0, 0 } },
+    { &subject_amplificadores[8], "Amplificadores", { 4, 0, 1, 0, 0 } },
+    { &subject_amplificadores[9], "Amplificadores", { 5, 1, 0, 0, 0 } },
+    { &subject_amplificadores[10], "Amplificadores", { 5, 1, 0, 0, 0 } },
+    { &subject_amplificadores[11], "Amplificadores", { 2, 1, 0, 0, 0 } },
+    { &subject_amplificadores[12], "Amplificadores", { 3, 1, 0, 0, 0 } },
+    { &subject_capacitancia[0], "Capacitancia", { 0, 0, 0, 14, 0 } },
+    { &subject_capacitancia[1], "Capacitancia", { 0, 0, 0, 9, 0 } },
+    { &subject_capacitancia[2], "Capacitancia", { 0, 0, 0, 6, 0 } },
+    { &subject_capacitancia[3], "Capacitancia", { 0, 0, 0, 9, 0 } },
+    { &subject_indutancia[0], "Indutancia", { 0, 0, 0, 0, 5 } },
+    { &subject_indutancia[1], "Indutancia", { 0, 0, 0, 0, 5 } },
+    { &subject_indutancia[2], "Indutancia", { 0, 0, 0, 0, 7 } },
+    { &subject_indutancia[3], "Indutancia", { 0, 0, 0, 0, 5 } },
+    { &subject_resp_rc_rl[0], "Resp RC/RL", { 4, 0, 0, 1, 0 } },
+    { &subject_resp_rc_rl[1], "Resp RC/RL", { 4, 0, 0, 0, 1 } },
+    { &subject_resp_rc_rl[2], "Resp RC/RL", { 2, 1, 0, 1, 0 } },
+    { &subject_resp_rc_rl[3], "Resp RC/RL", { 3, 1, 1, 2, 0 } },
+    { &subject_resp_rc_rl[4], "Resp RC/RL", { 3, 1, 0, 1, 0 } },
+    { &subject_resp_rc_rl[5], "Resp RC/RL", { 3, 1, 0, 0, 1 } },
+    { &subject_resp_rc_rl[6], "Resp RC/RL", { 1, 0, 0, 0, 1 } },
+    { &subject_resp_rc_rl[7], "Resp RC/RL", { 2, 1, 0, 0, 1 } },
+    { &subject_resp_rc_rl[8], "Resp RC/RL", { 4, 1, 1, 0, 2 } },
+    { &subject_resp_rc_rl[9], "Resp RC/RL", { 3, 1, 0, 0, 1 } },
+    { &subject_resp_rc_rl[10], "Resp RC/RL", { 2, 1, 0, 0, 1 } },
+    { &subject_resp_rc_rl[11], "Resp RC/RL", { 3, 1, 0, 1, 0 } },
+    { &subject_resp_rc_rl[12], "Resp RC/RL", { 2, 1, 0, 1, 0 } },
+    { &subject_resp_rc_rl[13], "Resp RC/RL", { 3, 0, 1, 1, 1 } },
+    { &subject_antigos_v1[0], "Antigos v1", { 8, 0, 0, 0, 0 } },
+    { &subject_antigos_v1[1], "Antigos v1", { 8, 1, 0, 0, 0 } },
+};
+
+const uint16_t all_exercises_count = COUNT_OF(all_exercises);
+
 const MenuItem menu_items[] = {
+    { "Buscar", MENU_SEARCH, 0 },
     { "Tensao Pot", MENU_SUBJECT, 0 },
     { "Leis Kirchhoff", MENU_SUBJECT, 1 },
     { "Serie/Paralelo", MENU_SUBJECT, 2 },
@@ -3590,6 +7625,18 @@ const MenuItem menu_items[] = {
     { "Analise Malhas", MENU_SUBJECT, 5 },
     { "Superposicao", MENU_SUBJECT, 6 },
     { "Transf Fontes", MENU_SUBJECT, 7 },
+    { "Antigos", MENU_ANTIGOS, 0 },
 };
 
 const uint8_t menu_count = COUNT_OF(menu_items);
+
+const MenuItem antigos_items[] = {
+    { "Thevenin/Norton", MENU_SUBJECT, 8 },
+    { "Amplificadores", MENU_SUBJECT, 9 },
+    { "Capacitancia", MENU_SUBJECT, 10 },
+    { "Indutancia", MENU_SUBJECT, 11 },
+    { "Resp RC/RL", MENU_SUBJECT, 12 },
+    { "Antigos v1", MENU_SUBJECT, 13 },
+};
+
+const uint8_t antigos_count = COUNT_OF(antigos_items);

@@ -3,7 +3,7 @@ DESCRIPTION = "Circuit viewer 3"
 COMPRESSED = YES
 ARCHIVED = YES
 
-SRC = src/main.c src/ui.c src/formulas.c src/exercises.c
+SRC = src/main.c src/ui.c src/formulas.c src/exercises.c src/search_overlay.c
 
 CFLAGS = -Wall -Wextra -Oz
 LDFLAGS = -lgraphx -lkeypadc -ltice

@@ -146,6 +146,41 @@ void draw_footer_ex(void) {
     prn("UP/DOWN ex  </> pg  CLEAR volta ON sair", 2, 229);
 }
 
+void draw_search_footer(const uint8_t counts[5], bool show_labels, bool show_counts) {
+    static const char *const labels[5] = { "res", "FT", "FC", "cap", "ind" };
+    uint8_t i;
+
+    gfx_SetColor(COL_GRAY);
+    gfx_HorizLine(0, 224, SCREEN_W);
+
+    /* footer stays empty unless a peek key is held: alpha -> labels,
+       math -> the live component counts */
+    if (!show_labels && !show_counts) return;
+
+    gfx_SetTextFGColor(COL_BLACK);
+    for (i = 0; i < 5; i++) {
+        int center = 32 + i * 64;   /* slot centers 32,96,160,224,288 */
+        char buf[4];
+        const char *txt;
+        int w, x;
+
+        if (show_labels) {
+            txt = labels[i];
+        } else {
+            uint8_t n = counts[i];
+            uint8_t p = 0;
+            if (n >= 10) buf[p++] = (char)('0' + n / 10);
+            buf[p++] = (char)('0' + n % 10);
+            buf[p] = '\0';
+            txt = buf;
+        }
+        w = (int)gfx_GetStringWidth(txt);
+        x = center - w / 2;
+        if (x < 0) x = 0;
+        prn(txt, x, 229);
+    }
+}
+
 void draw_title(const char *title, const char *subtitle) {
     if (title) print_center(title, 30);
     if (subtitle) {

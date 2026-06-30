@@ -10,3 +10,4 @@ LIVRO_ORIGINAL.pdf
 /bin/*
 __pycache__
 /obj/*
+.vscode
