@@ -1,5 +1,7 @@
 # Adicionando exercicios ao CIRCVIE3
 
+_github.com/daniSoares08 - Open source (MIT License): free to use, copy, modify and redistribute._
+
 `src/exercises.c` e **gerado** por `tools/generate_exercises.py`. Nunca edite
 o `.c` a mao: edite o gerador e rode-o de novo.
 

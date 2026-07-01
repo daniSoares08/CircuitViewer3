@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# CircuitViewer3 - github.com/daniSoares08
+# Open source (MIT License): free to use, copy, modify and redistribute.
 """Audit CIRCVIE3 source text for calculator-safe rendering."""
 
 import argparse

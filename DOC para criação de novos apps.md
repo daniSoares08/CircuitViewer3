@@ -1,5 +1,7 @@
 # Guia de bolso — CEdev (TI-84 Plus CE)
 
+_github.com/daniSoares08 - Open source (MIT License): free to use, copy, modify and redistribute._
+
 ## Construindo apps confiáveis com `graphx` + `keypadc`
 
 Este documento resume o que fazer e o que evitar ao criar programas em C para a TI-84 Plus CE usando CEdev. É baseado nas lições aprendidas: tela preta com "riscos", teclas que não respondiam, ON que não saía, e erros de memória.
@@ -555,6 +557,17 @@ na calculadora.
 | Caracteres “estranhos”      | UTF-8                                          | Use **ASCII** (ex.: `xbar`, `deg`)                                                   |
 | Página cortada no preview   | Coordenadas fora de 320×240                    | Ajuste geometria no helper e renderize novamente                                     |
 | Preview diferente da TI     | Helper Python divergiu do `ui.c`               | Atualize o renderizador sempre que mudar `ui.c`                                      |
+| AppVar: menu ok, páginas viram lixo | Parser em C dessincronizado do formato binário (ex.: tamanho de registro errado por 1 byte ao **pular** um item) | Espelhe o parser do C em Python e **prove o alinhamento** (fim de cada bloco == próximo offset). Veja a lição abaixo. |
+
+> **Lição aprendida (CircuitViewer3, migração AppVar).** O loader em C pulava
+> cada "op" com `p += 9`, mas cada op tem **10 bytes** fixos (`opcode + 4×int16 +
+> flag`) — esqueceu o byte do `flag`. A partir da 2ª página o ponteiro
+> desalinhava e tudo virava lixo; o **cabeçalho/menu continuavam corretos**
+> porque são lidos *antes* do pulo. O round-trip Python passava porque validava o
+> **formato** e o **decoder Python**, não a aritmética de ponteiros do **C**.
+> Correção e prevenção: escreva um **simulador do parser do C em Python** e exija
+> que o parse de cada bloco **termine exatamente no offset do próximo** — isso
+> pega a divergência C↔formato sem precisar de hardware.
 
 ---
 
@@ -634,6 +647,42 @@ ordem por app — quando o desenho é o objeto de estudo, vale colocá-lo primei
 * **Quebra** automática em ~37 caracteres e **paginação** em ~7 linhas por
   página (y de 62 a 182, passo 20; rodapé em 224). Sobrou? Vira "parte 1/2".
 * A caixa de resultado leva um resumo curto (<= ~34 chars) centralizado.
+
+### Variante: conteúdo grande no Arquivo (Flash) para poupar RAM
+
+No CE, ao rodar, **o programa inteiro é copiado para a RAM** (~150 KB úteis).
+Quando o conteúdo é compilado dentro do `.8xp`, cada exercício aumenta o uso de
+RAM. Se o `.bin` descomprimido se aproximar do limite, **mova os DADOS para um
+AppVar arquivado** e leia-os da Flash em runtime. (Arquivar o próprio `.8xp`
+**não** ajuda — para executar ele é copiado para a RAM de qualquer jeito; só
+mover os dados para um AppVar lido na Flash reduz a RAM.)
+
+Receita (validada em produção — migração incremental dos exercícios "Antigos"
+do CircuitViewer3; RAM caiu de ~133 KB para ~82 KB):
+
+1. **Formato binário plano** (sem ponteiros): cabeçalho com `magic`, `count` e
+   uma **tabela de offsets**; depois os blocos. Strings **NUL-terminadas** para
+   o loader apontar direto na Flash (sem copiar). Toda "op" de desenho com
+   **tamanho fixo** (ex.: `opcode(1) + 4×int16 + flag(1) + label(cstr)`) facilita
+   pular/indexar.
+2. **Empacote no gerador**: escreva o `.bin` e converta para AppVar com
+   `convbin --iformat bin --oformat 8xv --name CV3DATA --archive` (o `--archive`
+   garante que ele caia na Flash; pointers de Flash são estáveis).
+3. **Loader em runtime** (`appvar.c`): `ti_Open` + `ti_GetDataPtr` (para AppVar
+   **arquivado** o ponteiro continua válido após `ti_Close`), valide o `magic`,
+   e **materialize um item por vez** em buffers estáticos de RAM. As strings/ops
+   ficam na Flash; só os structs `Page/TextLine` da página atual vão para a RAM.
+4. **Mantenha compilados só os METADADOS** leves (títulos, índice de busca por
+   componente, contagem de páginas). O conteúdo pesado fica no AppVar.
+5. **Envie os DOIS arquivos** (`APP.8xp` + `DADOS.8xv`); se o AppVar faltar,
+   mostre uma tela de aviso em vez de travar.
+6. **Para adicionar conteúdo depois**: regenere o `.8xv` e reenvie só ele — sem
+   recompilar o app (cresce a Flash, não a RAM).
+
+⚠️ **Gotcha de build**: `make clean` apaga `bin/` e leva o `.8xv` junto (ele é
+artefato do gerador Python, não do `make`). Ordem correta:
+`make clean` → `python tools/gen.py` (gera o `.8xv`) → `make`. Ou gere o `.8xv`
+fora de `bin/`.
 
 ---
 

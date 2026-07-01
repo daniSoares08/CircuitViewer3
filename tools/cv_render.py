@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# CircuitViewer3 - github.com/daniSoares08
+# Open source (MIT License): free to use, copy, modify and redistribute.
 """Shared circuit primitives for CIRCVIE3.
 
 A circuit is a list of "ops" (tuples). Each op maps 1:1 to a primitive in

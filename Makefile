@@ -1,3 +1,6 @@
+# CircuitViewer3 - github.com/daniSoares08
+# Open source (MIT License): free to use, copy, modify and redistribute.
+
 NAME = CIRCVIE3
 DESCRIPTION = "Circuit viewer 3"
 COMPRESSED = YES

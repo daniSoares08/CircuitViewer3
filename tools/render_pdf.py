@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# CircuitViewer3 - github.com/daniSoares08
+# Open source (MIT License): free to use, copy, modify and redistribute.
 """Render PDFs to PNG and extract text for CIRCVIE3 exercise intake."""
 
 import argparse
