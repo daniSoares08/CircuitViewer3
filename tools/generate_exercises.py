@@ -87,6 +87,97 @@ GENERIC_DRAW = {
     "Transf Fontes": "draw_generic_transf_fontes",
 }
 
+GENERIC_OPS = {
+    "draw_generic_tensao_pot": [
+        ("vsrc_v", 58, 88, 168, "V"),
+        ("res_v", 178, 88, 168, "R"),
+        ("wire", 58, 88, 178, 88),
+        ("wire", 58, 168, 178, 168),
+        ("arr_h", 86, 74, 150, "i", True),
+        ("vo", 198, 102, 150, "v"),
+        ("lbl", "p=v*i", 120, 186),
+    ],
+    "draw_generic_kirchhoff": [
+        ("vsrc_v", 56, 86, 168, "Vs"),
+        ("res_h", 56, 86, 142, "R1"),
+        ("res_v", 142, 86, 168, "R2"),
+        ("res_h", 142, 86, 226, "R3"),
+        ("isrc_v", 226, 86, 168, "I", False),
+        ("wire", 56, 168, 226, 168),
+        ("node", 142, 86),
+        ("arr_h", 80, 72, 120, "i1", True),
+        ("arr_v", 158, 96, 144, "i2", False),
+    ],
+    "draw_generic_serie_paralelo": [
+        ("term", 42, 88, "a"),
+        ("term", 42, 168, "b"),
+        ("res_h", 46, 88, 104, "R1"),
+        ("res_h", 104, 88, 166, "R2"),
+        ("res_v", 166, 88, 168, "R3"),
+        ("res_h", 166, 88, 230, "R4"),
+        ("res_v", 230, 88, 168, "R5"),
+        ("wire", 46, 168, 230, 168),
+        ("node", 166, 88),
+        ("node", 166, 168),
+    ],
+    "draw_generic_estrela_triang": [
+        ("term", 70, 78, "a"),
+        ("term", 226, 78, "b"),
+        ("term", 148, 178, "c"),
+        ("res_h", 70, 78, 226, "Rab"),
+        ("res_h", 70, 78, 148, "Rac"),
+        ("res_h", 148, 178, 226, "Rbc"),
+        ("wire", 70, 78, 148, 178),
+        ("wire", 226, 78, 148, 178),
+        ("lbl", "Delta / Y", 120, 194),
+    ],
+    "draw_generic_nodal": [
+        ("vsrc_v", 50, 88, 168, "Vs"),
+        ("res_h", 50, 88, 120, "R1"),
+        ("res_v", 120, 88, 168, "R2"),
+        ("res_h", 120, 88, 205, "R3"),
+        ("isrc_v", 205, 88, 168, "I", True),
+        ("wire", 50, 168, 230, 168),
+        ("gnd", 120, 170),
+        ("node", 120, 88),
+        ("lbl", "V1", 111, 68),
+    ],
+    "draw_generic_malhas": [
+        ("vsrc_v", 52, 88, 168, "V1"),
+        ("res_h", 52, 88, 132, "R1"),
+        ("res_v", 132, 88, 168, "R2"),
+        ("res_h", 132, 88, 222, "R3"),
+        ("vsrc_v", 222, 88, 168, "V2"),
+        ("wire", 52, 168, 222, 168),
+        ("arr_h", 76, 126, 106, "i1", True),
+        ("arr_h", 162, 126, 194, "i2", True),
+    ],
+    "draw_generic_superposicao": [
+        ("vsrc_v", 42, 98, 170, "V1"),
+        ("res_h", 42, 98, 108, "R1"),
+        ("res_v", 108, 98, 170, "R2"),
+        ("res_h", 108, 98, 174, "R3"),
+        ("res_v", 174, 98, 170, "R4"),
+        ("res_h", 174, 98, 240, "R5"),
+        ("isrc_v", 240, 98, 170, "I1", True),
+        ("wire", 42, 170, 240, 170),
+        ("vo", 188, 118, 150, "vo"),
+    ],
+    "draw_generic_transf_fontes": [
+        ("vsrc_v", 46, 90, 154, "V"),
+        ("res_h", 46, 90, 114, "R"),
+        ("term", 124, 90, "a"),
+        ("term", 124, 154, "b"),
+        ("wire", 46, 154, 124, 154),
+        ("arr_h", 142, 122, 174, "", True),
+        ("isrc_v", 218, 90, 154, "I", True),
+        ("res_v", 262, 90, 154, "R"),
+        ("wire", 218, 90, 262, 90),
+        ("wire", 218, 154, 262, 154),
+        ("lbl", "I=V/R", 210, 174),
+    ],
+}
+
 
 # ----------------------------------------------------------------------------
 # Circuit op lists (single source: emitted to C and rendered for preview)
@@ -234,6 +325,26 @@ CIRCUITS = {
         ("lbl", "2", 111, 134), ("lbl", "4", 156, 116),
         ("lbl", "6", 201, 134), ("lbl", "8", 252, 134),
     ],
+    "e_1_6": [
+        ("wire", 70, 70, 70, 184), ("wire", 62, 180, 268, 180),
+        ("lbl", "q(mC)", 42, 58),
+        ("lbl", "30", 48, 86), ("lbl", "0", 62, 184),
+        ("wire", 70, 180, 105, 90), ("wire", 105, 90, 210, 90),
+        ("wire", 210, 90, 260, 180),
+        ("wire", 105, 176, 105, 184), ("wire", 210, 176, 210, 184),
+        ("wire", 260, 176, 260, 184), ("lbl", "t(ms)", 276, 184),
+        ("lbl", "2", 101, 188), ("lbl", "8", 206, 188),
+        ("lbl", "12", 252, 188),
+    ],
+    "e_1_8": [
+        ("wire", 70, 80, 70, 178), ("wire", 62, 175, 260, 175),
+        ("lbl", "i(mA)", 42, 66), ("lbl", "t(ms)", 242, 178),
+        ("lbl", "10", 48, 94), ("lbl", "0", 62, 180),
+        ("wire", 70, 175, 150, 95), ("wire", 150, 95, 230, 95),
+        ("wire", 230, 95, 230, 175),
+        ("wire", 150, 171, 150, 179), ("wire", 230, 171, 230, 179),
+        ("lbl", "1", 146, 183), ("lbl", "2", 226, 183),
+    ],
     "e_1_17": [
         ("res_v", 55, 90, 170, "1"), ("res_h", 55, 90, 160, "2"),
         ("res_v", 160, 90, 170, "3"), ("res_h", 160, 90, 265, "4"),
@@ -241,8 +352,82 @@ CIRCUITS = {
         ("node", 55, 90), ("node", 160, 90), ("node", 265, 90),
         ("node", 55, 170), ("node", 160, 170), ("node", 265, 170),
     ],
+    "e_1_18": [
+        ("vsrc_v", 55, 95, 185, "30V"),
+        ("res_h", 75, 95, 145, "10V"),
+        ("wire", 55, 95, 75, 95), ("wire", 145, 95, 170, 95),
+        ("res_v", 170, 95, 185, "20V"),
+        ("res_h", 190, 95, 255, "8V"),
+        ("wire", 170, 95, 190, 95), ("wire", 255, 95, 280, 95),
+        ("res_v", 280, 95, 185, "12V"),
+        ("wire", 55, 185, 280, 185),
+        ("arr_h", 72, 78, 130, "I=10A", True),
+        ("arr_h", 244, 78, 292, "4A", False),
+        ("arr_v", 188, 108, 160, "14A", False),
+        ("arr_v", 300, 112, 165, "", True), ("lbl", "0.4I", 282, 132),
+        ("lbl", "p1", 68, 130), ("lbl", "p2", 104, 112),
+        ("lbl", "p3", 182, 134), ("lbl", "p4", 220, 112),
+        ("lbl", "p5", 270, 78),
+    ],
+    "e_1_19": [
+        ("isrc_v", 55, 90, 185, "8A", True),
+        ("res_v", 160, 90, 185, "9V"),
+        ("res_v", 245, 90, 135, "3V"),
+        ("vsrc_v", 245, 135, 185, "6V"),
+        ("wire", 55, 90, 245, 90), ("wire", 55, 185, 245, 185),
+        ("arr_v", 178, 105, 145, "2A", False),
+        ("arr_v", 265, 92, 132, "I", False),
+        ("lbl", "+", 174, 112), ("lbl", "-", 174, 152),
+        ("lbl", "+", 258, 104), ("lbl", "-", 258, 128),
+    ],
+    "e_1_20": [
+        ("vsrc_v", 55, 105, 190, "30V"),
+        ("res_h", 55, 105, 135, "12V"),
+        ("wire", 55, 190, 250, 190),
+        ("res_v", 145, 105, 190, "Vo"),
+        ("wire", 135, 105, 145, 105), ("wire", 145, 105, 145, 72),
+        ("res_h", 145, 72, 225, "28V"),
+        ("wire", 225, 72, 250, 72), ("wire", 250, 72, 250, 105),
+        ("res_h", 145, 105, 250, "28V"),
+        ("res_v", 250, 105, 190, "5Io"),
+        ("arr_h", 64, 88, 125, "6A", True),
+        ("arr_v", 38, 188, 128, "6A", True),
+        ("arr_v", 128, 118, 168, "3A", False),
+        ("arr_h", 150, 56, 210, "Io=2A", True),
+        ("arr_h", 158, 122, 225, "1A", True),
+        ("arr_v", 272, 150, 188, "3A", False),
+        ("lbl", "-", 262, 125), ("lbl", "+", 262, 160),
+    ],
 
     # --- Chapter 2: Kirchhoff ---
+    "e_2_4": [
+        ("vsrc_v", 150, 110, 188, "40V"), ("arr_v", 170, 142, 108, "i", True),
+        ("wire", 150, 188, 70, 188), ("wire", 150, 188, 250, 188),
+        ("res_v", 70, 110, 188, "100"), ("wire", 70, 110, 122, 110),
+        ("res_v", 250, 110, 188, "250"), ("wire", 178, 110, 250, 110),
+        ("node", 122, 110), ("node", 178, 110), ("line", 150, 110, 124, 86),
+        ("lbl", "1", 119, 76), ("lbl", "2", 174, 76),
+    ],
+    "e_2_12": [
+        ("res_v", 45, 86, 180, "40V"), ("res_h", 45, 86, 110, "-50V"),
+        ("res_h", 110, 86, 178, "20V"), ("res_h", 110, 62, 260, "30V"),
+        ("wire", 110, 86, 110, 62), ("wire", 260, 62, 260, 86),
+        ("res_h", 178, 86, 260, "v2"), ("res_v", 178, 86, 180, "v1"),
+        ("res_v", 260, 86, 180, "v3"), ("wire", 45, 180, 260, 180),
+        ("node", 110, 86), ("node", 178, 86), ("node", 260, 86),
+    ],
+    "e_2_16": [
+        ("vsrc_v", 55, 110, 180, "10V"), ("res_h", 55, 110, 150, "16"),
+        ("res_h", 150, 110, 245, "14"), ("vsrc_v", 245, 110, 180, "25V"),
+        ("wire", 55, 180, 245, 180), ("vo", 162, 122, 170, "Vo"),
+        ("node", 150, 110), ("node", 150, 180),
+    ],
+    "e_2_22": [
+        ("res_v", 75, 88, 178, "10"), ("res_h", 75, 88, 170, "10"),
+        ("isrc_v", 190, 88, 178, "25A", True), ("dis_v", 250, 88, 178, "2Vo", True),
+        ("wire", 170, 88, 250, 88), ("wire", 75, 178, 250, 178),
+        ("lbl", "+Vo-", 104, 72), ("node", 170, 88),
+    ],
     "e_2_7": [
         ("vsrc_v", 55, 86, 170, "12V"),
         ("res_h", 55, 86, 135, "1"), ("res_h", 135, 86, 215, "4"),
@@ -318,6 +503,82 @@ CIRCUITS = {
     ],
 
     # --- Chapter 2: Serie/Paralelo ---
+    "e_2_26": [
+        ("term", 30, 86, ""), ("res_h", 34, 86, 92, "10"),
+        ("wire", 92, 86, 285, 86), ("wire", 30, 174, 285, 174),
+        ("res_v", 105, 86, 174, "8"), ("res_v", 165, 86, 174, "4"),
+        ("res_v", 225, 86, 174, "2"), ("res_v", 285, 86, 174, "16"),
+        ("arr_h", 32, 72, 75, "ix", True), ("arr_h", 235, 72, 280, "io", True),
+        ("node", 92, 86), ("node", 105, 86), ("node", 165, 86), ("node", 225, 86),
+    ],
+    "e_2_30": [
+        ("term", 28, 102, ""), ("term", 28, 178, ""), ("wire", 28, 102, 48, 102),
+        ("wire", 28, 178, 285, 178), ("res_h", 48, 102, 108, "25"),
+        ("res_h", 108, 102, 180, "180"), ("res_v", 180, 102, 178, "60"),
+        ("wire", 108, 102, 285, 102), ("res_v", 285, 102, 178, "60"),
+        ("lbl", "Req", 5, 135), ("node", 108, 102),
+    ],
+    "e_2_32": [
+        ("wire", 35, 180, 285, 180), ("isrc_v", 160, 88, 180, "16A", False),
+        ("wire", 80, 88, 240, 88), ("wire", 35, 120, 35, 180),
+        ("wire", 285, 120, 285, 180), ("res_h", 35, 100, 125, "60"),
+        ("res_h", 35, 132, 125, "40"), ("res_h", 195, 100, 285, "200"),
+        ("res_h", 195, 132, 285, "50"), ("wire", 125, 100, 125, 132),
+        ("wire", 195, 100, 195, 132), ("arr_h", 202, 84, 248, "i2", True),
+        ("arr_h", 202, 148, 248, "i1", True), ("arr_h", 118, 84, 72, "i4", False),
+        ("arr_h", 118, 148, 72, "i3", False), ("node", 160, 88),
+    ],
+    "e_2_36": [
+        ("vsrc_v", 38, 88, 185, "20V"), ("res_h", 38, 88, 105, "80"),
+        ("res_h", 105, 88, 172, "24"), ("res_h", 172, 88, 238, "50"),
+        ("res_v", 105, 88, 142, "25"), ("wire", 105, 142, 80, 142),
+        ("wire", 105, 142, 130, 142), ("res_v", 80, 142, 185, "60"),
+        ("res_v", 130, 142, 185, "20"), ("res_v", 172, 88, 185, "20"),
+        ("res_v", 238, 88, 185, "30"), ("wire", 38, 185, 238, 185),
+        ("arr_h", 44, 72, 88, "i", True), ("vo", 260, 114, 166, "Vo"),
+        ("node", 105, 88), ("node", 172, 88),
+    ],
+    "e_2_38": [
+        ("vsrc_v", 42, 95, 188, "35V"), ("res_h", 42, 95, 94, "2.5"),
+        ("wire", 94, 95, 94, 188), ("wire", 42, 188, 285, 188),
+        ("res_v", 118, 95, 188, "15"), ("res_h", 94, 72, 258, "60"),
+        ("wire", 94, 95, 94, 72), ("wire", 258, 72, 258, 188),
+        ("res_h", 94, 108, 175, "12"), ("res_h", 94, 138, 175, "6"),
+        ("wire", 175, 108, 175, 138), ("res_v", 175, 138, 188, "20"),
+        ("line", 175, 138, 285, 188), ("lbl", "80", 240, 157),
+        ("arr_h", 46, 80, 86, "io", True), ("lbl", "Req", 102, 202),
+        ("node", 94, 95), ("node", 175, 138),
+    ],
+    "e_2_40": [
+        ("vsrc_v", 45, 88, 180, "15V"), ("res_h", 45, 88, 112, "8"),
+        ("res_h", 112, 88, 178, "2"), ("res_h", 178, 88, 240, "1"),
+        ("res_v", 112, 88, 180, "4"), ("res_v", 178, 88, 180, "6"),
+        ("res_v", 240, 88, 180, "2"), ("wire", 45, 180, 240, 180),
+        ("arr_h", 50, 72, 96, "I", True), ("lbl", "Req", 88, 196),
+        ("node", 112, 88), ("node", 178, 88),
+    ],
+    "e_2_44": [
+        ("term", 34, 108, "a"), ("term", 34, 180, "b"),
+        ("wire", 34, 108, 80, 108), ("wire", 34, 180, 245, 180),
+        ("wire", 80, 108, 80, 72), ("wire", 80, 72, 245, 72),
+        ("wire", 245, 72, 245, 108), ("res_h", 80, 108, 160, "5"),
+        ("res_h", 160, 108, 245, "20"), ("res_v", 160, 108, 180, "2"),
+        ("res_v", 245, 108, 180, "3"), ("node", 80, 108), ("node", 160, 108),
+        ("node", 245, 108),
+    ],
+    "e_2_46": [
+        ("vsrc_v", 42, 95, 188, "80V"), ("res_h", 42, 95, 95, "12"),
+        ("res_h", 95, 75, 160, "20"), ("res_h", 95, 115, 160, "5"),
+        ("wire", 95, 75, 95, 115), ("wire", 160, 75, 160, 115),
+        ("res_h", 175, 75, 245, "15"), ("res_h", 175, 95, 245, "15"),
+        ("res_h", 175, 115, 245, "15"), ("wire", 160, 95, 175, 95),
+        ("wire", 175, 75, 175, 115), ("wire", 245, 75, 245, 115),
+        ("res_v", 260, 95, 188, "5"), ("wire", 245, 95, 260, 95),
+        ("res_h", 42, 188, 120, "24"), ("res_h", 42, 208, 120, "8"),
+        ("wire", 42, 188, 42, 208), ("wire", 120, 188, 120, 208),
+        ("wire", 120, 198, 260, 198), ("wire", 260, 188, 260, 198),
+        ("arr_h", 48, 80, 86, "I", True),
+    ],
     "e_2_27": [
         ("vsrc_v", 55, 90, 170, "10V"), ("res_h", 55, 90, 150, "8"),
         ("res_v", 150, 90, 170, "3"), ("wire", 150, 90, 210, 90),
@@ -582,10 +843,237 @@ CIRCUITS = {
     ],
 }
 
+CIRCUITS.update({
+    "e_3_4": [
+        ("isrc_v", 42, 88, 178, "6A", True),
+        ("wire", 42, 88, 132, 88), ("wire", 42, 178, 286, 178),
+        ("res_v", 88, 88, 178, "20"), ("arr_v", 104, 98, 134, "i1", False),
+        ("res_v", 132, 88, 178, "10"), ("arr_v", 148, 98, 134, "i2", False),
+        ("isrc_h", 132, 88, 190, "3A", False),
+        ("res_v", 214, 88, 178, "40"), ("arr_v", 230, 98, 134, "i3", False),
+        ("res_v", 258, 88, 178, "40"), ("arr_v", 274, 98, 134, "i4", False),
+        ("isrc_v", 286, 88, 178, "2A", True), ("wire", 190, 88, 286, 88),
+    ],
+    "e_3_6": [
+        ("vsrc_v", 48, 105, 182, "10V"), ("wire", 48, 105, 100, 105),
+        ("res_h", 100, 92, 178, "10"), ("res_h", 100, 118, 178, "5"),
+        ("wire", 100, 92, 100, 118), ("wire", 178, 92, 178, 118),
+        ("res_v", 178, 105, 182, "10"), ("res_h", 178, 105, 248, "4"),
+        ("vsrc_v", 248, 105, 182, "20V"), ("wire", 48, 182, 248, 182),
+        ("vo", 156, 122, 172, "V1"), ("node", 178, 105),
+    ],
+    "e_3_8": [
+        ("res_v", 52, 105, 188, "4"), ("vo", 30, 112, 178, "vo"),
+        ("res_h", 52, 105, 130, "6"), ("res_h", 130, 105, 214, "20"),
+        ("vsrc_v", 130, 105, 145, "60V"), ("res_v", 130, 145, 188, "20"),
+        ("dvs_v", 214, 105, 188, "5vo"), ("wire", 52, 188, 214, 188),
+        ("node", 130, 105),
+    ],
+    "e_3_10": [
+        ("res_v", 62, 108, 188, "8"), ("arr_v", 48, 124, 166, "Io", True),
+        ("wire", 62, 108, 62, 82), ("res_h", 62, 82, 250, "1"),
+        ("wire", 250, 82, 250, 108), ("res_v", 156, 108, 188, "2"),
+        ("isrc_h", 62, 108, 156, "4A", True),
+        ("isrc_h", 156, 108, 250, "2Io", True),
+        ("res_v", 250, 108, 188, "4"), ("wire", 62, 188, 250, 188),
+    ],
+    "e_3_11": [
+        ("vsrc_v", 48, 108, 188, "60V"), ("res_h", 48, 108, 150, "12"),
+        ("res_h", 150, 108, 250, "6"), ("res_v", 150, 108, 188, "12"),
+        ("vsrc_v", 250, 108, 188, "24V"), ("wire", 48, 188, 250, 188),
+        ("gnd", 150, 188), ("lbl", "Vo", 142, 92),
+    ],
+    "e_3_12": [
+        ("vsrc_v", 42, 105, 188, "40V"), ("res_h", 42, 105, 118, "20"),
+        ("res_h", 118, 105, 200, "10"), ("res_v", 118, 105, 188, "20"),
+        ("arr_v", 134, 112, 150, "Ix", True),
+        ("dis_v", 200, 105, 188, "4Ix", False),
+        ("res_v", 258, 105, 188, "10"), ("vo", 278, 114, 178, "Vo"),
+        ("wire", 200, 105, 258, 105), ("wire", 42, 188, 258, 188),
+        ("gnd", 150, 188), ("node", 118, 105), ("node", 200, 105),
+    ],
+    "e_3_14": [
+        ("res_v", 58, 122, 178, "1"), ("vsrc_v", 58, 178, 206, "100V"),
+        ("res_h", 58, 122, 144, "2"), ("isrc_h", 58, 88, 144, "12.5A", True),
+        ("wire", 58, 88, 58, 122), ("wire", 144, 88, 144, 122),
+        ("res_v", 144, 122, 206, "4"), ("vo", 122, 140, 196, "vo"),
+        ("res_h", 144, 122, 228, "8"), ("vsrc_v", 228, 122, 206, "50V"),
+        ("wire", 58, 206, 228, 206),
+    ],
+    "e_3_16": [
+        ("isrc_v", 42, 112, 190, "2A", True), ("wire", 42, 112, 82, 112),
+        ("res_v", 82, 112, 190, "1S"), ("dvs_h", 82, 112, 156, "2vo"),
+        ("res_v", 156, 112, 190, "4S"), ("vo", 138, 126, 178, "vo"),
+        ("res_h", 82, 80, 244, "2S"), ("wire", 82, 112, 82, 80),
+        ("wire", 244, 80, 244, 112), ("res_h", 156, 112, 244, "8S"),
+        ("vsrc_v", 244, 112, 190, "13V"), ("wire", 42, 190, 244, 190),
+        ("lbl", "v1", 72, 98), ("lbl", "v2", 146, 98), ("lbl", "v3", 250, 98),
+    ],
+    "e_3_18": [
+        ("res_v", 62, 112, 190, "4"), ("res_h", 62, 112, 150, "2"),
+        ("res_h", 150, 112, 238, "2"), ("res_v", 238, 112, 190, "8"),
+        ("vsrc_h", 62, 80, 238, "30V"), ("wire", 62, 80, 62, 112),
+        ("wire", 238, 80, 238, 112), ("isrc_v", 150, 190, 112, "15A", True),
+        ("wire", 62, 190, 238, 190), ("gnd", 150, 190),
+        ("lbl", "1", 54, 98), ("lbl", "2", 146, 94), ("lbl", "3", 244, 98),
+    ],
+    "e_3_20": [
+        ("res_v", 62, 112, 190, "4"), ("dvs_h", 62, 112, 138, "2i"),
+        ("res_v", 138, 112, 190, "1"), ("res_h", 138, 112, 222, "2"),
+        ("res_v", 222, 112, 190, "4"), ("arr_v", 238, 122, 170, "i", True),
+        ("vsrc_h", 62, 80, 222, "12V"), ("wire", 62, 80, 62, 112),
+        ("wire", 222, 80, 222, 112), ("wire", 62, 190, 222, 190),
+        ("gnd", 138, 190), ("lbl", "v1", 50, 98), ("lbl", "v2", 130, 98),
+        ("lbl", "v3", 228, 98),
+    ],
+    "e_3_22": [
+        ("vsrc_v", 48, 112, 190, "12V"), ("res_h", 48, 112, 118, "2"),
+        ("res_v", 118, 112, 190, "4"), ("res_h", 118, 80, 224, "8"),
+        ("wire", 118, 80, 118, 112), ("wire", 224, 80, 224, 112),
+        ("isrc_h", 118, 112, 224, "3A", True), ("res_v", 224, 112, 150, "1"),
+        ("dvs_v", 224, 150, 190, "5vo"), ("wire", 48, 190, 224, 190),
+        ("lbl", "+vo-", 72, 96), ("lbl", "v1", 106, 98), ("lbl", "v2", 232, 98),
+    ],
+    "e_3_28": [
+        ("res_v", 68, 78, 125, "10"), ("res_v", 68, 125, 178, "4"),
+        ("vsrc_v", 68, 178, 210, "60V"), ("res_v", 160, 78, 125, "5"),
+        ("res_v", 160, 125, 210, "16"), ("res_v", 252, 78, 125, "4"),
+        ("res_v", 252, 125, 178, "8"), ("vsrc_v", 252, 178, 210, "90V"),
+        ("res_h", 68, 125, 160, "20"), ("res_h", 160, 125, 252, "8"),
+        ("wire", 68, 78, 252, 78), ("wire", 68, 210, 252, 210),
+        ("gnd", 160, 125), ("lbl", "c", 156, 62), ("lbl", "d", 52, 126),
+        ("lbl", "b", 260, 126), ("lbl", "a", 156, 214),
+    ],
+    "e_3_32": [
+        ("isrc_v", 52, 150, 92, "4mA", True), ("wire", 52, 92, 94, 92),
+        ("vsrc_h", 94, 92, 156, "10V"), ("vsrc_h", 156, 92, 222, "20V"),
+        ("res_h", 52, 64, 222, "5k"), ("wire", 52, 64, 52, 92),
+        ("wire", 222, 64, 222, 92), ("vsrc_v", 156, 92, 178, "12V"),
+        ("res_v", 222, 92, 178, "10k"), ("wire", 52, 178, 222, 178),
+        ("gnd", 156, 178), ("lbl", "v1", 42, 78), ("lbl", "v2", 148, 78),
+        ("lbl", "v3", 228, 78),
+    ],
+    "e_3_36": [
+        ("vsrc_v", 50, 112, 190, "12V"), ("res_h", 50, 112, 132, "4"),
+        ("res_v", 132, 112, 190, "6"), ("vsrc_h", 132, 112, 218, "10V"),
+        ("res_v", 218, 112, 190, "2"), ("wire", 50, 190, 218, 190),
+        ("arr_v", 36, 120, 168, "i1", True), ("arr_v", 148, 120, 168, "i2", True),
+        ("arr_v", 234, 120, 168, "i3", True),
+    ],
+    "e_3_38": [
+        ("vsrc_v", 48, 82, 130, "60V"), ("res_v", 48, 130, 198, "1"),
+        ("res_h", 48, 82, 136, "4"), ("isrc_v", 136, 130, 82, "10A", True),
+        ("res_h", 136, 82, 224, "3"), ("res_v", 224, 82, 130, "1"),
+        ("vsrc_v", 224, 130, 174, "22.5V"), ("res_h", 48, 130, 136, "2"),
+        ("res_h", 136, 130, 224, "2"), ("res_v", 136, 130, 198, "1"),
+        ("arr_v", 152, 142, 178, "Io", True), ("isrc_h", 48, 198, 136, "5A", True),
+        ("res_h", 136, 198, 224, "4"),
+    ],
+    "e_3_44": [
+        ("vsrc_h", 56, 78, 142, "90V"), ("wire", 142, 78, 246, 78),
+        ("vsrc_v", 246, 78, 190, "180V"), ("res_v", 56, 78, 130, "2"),
+        ("res_v", 56, 130, 190, "5"), ("res_v", 142, 78, 130, "4"),
+        ("isrc_v", 142, 190, 130, "45A", True), ("res_h", 56, 130, 142, "1"),
+        ("arr_h", 82, 144, 120, "io", True), ("wire", 56, 190, 246, 190),
+    ],
+    "e_3_46": [
+        ("vsrc_v", 50, 112, 190, "12V"), ("res_h", 50, 112, 138, "3"),
+        ("res_v", 138, 112, 190, "8"), ("res_h", 138, 112, 226, "6"),
+        ("dvs_v", 226, 112, 190, "2vo"), ("wire", 50, 190, 226, 190),
+        ("lbl", "+vo-", 78, 94), ("lbl", "i1", 88, 145), ("lbl", "i2", 178, 145),
+    ],
+    "e_3_54": [
+        ("vsrc_v", 48, 112, 190, "12V"), ("res_h", 48, 112, 118, "1k"),
+        ("res_h", 118, 112, 188, "1k"), ("res_h", 188, 112, 258, "1k"),
+        ("vsrc_v", 258, 112, 190, "12V"), ("wire", 48, 190, 258, 190),
+        ("res_v", 118, 112, 150, "1k"), ("vsrc_v", 118, 150, 190, "10V"),
+        ("res_v", 188, 112, 190, "1"), ("lbl", "i1", 80, 146),
+        ("lbl", "i2", 150, 146), ("lbl", "i3", 220, 146),
+    ],
+    "e_3_62": [
+        ("vsrc_v", 42, 106, 190, "100V"), ("res_h", 42, 106, 118, "4k"),
+        ("isrc_v", 118, 190, 106, "4mA", True), ("res_h", 118, 106, 204, "8k"),
+        ("dis_v", 204, 106, 190, "2i1", True), ("res_h", 204, 106, 286, "2k"),
+        ("vsrc_v", 286, 106, 190, "40V"), ("wire", 42, 190, 286, 190),
+        ("lbl", "i1", 76, 145), ("lbl", "i2", 160, 145), ("lbl", "i3", 244, 145),
+    ],
+    "e_4_12": [
+        ("vsrc_v", 42, 120, 190, "12V"), ("res_h", 42, 120, 108, "6"),
+        ("res_h", 108, 120, 188, "5"), ("res_h", 188, 120, 258, "4"),
+        ("vsrc_v", 258, 120, 190, "19V"), ("res_v", 108, 120, 190, "3"),
+        ("res_v", 188, 120, 190, "12"), ("isrc_h", 188, 84, 108, "2A", False),
+        ("wire", 108, 84, 108, 120), ("wire", 188, 84, 188, 120),
+        ("wire", 42, 190, 258, 190), ("lbl", "+vo-", 132, 104),
+    ],
+    "e_4_15": [
+        ("vsrc_v", 48, 92, 190, "20V"), ("res_v", 48, 142, 190, "2"),
+        ("wire", 48, 92, 250, 92), ("res_v", 128, 92, 142, "1"),
+        ("isrc_v", 168, 92, 142, "2A", True), ("wire", 128, 142, 168, 142),
+        ("res_v", 148, 142, 190, "3"), ("arr_v", 164, 150, 178, "i", True),
+        ("res_v", 250, 92, 142, "4"), ("vsrc_v", 250, 142, 190, "16V"),
+        ("wire", 48, 190, 250, 190),
+    ],
+    "e_4_20": [
+        ("isrc_v", 42, 95, 190, "3A", True), ("res_v", 100, 95, 190, "10"),
+        ("res_v", 160, 95, 145, "20"), ("vsrc_v", 160, 145, 190, "12V"),
+        ("res_v", 230, 95, 145, "40"), ("vsrc_v", 230, 145, 190, "16V"),
+        ("wire", 42, 95, 230, 95), ("wire", 42, 190, 230, 190),
+    ],
+    "e_4_22": [
+        ("isrc_v", 44, 100, 190, "2A", True), ("res_v", 92, 100, 190, "5"),
+        ("res_h", 92, 100, 164, "5"), ("res_v", 164, 100, 190, "4"),
+        ("arr_v", 180, 112, 150, "i", True), ("res_h", 164, 100, 238, "10"),
+        ("vsrc_v", 238, 100, 190, "20V"), ("wire", 44, 100, 92, 100),
+        ("wire", 44, 190, 238, 190),
+    ],
+    "e_4_26": [
+        ("isrc_v", 42, 190, 104, "6A", True), ("res_v", 104, 104, 190, "2"),
+        ("res_h", 104, 104, 188, "5"), ("isrc_h", 104, 104, 188, "3A", True),
+        ("res_h", 188, 104, 252, "4"), ("arr_h", 196, 90, 240, "io", True),
+        ("vsrc_v", 252, 104, 190, "20V"), ("wire", 42, 104, 104, 104),
+        ("wire", 42, 190, 252, 190),
+    ],
+    "e_4_28": [
+        ("vsrc_v", 42, 110, 190, "8V"), ("res_h", 42, 110, 112, "1"),
+        ("res_h", 112, 110, 202, "4"), ("arr_h", 122, 96, 166, "Io", True),
+        ("res_v", 202, 110, 190, "3"), ("dis_v", 258, 110, 190, "Vo/3", True),
+        ("wire", 202, 110, 258, 110), ("wire", 42, 190, 258, 190),
+        ("lbl", "+Vo-", 146, 92),
+    ],
+    "e_4_30": [
+        ("vsrc_v", 42, 110, 190, "12V"), ("res_h", 42, 110, 120, "24"),
+        ("arr_h", 50, 94, 90, "ix", True), ("res_h", 120, 110, 204, "60"),
+        ("res_v", 120, 110, 190, "30"), ("res_v", 204, 110, 190, "10"),
+        ("dis_v", 264, 190, 110, "0.7ix", False), ("wire", 204, 110, 264, 110),
+        ("wire", 42, 190, 264, 190),
+    ],
+})
+
 
 # Exercises whose figure shows two independent circuits (a) and (b):
 # each variant becomes its own "Circuito" page.
 MULTI_CIRCUITS = {
+    "e_2_42": [
+        ("(a)", [
+            ("term", 35, 115, "a"), ("term", 275, 115, "b"),
+            ("wire", 35, 115, 55, 115), ("wire", 245, 115, 275, 115),
+            ("res_h", 55, 80, 245, "5"), ("wire", 55, 80, 55, 150),
+            ("wire", 245, 80, 245, 150), ("res_h", 55, 150, 128, "8"),
+            ("res_h", 128, 150, 245, "20"), ("res_h", 128, 185, 245, "30"),
+            ("wire", 128, 150, 128, 185), ("wire", 245, 150, 245, 185),
+            ("node", 55, 115), ("node", 245, 115),
+        ]),
+        ("(b)", [
+            ("term", 22, 115, "a"), ("wire", 22, 115, 35, 115),
+            ("res_h", 35, 115, 80, "2"), ("res_h", 80, 92, 155, "4"),
+            ("res_h", 80, 122, 155, "5+3"), ("res_h", 80, 152, 155, "8"),
+            ("wire", 80, 92, 80, 152), ("wire", 155, 92, 155, 152),
+            ("res_h", 155, 92, 245, "5"), ("res_h", 155, 122, 245, "10"),
+            ("res_h", 155, 152, 245, "4"), ("wire", 245, 92, 245, 152),
+            ("wire", 245, 122, 285, 122), ("term", 285, 122, "b"),
+            ("node", 80, 115), ("node", 155, 122), ("node", 245, 122),
+        ]),
+    ],
     "e_2_43": [
         ("(a)", [
             ("term", 30, 90, "a"), ("wire", 30, 90, 40, 90),
@@ -643,6 +1131,20 @@ MULTI_CIRCUITS = {
             ("term", 128, 188, "c"), ("wire", 128, 170, 128, 188),
         ]),
     ],
+    "e_2_48": [
+        ("(a)", [
+            ("term", 45, 110, "a"), ("term", 245, 110, "b"),
+            ("term", 145, 190, "c"), ("res_h", 45, 110, 145, "10"),
+            ("res_h", 145, 110, 245, "10"), ("res_v", 145, 110, 190, "10"),
+            ("node", 145, 110),
+        ]),
+        ("(b)", [
+            ("term", 45, 110, "a"), ("term", 245, 110, "b"),
+            ("term", 145, 190, "c"), ("res_h", 45, 110, 145, "30"),
+            ("res_h", 145, 110, 245, "20"), ("res_v", 145, 110, 190, "50"),
+            ("node", 145, 110),
+        ]),
+    ],
     "e_2_53": [
         ("(a)", [
             ("term", 22, 80, "a"), ("wire", 22, 80, 36, 80),
@@ -672,7 +1174,7 @@ MULTI_CIRCUITS = {
 
 def all_draws():
     """Map every circuit draw-function name to its op list."""
-    draws = {}
+    draws = dict(GENERIC_OPS)
     for sid, ops in CIRCUITS.items():
         draws["draw_%s_circuit" % sid] = ops
     for sid, variants in MULTI_CIRCUITS.items():
@@ -1023,6 +1525,76 @@ EXERCISES = [
         "final": "q = n * 1.602e-19 C",
     },
     {
+        "id": "e_1_2", "title": "Ex 1.2", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.2",
+        "circuit": None,
+        "statement": [
+            "Determine a corrente que flui por",
+            "um elemento se o fluxo de carga",
+            "q(t) e dado nos itens (a)-(e).",
+        ],
+        "solution": [
+            "# Usar i(t) = dq/dt:",
+            "a) q=(3t+8)mC",
+            "= i=3 mA",
+            "b) q=(8t^2+4t-2)C",
+            "= i=(16t+4) A",
+            "c) q=(3e^-t-5e^-2t)nC",
+            "= i=(-3e^-t+10e^-2t) nA",
+            "d) q=10sen(120pi t)pC",
+            "= i=1200pi cos(120pi t) pA",
+            "e) q=20e^-4t cos(50t)uC",
+            "= i=-20e^-4t(4cos50t+50sen50t)uA",
+        ],
+        "answer": [
+            "a) 3 mA; b) (16t+4) A",
+            "c) -3e^-t+10e^-2t nA",
+            "d) 1200pi cos(120pi t) pA",
+            "e) -20e^-4t(4cos50t+50sen50t) uA",
+        ],
+        "final": "i(t)=dq/dt",
+    },
+    {
+        "id": "e_1_4", "title": "Ex 1.4", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.4",
+        "circuit": None,
+        "statement": [
+            "Uma corrente de 7.4 A passa por",
+            "um condutor. Calcule a carga que",
+            "passa por qualquer secao",
+            "transversal em 20 s.",
+        ],
+        "solution": [
+            "# Carga com corrente constante:",
+            "q = I*t",
+            "I = 7.4 A;  t = 20 s",
+            "q = 7.4*20",
+            "= q = 148 C",
+        ],
+        "answer": ["q = 148 C"], "final": "q = 148 C",
+    },
+    {
+        "id": "e_1_6", "title": "Ex 1.6", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.6",
+        "statement": [
+            "A carga q(t) que entra num",
+            "elemento e dada pela Fig. 1.23.",
+            "Determine i em t=1 ms, 6 ms",
+            "e 10 ms.",
+        ],
+        "solution": [
+            "# Corrente e a inclinacao dq/dt:",
+            "0<t<2ms: i=(30-0)mC/2ms",
+            "= i(1ms)=15 A",
+            "2<t<8ms: q constante em 30mC",
+            "= i(6ms)=0 A",
+            "8<t<12ms: i=(0-30)mC/4ms",
+            "= i(10ms)=-7.5 A",
+        ],
+        "answer": ["i(1ms)=15 A", "i(6ms)=0 A", "i(10ms)=-7.5 A"],
+        "final": "15 A; 0 A; -7.5 A",
+    },
+    {
         "id": "e_1_7", "title": "Ex 1.7", "subject": "Tensao Pot",
         "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.7",
         "statement": [
@@ -1043,6 +1615,27 @@ EXERCISES = [
         ],
         "answer": ["i=25 A (0<t<2)", "i=-25 A (2<t<6); i=25 A (6<t<8)"],
         "final": "i = dq/dt",
+    },
+    {
+        "id": "e_1_8", "title": "Ex 1.8", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.8",
+        "statement": [
+            "A corrente que flui por um ponto",
+            "e mostrada na Fig. 1.25.",
+            "Calcule a carga total atraves",
+            "do ponto.",
+        ],
+        "solution": [
+            "# Carga e area sob i(t):",
+            "q = area do triangulo + retangulo",
+            "triang = (1ms*10mA)/2",
+            "= 5 mA.ms = 5 uC",
+            "retang = 1ms*10mA",
+            "= 10 mA.ms = 10 uC",
+            "q = 5 uC + 10 uC",
+            "= q = 15 uC",
+        ],
+        "answer": ["q = 15 uC"], "final": "q = 15 uC",
     },
     {
         "id": "e_1_11", "title": "Ex 1.11", "subject": "Tensao Pot",
@@ -1083,6 +1676,91 @@ EXERCISES = [
             "= p3 = 70 W (absorvida)",
         ],
         "answer": ["p3 = 70 W"], "final": "Soma das potencias = 0",
+    },
+    {
+        "id": "e_1_18", "title": "Ex 1.18", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.18",
+        "statement": [
+            "Determine a potencia absorvida",
+            "em cada elemento da Fig. 1.29.",
+            "Dados: I=10 A, 4 A, 14 A",
+            "e fonte dependente 0.4I.",
+        ],
+        "solution": [
+            "# Convencao passiva: p=vi",
+            "I=10 A, logo 0.4I=4 A",
+            "p2: corrente entra no terminal +",
+            "p2 = 10*10 = 100 W",
+            "p3 = 20*14 = 280 W",
+            "p4: 4A entra no terminal -",
+            "p4 = -8*4 = -32 W",
+            "p5: 4A entra no terminal -",
+            "p5 = -12*4 = -48 W",
+            "p1: 10A entra no terminal -",
+            "= p1 = -30*10 = -300 W",
+        ],
+        "answer": [
+            "p1=-300 W; p2=100 W",
+            "p3=280 W; p4=-32 W; p5=-48 W",
+        ],
+        "final": "p1=-300 p2=100 p3=280 p4=-32 p5=-48 W",
+    },
+    {
+        "id": "e_1_19", "title": "Ex 1.19", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.19",
+        "statement": [
+            "Determine I para o circuito",
+            "da Fig. 1.30.",
+        ],
+        "solution": [
+            "# Resposta oficial:",
+            "Apendice D, Cap.1, Problema 1.19",
+            "lista: 6A,-72W,18W,18W,36W",
+            "# Checagem por KCL no no superior:",
+            "8 A entra; 2 A e I saem",
+            "8 = 2 + I",
+            "= I = 6 A",
+            "# Potencias por convencao passiva:",
+            "p8A=-9*8=-72 W",
+            "p9V=9*2=18 W",
+            "p3V=3*6=18 W",
+            "p6V=6*6=36 W",
+        ],
+        "answer": ["I=6 A", "P=-72 W, 18 W, 18 W, 36 W"],
+        "final": "I=6A; P=-72,18,18,36W",
+    },
+    {
+        "id": "e_1_20", "title": "Ex 1.20", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.20",
+        "statement": [
+            "Determine Vo e a potencia",
+            "absorvida por cada elemento",
+            "no circuito da Fig. 1.31.",
+        ],
+        "solution": [
+            "# Tensoes dos nos:",
+            "No esquerdo: VA = 30 V",
+            "Elemento 12 V: VA - VB = 12",
+            "VB = 30 - 12 = 18 V",
+            "= Vo = 18 V",
+            "Elementos 28 V: VB - VC = 28",
+            "VC = 18 - 28 = -10 V",
+            "Fonte dep.: 5Io = 5*2 = 10 V",
+            "# Potencias, p=vi passivo:",
+            "p30V = -30*6 = -180 W",
+            "p12V = 12*6 = 72 W",
+            "pVo = 18*3 = 54 W",
+            "p28sup = 28*2 = 56 W",
+            "p28meio = 28*1 = 28 W",
+            "= p5Io = -10*3 = -30 W",
+        ],
+        "answer": [
+            "Vo=18 V",
+            "p30=-180 W; p12=72 W; pVo=54 W",
+            "p28sup=56 W; p28meio=28 W",
+            "p5Io=-30 W",
+        ],
+        "final": "Vo=18V; P=-180,72,54,56,28,-30W",
     },
     {
         "id": "e_1_21", "title": "Ex 1.21", "subject": "Tensao Pot",
@@ -1127,6 +1805,28 @@ EXERCISES = [
         "answer": ["Custo = US$ 1.35"], "final": "custo = energia * tarifa",
     },
     {
+        "id": "e_1_24", "title": "Ex 1.24", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.24",
+        "circuit": None,
+        "statement": [
+            "Uma concessionaria cobra 8.2",
+            "centavos/kWh. Se uma lampada",
+            "de 60 W ficar ligada por um dia,",
+            "qual sera a tarifa cobrada?",
+        ],
+        "solution": [
+            "# Energia consumida:",
+            "P = 60 W = 0.060 kW",
+            "t = 24 h",
+            "w = P*t = 0.060*24",
+            "= 1.44 kWh",
+            "# Custo = energia * tarifa:",
+            "custo = 1.44*8.2 centavos",
+            "= 11.808 centavos",
+        ],
+        "answer": ["Custo = 11.81 centavos"], "final": "Custo = 11.81 centavos",
+    },
+    {
         "id": "e_1_25", "title": "Ex 1.25", "subject": "Tensao Pot",
         "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.25",
         "circuit": None,
@@ -1147,6 +1847,57 @@ EXERCISES = [
             "= 21.52 centavos",
         ],
         "answer": ["Custo = 21.52 centavos"], "final": "custo = energia * tarifa",
+    },
+    {
+        "id": "e_1_26", "title": "Ex 1.26", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.26",
+        "circuit": None,
+        "statement": [
+            "Uma pilha de lanterna tem 0.8 Ah",
+            "e vida util de 10 h.",
+            "Ache: corrente, potencia se V=6 V",
+            "e energia armazenada em Wh.",
+        ],
+        "solution": [
+            "# a) Corrente media:",
+            "capacidade = 0.8 Ah",
+            "I = 0.8 Ah / 10 h",
+            "= I = 0.08 A = 80 mA",
+            "# b) Potencia:",
+            "P = V*I = 6*0.08",
+            "= P = 0.48 W",
+            "# c) Energia:",
+            "w = P*t = 0.48*10",
+            "= w = 4.8 Wh",
+        ],
+        "answer": ["I = 80 mA", "P = 0.48 W", "w = 4.8 Wh"],
+        "final": "I=80 mA; P=0.48 W; w=4.8 Wh",
+    },
+    {
+        "id": "e_1_28", "title": "Ex 1.28", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.28",
+        "circuit": None,
+        "statement": [
+            "Lampada incandescente de 60 W",
+            "em fonte de 120 V fica ligada",
+            "continuamente por ano nao",
+            "bissexto. Tarifa: 9.5 c/kWh.",
+        ],
+        "solution": [
+            "# a) Corrente da lampada:",
+            "I = P/V = 60/120",
+            "= I = 0.5 A",
+            "# b) Energia anual:",
+            "P = 0.060 kW",
+            "t = 365*24 = 8760 h",
+            "w = 0.060*8760",
+            "= 525.6 kWh",
+            "# Custo:",
+            "custo = 525.6*9.5 centavos",
+            "= 4993.2 centavos = US$49.93",
+        ],
+        "answer": ["I = 0.5 A", "Custo anual = US$ 49.93"],
+        "final": "I=0.5 A; custo=US$49.93",
     },
     {
         "id": "e_1_31", "title": "Ex 1.31", "subject": "Tensao Pot",
@@ -1191,6 +1942,31 @@ EXERCISES = [
         "answer": ["w = 1.728 MJ"], "final": "w = V * q",
     },
     {
+        "id": "e_1_38", "title": "Ex 1.38", "subject": "Tensao Pot",
+        "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.38",
+        "circuit": None,
+        "statement": [
+            "Quanta energia e liberada por um",
+            "motor de 10 HP em 30 minutos?",
+            "Considere 1 cavalo-vapor = 746 W.",
+        ],
+        "solution": [
+            "# Converter potencia:",
+            "P = 10 HP * 746 W/HP",
+            "= 7460 W = 7.46 kW",
+            "# Converter tempo:",
+            "t = 30 min = 0.5 h = 1800 s",
+            "# Energia em kWh:",
+            "w = 7.46*0.5",
+            "= 3.73 kWh",
+            "# Energia em joules:",
+            "w = 7460*1800",
+            "= 13,428,000 J = 13.428 MJ",
+        ],
+        "answer": ["w = 3.73 kWh = 13.428 MJ"],
+        "final": "w = 13.428 MJ",
+    },
+    {
         "id": "e_1_39", "title": "Ex 1.39", "subject": "Tensao Pot",
         "kind": "Tensao Pot", "source": "Livro Cap.1 Problema 1.39",
         "circuit": None,
@@ -1211,6 +1987,26 @@ EXERCISES = [
     },
 
     # --- Chapter 2: Kirchhoff ---
+    {
+        "id": "e_2_4", "title": "Ex 2.4", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
+        "source": "Livro Cap.2 Problema 2.4",
+        "statement": [
+            "Na Fig. 2.68, calcule i com a",
+            "chave na posicao 1 e depois na",
+            "posicao 2. Fonte de 40 V.",
+        ],
+        "solution": [
+            "# A chave liga apenas um resistor:",
+            "pos. 1: caminho tem R = 100 ohm",
+            "i1 = V/R = 40/100",
+            "= i1 = 0.4 A",
+            "pos. 2: caminho tem R = 250 ohm",
+            "i2 = V/R = 40/250",
+            "= i2 = 0.16 A",
+        ],
+        "answer": ["i(pos1) = 0.4 A", "i(pos2) = 0.16 A"],
+        "final": "i1=0.4 A; i2=0.16 A",
+    },
     {
         "id": "e_2_5", "title": "Ex 2.5", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
         "source": "Livro Cap.2 Problema 2.5", "circuit": None,
@@ -1288,6 +2084,30 @@ EXERCISES = [
         "answer": ["V1 = 6 V; V2 = 3 V"], "final": "V1 = 6 V; V2 = 3 V",
     },
     {
+        "id": "e_2_12", "title": "Ex 2.12", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
+        "source": "Livro Cap.2 Problema 2.12",
+        "statement": [
+            "No circuito da Fig. 2.76, calcule",
+            "v1, v2 e v3. Tensoes dadas: 40 V,",
+            "-50 V, 20 V e 30 V.",
+        ],
+        "solution": [
+            "# Referencia: no inferior = 0 V",
+            "no esquerdo superior = 40 V",
+            "# Elemento -50 V com - a esq, + dir:",
+            "VB - 40 = -50 -> VB = -10 V",
+            "# Elemento +20 V-: VB - VC = 20",
+            "VC = -10 - 20 = -30 V",
+            "# Elemento +30 V-: VB - VD = 30",
+            "VD = -10 - 30 = -40 V",
+            "v1 = VC - 0 = -30 V",
+            "v2 = VC - VD = -30 - (-40) = 10 V",
+            "v3 = VD - 0 = -40 V",
+        ],
+        "answer": ["v1 = -30 V; v2 = 10 V", "v3 = -40 V"],
+        "final": "v1=-30 V; v2=10 V; v3=-40 V",
+    },
+    {
         "id": "e_2_13", "title": "Ex 2.13", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
         "source": "Livro Cap.2 Problema 2.13",
         "statement": [
@@ -1330,6 +2150,27 @@ EXERCISES = [
             "= ix = -12/3 = -4 A",
         ],
         "answer": ["v = 6 V; ix = -4 A"], "final": "v = 6 V; ix = -4 A",
+    },
+    {
+        "id": "e_2_16", "title": "Ex 2.16", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
+        "source": "Livro Cap.2 Problema 2.16",
+        "statement": [
+            "Determine Vo no circuito da Fig.",
+            "2.80. Fontes de 10 V e 25 V; no",
+            "topo ha 16 ohm e 14 ohm.",
+        ],
+        "solution": [
+            "# No inferior e a referencia.",
+            "no esquerdo superior = 10 V",
+            "no direito superior = 25 V",
+            "# Corrente no divisor superior:",
+            "I = (25 - 10)/(16 + 14)",
+            "I = 15/30 = 0.5 A (dir->esq)",
+            "# No central:",
+            "Vo = 10 + 16*0.5",
+            "= Vo = 18 V",
+        ],
+        "answer": ["Vo = 18 V"], "final": "Vo = 18 V",
     },
     {
         "id": "e_2_17", "title": "Ex 2.17", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
@@ -1397,6 +2238,35 @@ EXERCISES = [
         "answer": ["Vx = 4.167 V"], "final": "Vx = 4.167 V",
     },
     {
+        "id": "e_2_22", "title": "Ex 2.22", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
+        "source": "Livro Cap.2 Problema 2.22",
+        "statement": [
+            "Determine Vo na Fig. 2.86 e a",
+            "potencia absorvida pela fonte",
+            "controlada 2Vo.",
+        ],
+        "solution": [
+            "# Nos: Va a esquerda, Vb a direita.",
+            "Vo = Va - Vb",
+            "# KCL em Va:",
+            "Va/10 + (Va - Vb)/10 = 0",
+            "2Va - Vb = 0 -> Vb = 2Va",
+            "Vo = Va - 2Va = -Va",
+            "# KCL em Vb (fontes injetam p/ cima):",
+            "(Vb - Va)/10 - 25 - 2Vo = 0",
+            "Va/10 - 25 + 2Va = 0",
+            "2.1Va = 25 -> Va = 11.9048 V",
+            "Vb = 23.8095 V",
+            "= Vo = -11.9048 V",
+            "# Fonte controlada:",
+            "2Vo = -23.8095 A (real p/ baixo)",
+            "Pabs = Vb * 23.8095",
+            "= Pabs = 566.9 W",
+        ],
+        "answer": ["Vo = -11.905 V", "Pabs(controlada) = 566.9 W"],
+        "final": "Vo=-11.905 V; Pabs=566.9 W",
+    },
+    {
         "id": "e_2_23", "title": "Ex 2.23", "subject": "Leis Kirchhoff", "kind": "Kirchhoff",
         "source": "Livro Cap.2 Problema 2.23",
         "statement": [
@@ -1423,6 +2293,33 @@ EXERCISES = [
     },
 
     # --- Chapter 2: Serie/Paralelo ---
+    {
+        "id": "e_2_26", "title": "Ex 2.26", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.26",
+        "statement": [
+            "Na Fig. 2.90, io = 3 A. Calcule",
+            "ix e a potencia total dissipada.",
+            "Ha 10 ohm em serie e 8,4,2,16",
+            "ohm em paralelo.",
+        ],
+        "solution": [
+            "# io e a corrente do ramo de 16 ohm:",
+            "Vpar = io*16 = 3*16 = 48 V",
+            "# Correntes nos ramos paralelos:",
+            "i8 = 48/8 = 6 A",
+            "i4 = 48/4 = 12 A",
+            "i2 = 48/2 = 24 A",
+            "i16 = 48/16 = 3 A",
+            "ix = 6 + 12 + 24 + 3",
+            "= ix = 45 A",
+            "# Potencia total:",
+            "P10 = ix^2*10 = 45^2*10 = 20250 W",
+            "Ppar = Vpar*ix = 48*45 = 2160 W",
+            "= Ptot = 22410 W",
+        ],
+        "answer": ["ix = 45 A", "Ptot = 22.41 kW"],
+        "final": "ix=45 A; Ptot=22.41 kW",
+    },
     {
         "id": "e_2_27", "title": "Ex 2.27", "subject": "Serie/Paralelo",
         "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.27",
@@ -1462,6 +2359,26 @@ EXERCISES = [
         "answer": ["Req = 8.125 ohm"], "final": "Req = 8.125 ohm",
     },
     {
+        "id": "e_2_30", "title": "Ex 2.30", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.30",
+        "statement": [
+            "Determine Req para o circuito da",
+            "Fig. 2.94. Rede com 25, 180 e",
+            "dois resistores de 60 ohm.",
+        ],
+        "solution": [
+            "# Depois do resistor de 25 ohm:",
+            "ramo 1 = 60 ohm",
+            "ramo 2 = 180 + 60 = 240 ohm",
+            "Req apos 25 = 60 // 240",
+            "= (60*240)/(60+240) = 48 ohm",
+            "# Serie com 25 ohm:",
+            "Req = 25 + 48",
+            "= Req = 73 ohm",
+        ],
+        "answer": ["Req = 73 ohm"], "final": "Req = 73 ohm",
+    },
+    {
         "id": "e_2_31", "title": "Ex 2.31", "subject": "Serie/Paralelo",
         "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.31",
         "statement": [
@@ -1482,6 +2399,31 @@ EXERCISES = [
         ],
         "answer": ["i1=56; i2=8; i3=48 A", "i4=32 A; i5=16 A"],
         "final": "i1=56;i2=8;i3=48;i4=32;i5=16",
+    },
+    {
+        "id": "e_2_32", "title": "Ex 2.32", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.32",
+        "statement": [
+            "Determine i1 a i4 no circuito da",
+            "Fig. 2.96. Fonte de corrente de",
+            "16 A entre dois grupos paralelos.",
+        ],
+        "solution": [
+            "# Os resistores ligam o no superior",
+            "# ao no inferior em paralelo:",
+            "60//40 = 24 ohm",
+            "200//50 = 40 ohm",
+            "Req = 24//40 = 15 ohm",
+            "# A fonte de 16 A aponta para baixo:",
+            "Vtop = -16*15 = -240 V",
+            "# Correntes nos sentidos desenhados:",
+            "i1 = Vtop/50 = -240/50 = -4.8 A",
+            "i2 = Vtop/200 = -240/200 = -1.2 A",
+            "i3 = Vtop/40 = -240/40 = -6 A",
+            "i4 = Vtop/60 = -240/60 = -4 A",
+        ],
+        "answer": ["i1=-4.8 A; i2=-1.2 A", "i3=-6 A; i4=-4 A"],
+        "final": "i1=-4.8;i2=-1.2;i3=-6;i4=-4 A",
     },
     {
         "id": "e_2_33", "title": "Ex 2.33", "subject": "Serie/Paralelo",
@@ -1527,6 +2469,36 @@ EXERCISES = [
         "answer": ["Vo = 32 V; Io = 800 mA"], "final": "Vo = 32 V; Io = 0.8 A",
     },
     {
+        "id": "e_2_36", "title": "Ex 2.36", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.36",
+        "statement": [
+            "Determine i e Vo na Fig. 2.100.",
+            "Fonte de 20 V; rede em escada com",
+            "80,24,50,25,60,20,20,30 ohm.",
+        ],
+        "solution": [
+            "# Reducao da direita:",
+            "50 + 30 = 80 ohm",
+            "20 // 80 = 16 ohm",
+            "24 + 16 = 40 ohm",
+            "# Ramo vertical do no apos 80:",
+            "60 // 20 = 15 ohm",
+            "25 + 15 = 40 ohm",
+            "# No apos 80: 40 // 40 = 20 ohm",
+            "Rtotal = 80 + 20 = 100 ohm",
+            "i = 20/100 = 0.2 A",
+            "# Tensao no no apos 80:",
+            "V1 = 20 - 0.2*80 = 4 V",
+            "corrente no ramo da direita = 4/40",
+            "= 0.1 A",
+            "V no 20||(50+30) = 0.1*16 = 1.6 V",
+            "i(50+30) = 1.6/80 = 0.02 A",
+            "Vo = 0.02*30 = 0.6 V",
+        ],
+        "answer": ["i = 0.2 A", "Vo = 0.6 V"],
+        "final": "i=0.2 A; Vo=0.6 V",
+    },
+    {
         "id": "e_2_37", "title": "Ex 2.37", "subject": "Serie/Paralelo",
         "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.37",
         "statement": [
@@ -1546,6 +2518,51 @@ EXERCISES = [
             "= R = V(R)/I = 10/4 = 2.5 ohm",
         ],
         "answer": ["R = 2.5 ohm"], "final": "R = 2.5 ohm",
+    },
+    {
+        "id": "e_2_38", "title": "Ex 2.38", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.38",
+        "statement": [
+            "Determine Req e io na Fig. 2.102.",
+            "Fonte de 35 V em serie com 2.5",
+            "ohm e uma rede resistiva.",
+        ],
+        "solution": [
+            "# Rede a direita do 2.5 ohm:",
+            "20 // 80 = 16 ohm",
+            "12 // 6 = 4 ohm",
+            "ramo via no central = 4 + 16 = 20",
+            "# Outros ramos do no de entrada:",
+            "15 ohm e 60 ohm",
+            "Rrede = 15 // 60 // 20",
+            "1/Rrede = 1/15 + 1/60 + 1/20",
+            "Rrede = 7.5 ohm",
+            "# Visto pela fonte:",
+            "Req = 2.5 + 7.5 = 10 ohm",
+            "io = 35/10 = 3.5 A",
+        ],
+        "answer": ["Req = 10 ohm", "io = 3.5 A"],
+        "final": "Req=10 ohm; io=3.5 A",
+    },
+    {
+        "id": "e_2_40", "title": "Ex 2.40", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.40",
+        "statement": [
+            "Para a rede em cascata da Fig.",
+            "2.104, determine I e Req. Fonte",
+            "de 15 V.",
+        ],
+        "solution": [
+            "# Reduzir da direita para a esquerda:",
+            "1 + 2 = 3 ohm",
+            "6 // 3 = 2 ohm",
+            "2 + 2 = 4 ohm",
+            "4 // 4 = 2 ohm",
+            "Req = 8 + 2 = 10 ohm",
+            "I = 15/10 = 1.5 A",
+        ],
+        "answer": ["Req = 10 ohm", "I = 1.5 A"],
+        "final": "Req=10 ohm; I=1.5 A",
     },
     {
         "id": "e_2_41", "title": "Ex 2.41", "subject": "Serie/Paralelo",
@@ -1569,6 +2586,30 @@ EXERCISES = [
         "answer": ["R = 16 ohm"], "final": "R = 16 ohm",
     },
     {
+        "id": "e_2_42", "title": "Ex 2.42", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.42",
+        "statement": [
+            "Reduza cada circuito da Fig. 2.106",
+            "a um unico resistor nos terminais",
+            "a-b: itens (a) e (b).",
+        ],
+        "solution": [
+            "# Circuito (a):",
+            "20 // 30 = 12 ohm",
+            "ramo inferior = 8 + 12 = 20 ohm",
+            "Rab(a) = 5 // 20 = 4 ohm",
+            "# Circuito (b):",
+            "entre N1 e N2: 4 // (5+3) // 8",
+            "= 4 // 8 // 8 = 2 ohm",
+            "entre N2 e b: 5 // 10 // 4",
+            "= 20/11 = 1.818 ohm",
+            "Rab(b) = 2 + 2 + 20/11",
+            "= 64/11 = 5.818 ohm",
+        ],
+        "answer": ["Rab(a) = 4 ohm", "Rab(b) = 5.818 ohm"],
+        "final": "a=4 ohm; b=5.818 ohm",
+    },
+    {
         "id": "e_2_43", "title": "Ex 2.43", "subject": "Serie/Paralelo",
         "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.43",
         "statement": [
@@ -1587,6 +2628,27 @@ EXERCISES = [
             "= Rab(b) = 80 // 20 = 16 ohm",
         ],
         "answer": ["Rab(a) = 12 ohm", "Rab(b) = 16 ohm"], "final": "Rab: a=12; b=16 ohm",
+    },
+    {
+        "id": "e_2_44", "title": "Ex 2.44", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.44",
+        "statement": [
+            "Para o circuito da Fig. 2.108,",
+            "calcule a resistencia equivalente",
+            "nos terminais a-b.",
+        ],
+        "solution": [
+            "# O fio superior curto-circuita a",
+            "# extremidade direita ao terminal a.",
+            "5 ohm e 20 ohm ficam em paralelo:",
+            "5 // 20 = 4 ohm",
+            "este resultado fica em serie com 2:",
+            "4 + 2 = 6 ohm",
+            "# Este ramo fica em paralelo com 3:",
+            "Rab = 6 // 3",
+            "= Rab = 2 ohm",
+        ],
+        "answer": ["Rab = 2 ohm"], "final": "Rab = 2 ohm",
     },
     {
         "id": "e_2_45", "title": "Ex 2.45", "subject": "Serie/Paralelo",
@@ -1611,6 +2673,26 @@ EXERCISES = [
         "final": "Rab: a=59.8; b=32.5 ohm",
     },
     {
+        "id": "e_2_46", "title": "Ex 2.46", "subject": "Serie/Paralelo",
+        "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.46",
+        "statement": [
+            "Determine I no circuito da Fig.",
+            "2.110. Fonte de 80 V com grupos",
+            "serie/paralelo.",
+        ],
+        "solution": [
+            "# Reducoes em serie no unico laco:",
+            "20 // 5 = 4 ohm",
+            "15 // 15 // 15 = 5 ohm",
+            "24 // 8 = 6 ohm",
+            "Rtotal = 12 + 4 + 5 + 5 + 6",
+            "Rtotal = 32 ohm",
+            "I = 80/32",
+            "= I = 2.5 A",
+        ],
+        "answer": ["I = 2.5 A"], "final": "I = 2.5 A",
+    },
+    {
         "id": "e_2_47", "title": "Ex 2.47", "subject": "Serie/Paralelo",
         "kind": "Serie/Paralelo", "source": "Livro Cap.2 Problema 2.47",
         "statement": [
@@ -1630,6 +2712,31 @@ EXERCISES = [
     },
 
     # --- Chapter 2: Estrela/Triangulo ---
+    {
+        "id": "e_2_48", "title": "Ex 2.48", "subject": "Estrela Triang",
+        "kind": "Estrela Triang", "source": "Livro Cap.2 Problema 2.48",
+        "statement": [
+            "Converta os circuitos da Fig. 2.112",
+            "de Y em delta: itens (a) e (b).",
+        ],
+        "solution": [
+            "# Y -> delta:",
+            "Rab = Ra + Rb + Ra*Rb/Rc",
+            "Rbc = Rb + Rc + Rb*Rc/Ra",
+            "Rca = Rc + Ra + Rc*Ra/Rb",
+            "# (a) Ra=Rb=Rc=10 ohm:",
+            "cada lado = 10 + 10 + 10*10/10",
+            "= 30 ohm",
+            "# (b) Ra=30, Rb=20, Rc=50 ohm:",
+            "Rab = 30 + 20 + 30*20/50 = 62",
+            "Rbc = 20 + 50 + 20*50/30",
+            "= 103.33 ohm",
+            "Rca = 50 + 30 + 50*30/20",
+            "= 155 ohm",
+        ],
+        "answer": ["(a) delta = 30 ohm cada", "(b) Rab=62; Rbc=103.33; Rca=155"],
+        "final": "a: 30/30/30; b: 62/103.33/155",
+    },
     {
         "id": "e_2_49", "title": "Ex 2.49", "subject": "Estrela Triang",
         "kind": "Estrela Triang", "source": "Livro Cap.2 Problema 2.49",
@@ -2146,6 +3253,1162 @@ EXERCISES = [
     },
 ]
 
+EXERCISES.extend([
+    {
+        "id": "e_3_4", "title": "Ex 3.4", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.4",
+        "statement": [
+            "Dado o circuito da Fig. 3.53,",
+            "calcule as correntes i1 a i4.",
+            "Fontes de 6 A, 3 A e 2 A; dois",
+            "nos superiores separados pela fonte.",
+        ],
+        "solution": [
+            "# No esquerdo: Va/20 + Va/10 = 6+3",
+            "0.15 Va = 9 -> Va = 60 V",
+            "i1 = Va/20 = 3 A",
+            "i2 = Va/10 = 6 A",
+            "# No direito: Vb/40 + Vb/40 + 3 = 2",
+            "Vb/20 = -1 -> Vb = -20 V",
+            "= i3 = i4 = Vb/40 = -0.5 A",
+        ],
+        "answer": ["i1=3 A; i2=6 A", "i3=-0.5 A; i4=-0.5 A"],
+        "final": "i1=3;i2=6;i3=i4=-0.5 A",
+    },
+    {
+        "id": "e_3_6", "title": "Ex 3.6", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.6",
+        "statement": [
+            "Use analise nodal para calcular V1",
+            "no circuito da Fig. 3.55. Fontes",
+            "de 10 V e 20 V; resistores 10,",
+            "5, 10 e 4 ohm.",
+        ],
+        "solution": [
+            "# KCL no no V1:",
+            "(V1-10)/10 + (V1-10)/5",
+            "+ V1/10 + (V1-20)/4 = 0",
+            "# Agrupando:",
+            "0.65 V1 - 8 = 0",
+            "= V1 = 8/0.65 = 12.3077 V",
+        ],
+        "answer": ["V1 = 12.31 V"], "final": "V1 = 12.31 V",
+    },
+    {
+        "id": "e_3_8", "title": "Ex 3.8", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.8",
+        "statement": [
+            "Usando analise nodal, determine vo",
+            "no circuito da Fig. 3.57. Ha fonte",
+            "de 60 V, fonte dependente 5vo e",
+            "resistores 4, 6, 20 e 20 ohm.",
+        ],
+        "solution": [
+            "# No esquerdo (vo):",
+            "vo/4 + (vo - Vc)/6 = 0",
+            "# No central:",
+            "(Vc-vo)/6 + (Vc-5vo)/20",
+            "+ (Vc-60)/20 = 0",
+            "# Da 1a: 5vo = 2Vc",
+            "Substituindo: Vc = 30 V",
+            "= vo = 12 V",
+        ],
+        "answer": ["vo = 12 V"], "final": "vo = 12 V",
+    },
+    {
+        "id": "e_3_10", "title": "Ex 3.10", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.10",
+        "statement": [
+            "Determine Io no circuito da Fig.",
+            "3.59. A fonte dependente vale 2Io",
+            "e Io e a corrente no resistor de",
+            "8 ohm, sentido para baixo.",
+        ],
+        "solution": [
+            "# Defina Io = VL/8.",
+            "KCL L: VL/8 + (VL-VR) + 4 = 0",
+            "KCL M: VM/2 + 2Io - 4 = 0",
+            "KCL R: VR/4 + (VR-VL) - 2Io = 0",
+            "# Resolvendo:",
+            "VL = -32 V; VM = 24 V; VR = -32 V",
+            "= Io = VL/8 = -4 A",
+        ],
+        "answer": ["Io = -4 A"], "final": "Io = -4 A",
+    },
+    {
+        "id": "e_3_11", "title": "Ex 3.11", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.11; Appendix D",
+        "statement": [
+            "Determine Vo e a potencia dissipada",
+            "em todos os resistores da Fig. 3.60.",
+            "Fontes de 60 V e 24 V; resistores",
+            "12, 12 e 6 ohm.",
+        ],
+        "solution": [
+            "# Resposta publicada no Appendix D:",
+            "Vo = 3 V",
+            "Potencias: 293.9 W, 750 mW, 121.5 W",
+            "# Conferencia nodal da figura:",
+            "(Vo-60)/12 + Vo/12 + (Vo+24)/6 = 0",
+            "-> Vo = 3 V",
+            "O valor 293.9 W e citado do livro.",
+        ],
+        "answer": ["Vo = 3 V", "P = 293.9 W; 750 mW; 121.5 W"],
+        "final": "Vo=3 V; P ver Appendix D",
+    },
+    {
+        "id": "e_3_12", "title": "Ex 3.12", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.12",
+        "statement": [
+            "Usando analise nodal, determine Vo",
+            "no circuito da Fig. 3.61. A fonte",
+            "dependente e 4Ix e Ix passa no",
+            "resistor de 20 ohm.",
+        ],
+        "solution": [
+            "# Ix = VA/20.",
+            "No A: (VA-40)/20 + VA/20",
+            "+ (VA-Vo)/10 = 0",
+            "No Vo: (Vo-VA)/10 + Vo/10",
+            "- 4Ix = 0",
+            "# Resolvendo:",
+            "VA = 40 V",
+            "= Vo = 60 V",
+        ],
+        "answer": ["Vo = 60 V"], "final": "Vo = 60 V",
+    },
+    {
+        "id": "e_3_14", "title": "Ex 3.14", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.14",
+        "statement": [
+            "Usando analise nodal, determine vo",
+            "no circuito da Fig. 3.63. Ha fonte",
+            "de 12.5 A e fontes de 100 V e",
+            "50 V.",
+        ],
+        "solution": [
+            "# Nos A e B=vo; no direito = -50 V.",
+            "No A: (A-100)/1 + (A-B)/2 + 12.5=0",
+            "No B: (B-A)/2 + B/4 + (B+50)/8",
+            "- 12.5 = 0",
+            "# Resolvendo:",
+            "A = 80.882 V",
+            "= vo = B = 67.647 V",
+        ],
+        "answer": ["vo = 67.65 V"], "final": "vo = 67.65 V",
+    },
+    {
+        "id": "e_3_16", "title": "Ex 3.16", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.16",
+        "statement": [
+            "Determine as tensoes v1 a v3 no",
+            "circuito da Fig. 3.65. Use",
+            "condutancias em siemens e fonte",
+            "dependente 2vo.",
+        ],
+        "solution": [
+            "# v3 = 13 V e vo = v2.",
+            "Fonte dep.: v1 - v2 = 2v2",
+            "-> v1 = 3v2",
+            "# Superno v1-v2:",
+            "v1 + 2(v1-13) + 4v2 + 8(v2-13)",
+            "- 2 = 0",
+            "# Resolvendo:",
+            "v2 = 6.286 V; v1 = 18.857 V",
+        ],
+        "answer": ["v1=18.86 V; v2=6.286 V", "v3 = 13 V"],
+        "final": "v1=18.86;v2=6.286;v3=13",
+    },
+    {
+        "id": "e_3_18", "title": "Ex 3.18", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.18",
+        "statement": [
+            "Determine as tensoes nodais no",
+            "circuito da Fig. 3.67. A fonte de",
+            "30 V liga os nos 1 e 3; a fonte de",
+            "15 A injeta corrente no no 2.",
+        ],
+        "solution": [
+            "# Fonte: v3 - v1 = 30.",
+            "# Superno 1-3:",
+            "v1/4 + (v1-v2)/2 + v3/8",
+            "+ (v3-v2)/2 = 0",
+            "# No 2:",
+            "(v2-v1)/2 + (v2-v3)/2 = 15",
+            "# Resolvendo:",
+            "= v1=30 V; v2=60 V; v3=60 V",
+        ],
+        "answer": ["v1 = 30 V; v2 = 60 V", "v3 = 60 V"],
+        "final": "v1=30; v2=v3=60 V",
+    },
+    {
+        "id": "e_3_20", "title": "Ex 3.20", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.20",
+        "statement": [
+            "Para o circuito da Fig. 3.69,",
+            "determine v1 e v2 por analise",
+            "nodal. A fonte dependente vale 2i",
+            "e i passa no resistor direito.",
+        ],
+        "solution": [
+            "# i = v3/4.",
+            "Fonte topo: v1 - v3 = 12",
+            "Fonte dep.: v1 - v2 = 2i = v3/2",
+            "# Superno dos tres nos:",
+            "v1/4 + v2 + v3/4 = 0",
+            "# Resolvendo:",
+            "v1 = -3 V; v2 = 4.5 V; v3 = -15 V",
+        ],
+        "answer": ["v1 = -3 V; v2 = 4.5 V"], "final": "v1=-3 V; v2=4.5 V",
+    },
+    {
+        "id": "e_3_22", "title": "Ex 3.22", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.22",
+        "statement": [
+            "Determine v1 e v2 para o circuito",
+            "da Fig. 3.71. vo esta no resistor",
+            "de 2 ohm e a fonte dependente e",
+            "5vo.",
+        ],
+        "solution": [
+            "# vo = 12 - v1.",
+            "No v1: (v1-12)/2 + v1/4",
+            "+ (v1-v2)/8 + 3 = 0",
+            "No v2: (v2-v1)/8 + v2 + 5vo - 3 = 0",
+            "# Resolvendo:",
+            "v1 = -10.909 V",
+            "= v2 = -100.364 V",
+        ],
+        "answer": ["v1 = -10.91 V; v2 = -100.36 V"],
+        "final": "v1=-10.91;v2=-100.36 V",
+    },
+    {
+        "id": "e_3_28", "title": "Ex 3.28", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.28",
+        "statement": [
+            "Use o MATLAB para determinar as",
+            "tensoes nos nos a, b, c e d no",
+            "circuito da Fig. 3.77. Aqui foi",
+            "resolvido por analise nodal.",
+        ],
+        "solution": [
+            "# Terra no no central. Fontes:",
+            "d = a - 60 ; e = a + 90",
+            "No c: c/5 + (c-d)/10 + (c-b)/4=0",
+            "No b: b/8 + (b-c)/4 + (b-e)/8=0",
+            "Superno a,d,e:",
+            "a/16 + d/20 + (d-c)/10 + (e-b)/8=0",
+            "# Solucao: a=1.717, b=22.816 V",
+            "c=-0.226 V; d=-58.283 V",
+        ],
+        "answer": ["a=1.717 V; b=22.816 V", "c=-0.226 V; d=-58.283 V"],
+        "final": "a=1.717;b=22.816;c=-0.226",
+    },
+    {
+        "id": "e_3_32", "title": "Ex 3.32", "subject": "Analise Nodal", "kind": "Nodal",
+        "source": "Livro Cap.3 Problema 3.32",
+        "statement": [
+            "Obtenha as tensoes nodais v1 e v2",
+            "no circuito da Fig. 3.81. A fonte",
+            "vertical fixa v2 e as fontes",
+            "horizontais fixam v1 e v3.",
+        ],
+        "solution": [
+            "# Fonte de 12 V ao terra:",
+            "v2 = 12 V",
+            "# Fonte de 10 V: - em v1, + em v2",
+            "v2 - v1 = 10",
+            "# Logo:",
+            "= v1 = 2 V",
+            "= v2 = 12 V",
+        ],
+        "answer": ["v1 = 2 V; v2 = 12 V"], "final": "v1=2 V; v2=12 V",
+    },
+    {
+        "id": "e_3_36", "title": "Ex 3.36", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.36",
+        "statement": [
+            "Use analise de malhas para",
+            "determinar i1, i2 e i3 no circuito",
+            "da Fig. 3.84. Fontes de 12 V e",
+            "10 V.",
+        ],
+        "solution": [
+            "# Nos superiores Vm e Vr:",
+            "Vm - Vr = 10",
+            "(Vm-12)/4 + Vm/6 + Vr/2 = 0",
+            "# Resolvendo:",
+            "Vm = 8.727 V; Vr = -1.273 V",
+            "i1 = (Vm-12)/4 = -0.818 A",
+            "i2 = Vm/6 = 1.455 A",
+            "= i3 = Vr/2 = -0.636 A",
+        ],
+        "answer": ["i1=-0.818 A; i2=1.455 A", "i3=-0.636 A"],
+        "final": "i1=-0.818;i2=1.455;i3=-0.636",
+    },
+    {
+        "id": "e_3_38", "title": "Ex 3.38", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.38",
+        "statement": [
+            "Aplique analise de malhas ao",
+            "circuito da Fig. 3.85 e obtenha Io.",
+            "Ha fontes de 60 V, 22.5 V, 10 A",
+            "e 5 A.",
+        ],
+        "solution": [
+            "# MNA equivalente as supermalhas:",
+            "VTL-VML=60; VMR-VBR=22.5",
+            "Fonte 10 A injeta no no superior;",
+            "fonte 5 A sai do no inferior esq.",
+            "# Sistema nodal resolvido:",
+            "VM = -3.625 V no topo do resistor 1",
+            "Como Io desce no resistor de 1 ohm:",
+            "= Io = VM/1 = -3.625 A",
+        ],
+        "answer": ["Io = -3.625 A"], "final": "Io = -3.625 A",
+    },
+    {
+        "id": "e_3_44", "title": "Ex 3.44", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.44",
+        "statement": [
+            "Use analise de malhas para",
+            "determinar io no circuito da Fig.",
+            "3.90. A fonte de 45 A entra no no",
+            "central.",
+        ],
+        "solution": [
+            "# A fonte de 180 V fixa VT=180 V.",
+            "A fonte de 90 V da VL = 270 V.",
+            "No M: (M-270)/2 + M/5 + (M-C)=0",
+            "No C: (C-M) + (C-180)/4 -45 = 0",
+            "# Resolvendo:",
+            "M = 230 V; C = 256 V",
+            "= io = (M-C)/1 = -26 A",
+        ],
+        "answer": ["io = -26 A"], "final": "io = -26 A",
+    },
+    {
+        "id": "e_3_46", "title": "Ex 3.46", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.46",
+        "statement": [
+            "Calcule as correntes de malha i1",
+            "e i2 na Fig. 3.92. A fonte",
+            "dependente de tensao vale 2vo.",
+        ],
+        "solution": [
+            "# vo = 12 - VB; VC = 2vo.",
+            "No B: (VB-12)/3 + VB/8",
+            "+ (VB-VC)/6 = 0",
+            "# Substituindo VC=24-2VB:",
+            "VB = 8.348 V; VC = 7.304 V",
+            "i1 = (12-VB)/3 = 1.217 A",
+            "= i2 = (VB-VC)/6 = 0.174 A",
+        ],
+        "answer": ["i1 = 1.217 A; i2 = 0.174 A"],
+        "final": "i1=1.217 A; i2=0.174 A",
+    },
+    {
+        "id": "e_3_54", "title": "Ex 3.54", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.54",
+        "statement": [
+            "Determine as correntes de malha",
+            "i1, i2 e i3 no circuito da Fig.",
+            "3.99. Resistores superiores de 1 k",
+            "e ramo vertical direito de 1 ohm.",
+        ],
+        "solution": [
+            "# Tome o no inferior como referencia.",
+            "VA=12 V; VC=-12 V; no da fonte=10 V",
+            "No B: (B-12)/1k + (B-D)/1k",
+            "+ (B-10)/1k = 0",
+            "No D: (D-B)/1k + (D+12)/1k + D/1=0",
+            "# B=7.3318 V; D=-0.00466 V",
+            "i1=(12-B)/1k=4.668 mA",
+            "i2=(B-D)/1k=7.336 mA",
+            "= i3=(D+12)/1k=11.995 mA",
+        ],
+        "answer": ["i1=4.668 mA; i2=7.336 mA", "i3=11.995 mA"],
+        "final": "i1=4.668;i2=7.336;i3=11.995mA",
+    },
+    {
+        "id": "e_3_62", "title": "Ex 3.62", "subject": "Analise Malhas", "kind": "Malhas",
+        "source": "Livro Cap.3 Problema 3.62",
+        "statement": [
+            "Determine as correntes de malha",
+            "i1, i2 e i3 na rede da Fig. 3.106.",
+            "Ha uma fonte de 4 mA e uma fonte",
+            "dependente 2i1.",
+        ],
+        "solution": [
+            "# Correntes em mA, resistores em k:",
+            "fonte 4 mA: i2 - i1 = 4",
+            "fonte dep.: i2 - i3 = 2i1",
+            "# Supermalha externa:",
+            "4i1 + 8i2 + 2i3 + 40 - 100 = 0",
+            "4i1 + 8i2 + 2i3 = 60",
+            "# Resolvendo:",
+            "= i1 = 2 mA; i2 = 6 mA; i3 = 2 mA",
+        ],
+        "answer": ["i1 = 2 mA; i2 = 6 mA", "i3 = 2 mA"],
+        "final": "i1=2mA; i2=6mA; i3=2mA",
+    },
+    {
+        "id": "e_4_12", "title": "Ex 4.12", "subject": "Superposicao",
+        "kind": "Superposicao", "source": "Livro Cap.4 Problema 4.12",
+        "statement": [
+            "Determine vo no circuito da Fig.",
+            "4.80 usando o principio da",
+            "superposicao. Fontes de 12 V, 19 V",
+            "e 2 A.",
+        ],
+        "solution": [
+            "# Nodal equivalente (soma das fontes):",
+            "No B: (B-12)/6 + B/3 + (B-C)/5 - 2=0",
+            "No C: (C-B)/5 + C/12 + (C-19)/4 + 2=0",
+            "# Resolvendo:",
+            "B = 8.050 V; C = 8.175 V",
+            "vo = B - C",
+            "= vo = -0.125 V",
+        ],
+        "answer": ["vo = -125 mV"], "final": "vo = -125 mV",
+    },
+    {
+        "id": "e_4_15", "title": "Ex 4.15", "subject": "Superposicao",
+        "kind": "Superposicao", "source": "Livro Cap.4 Problema 4.15; Appendix D",
+        "statement": [
+            "Para o circuito da Fig. 4.83, use",
+            "superposicao para determinar i.",
+            "Calcule a potencia liberada para o",
+            "resistor de 3 ohm.",
+        ],
+        "solution": [
+            "# Appendix D publica:",
+            "i = 1.875 A; P(3 ohm) = 10.55 W",
+            "# Conferencia direta:",
+            "No topo T e no central C:",
+            "(T-20)/2 + (T+16)/4 + (T-C) + 2 = 0",
+            "(C-T) + C/3 - 2 = 0",
+            "C = 5.625 V -> i = C/3 = 1.875 A",
+            "P = i^2*3 = 10.55 W",
+        ],
+        "answer": ["i = 1.875 A", "P(3 ohm) = 10.55 W"],
+        "final": "i=1.875 A; P=10.55 W",
+    },
+    {
+        "id": "e_4_20", "title": "Ex 4.20", "subject": "Transf Fontes", "kind": "Transf Fontes",
+        "source": "Livro Cap.4 Problema 4.20",
+        "statement": [
+            "Use transformacao de fontes para",
+            "reduzir o circuito da Fig. 4.88 a",
+            "uma unica fonte de tensao em serie",
+            "com um unico resistor.",
+        ],
+        "solution": [
+            "# Ache Vth nos terminais comuns:",
+            "V/10 + (V-12)/20 + (V-16)/40 - 3 = 0",
+            "G = 1/10 + 1/20 + 1/40 = 0.175",
+            "V = (3 + 12/20 + 16/40)/G",
+            "= Vth = 22.857 V",
+            "# Desligando fontes:",
+            "Rth = 10 || 20 || 40 = 5.714 ohm",
+        ],
+        "answer": ["Veq = 22.86 V", "Req = 5.714 ohm"],
+        "final": "22.86 V serie 5.714 ohm",
+    },
+    {
+        "id": "e_4_22", "title": "Ex 4.22", "subject": "Transf Fontes", "kind": "Transf Fontes",
+        "source": "Livro Cap.4 Problema 4.22",
+        "statement": [
+            "Para o circuito da Fig. 4.90, use",
+            "transformacao de fontes para",
+            "determinar i no resistor de 4 ohm.",
+        ],
+        "solution": [
+            "# Nos A e B; fonte direita fixa 20 V.",
+            "No A: A/5 + (A-B)/5 + 2 = 0",
+            "No B: B/4 + (B-A)/5 + (B-20)/10 = 0",
+            "# Resolvendo:",
+            "A = -3.889 V; B = 2.222 V",
+            "i = B/4",
+            "= i = 0.5556 A",
+        ],
+        "answer": ["i = 555.6 mA"], "final": "i = 555.6 mA",
+    },
+    {
+        "id": "e_4_26", "title": "Ex 4.26", "subject": "Transf Fontes", "kind": "Transf Fontes",
+        "source": "Livro Cap.4 Problema 4.26",
+        "statement": [
+            "Use transformacao de fontes para",
+            "determinar io no circuito da Fig.",
+            "4.94. Fontes de 6 A, 3 A e 20 V.",
+        ],
+        "solution": [
+            "# Nos A e B; no direito = 20 V.",
+            "No A: A/2 + (A-B)/5 + 3 - 6 = 0",
+            "No B: (B-A)/5 + (B-20)/4 - 3 = 0",
+            "# Resolvendo:",
+            "A = 10.727 V; B = 22.545 V",
+            "io = (B-20)/4",
+            "= io = 0.6364 A",
+        ],
+        "answer": ["io = 636.4 mA"], "final": "io = 636.4 mA",
+    },
+    {
+        "id": "e_4_28", "title": "Ex 4.28", "subject": "Transf Fontes", "kind": "Transf Fontes",
+        "source": "Livro Cap.4 Problema 4.28",
+        "statement": [
+            "Use transformacao de fontes para",
+            "determinar Io na Fig. 4.96. A",
+            "fonte dependente vale Vo/3.",
+        ],
+        "solution": [
+            "# Nos B e C; no esquerdo = 8 V.",
+            "Vo = B - C",
+            "No B: (B-8) + (B-C)/4 = 0",
+            "No C: (C-B)/4 + C/3 + Vo/3 = 0",
+            "# Resolvendo:",
+            "B = 6 V; C = -2 V",
+            "= Io = (B-C)/4 = 2 A",
+        ],
+        "answer": ["Io = 2 A"], "final": "Io = 2 A",
+    },
+    {
+        "id": "e_4_30", "title": "Ex 4.30", "subject": "Transf Fontes", "kind": "Transf Fontes",
+        "source": "Livro Cap.4 Problema 4.30",
+        "statement": [
+            "Use transformacao de fontes no",
+            "circuito da Fig. 4.98 para",
+            "determinar ix. A fonte dependente",
+            "vale 0.7ix.",
+        ],
+        "solution": [
+            "# ix = (12-B)/24.",
+            "No B: (B-12)/24 + B/30 + (B-C)/60 = 0",
+            "No C: (C-B)/60 + C/10 - 0.7ix = 0",
+            "# Resolvendo:",
+            "B = 5.885 V; C = 2.369 V",
+            "ix = (12 - 5.885)/24",
+            "= ix = 0.2548 A",
+        ],
+        "answer": ["ix = 254.8 mA"], "final": "ix = 254.8 mA",
+    },
+    {
+        "id": "r_1_1", "title": "Rev 1.1", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "Um milivolt e um milionesimo de",
+            "um volt.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_1_2", "title": "Rev 1.2", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "O prefixo micro significa:",
+            "(a) 10^6",
+            "(b) 10^3",
+            "(c) 10^-3",
+            "(d) 10^-6",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_1_3", "title": "Rev 1.3", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "A tensao 2.000.000 V pode ser",
+            "expressa em potencia de 10 como:",
+            "(a) 2 mV",
+            "(b) 2 kV",
+            "(c) 2 MV",
+            "(d) 2 GV",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_1_4", "title": "Rev 1.4", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "Uma carga de 2 C fluindo por um",
+            "ponto a cada segundo e uma",
+            "corrente de 2 A.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_1_5", "title": "Rev 1.5", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "A unidade de corrente e:",
+            "(a) coulomb",
+            "(b) ampere",
+            "(c) volt",
+            "(d) joule",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_1_6", "title": "Rev 1.6", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "A tensao e medida em:",
+            "(a) watts",
+            "(b) amperes",
+            "(c) volts",
+            "(d) joules por segundo",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_1_7", "title": "Rev 1.7", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "Uma corrente de 4 A carregando",
+            "um material dieletrico acumulara",
+            "24 C apos 6 s.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_1_8", "title": "Rev 1.8", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "A tensao em uma torradeira de",
+            "1,1 kW que produz corrente de",
+            "10 A e:",
+            "(a) 11 kV",
+            "(b) 1100 V",
+            "(c) 110 V",
+            "(d) 11 V",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_1_9", "title": "Rev 1.9", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "Qual das opcoes nao e uma",
+            "grandeza eletrica?",
+            "(a) carga",
+            "(b) tempo",
+            "(c) tensao",
+            "(d) corrente",
+            "(e) potencia",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_1_10", "title": "Rev 1.10", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.1",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 1.22 ha uma fonte",
+            "dependente 6io em paralelo com",
+            "um resistor. Essa fonte e:",
+            "(a) corrente controlada por tensao",
+            "(b) tensao controlada por tensao",
+            "(c) tensao controlada por corrente",
+            "(d) corrente controlada por corrente",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_2_1", "title": "Rev 2.1", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "O inverso da resistencia e:",
+            "(a) tensao",
+            "(b) corrente",
+            "(c) condutancia",
+            "(d) coulombs",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_2_2", "title": "Rev 2.2", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Um aquecedor eletrico drena 10 A",
+            "de uma linha de 120 V. A",
+            "resistencia do aquecedor e:",
+            "(a) 1.200 ohm",
+            "(b) 120 ohm",
+            "(c) 12 ohm",
+            "(d) 1,2 ohm",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_2_3", "title": "Rev 2.3", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "A queda de tensao em uma",
+            "torradeira de 1,5 kW que absorve",
+            "12 A e:",
+            "(a) 18 kV",
+            "(b) 125 V",
+            "(c) 120 V",
+            "(d) 10,42 V",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_2_4", "title": "Rev 2.4", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "A corrente maxima que um resistor",
+            "de 80 kohm/2 W conduz com",
+            "seguranca e:",
+            "(a) 160 kA",
+            "(b) 40 kA",
+            "(c) 5 mA",
+            "(d) 25 uA",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_2_5", "title": "Rev 2.5", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Uma rede tem 12 ramos e 8 lacos",
+            "independentes. Quantos nos",
+            "existem nessa rede?",
+            "(a) 19",
+            "(b) 17",
+            "(c) 5",
+            "(d) 4",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_2_6", "title": "Rev 2.6", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 2.63: fontes de 3 V e",
+            "5 V em serie com resistores de",
+            "4 e 6 ohm. A corrente I e:",
+            "(a) -0,8 A",
+            "(b) -0,2 A",
+            "(c) 0,2 A",
+            "(d) 0,8 A",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_2_7", "title": "Rev 2.7", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 2.64, 2 A e 4 A entram",
+            "no no, 10 A sai para cima e Io",
+            "esta no ramo inferior. Io e:",
+            "(a) -4 A",
+            "(b) -2 A",
+            "(c) 4 A",
+            "(d) 16 A",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_2_8", "title": "Rev 2.8", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 2.65: fontes de 12 V,",
+            "10 V no topo e 8 V no lado",
+            "direito. A tensao V e:",
+            "(a) 30 V",
+            "(b) 14 V",
+            "(c) 10 V",
+            "(d) 6 V",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_2_9", "title": "Rev 2.9", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "Qual circuito da Fig. 2.66 fornece",
+            "Vab = 7 V? Todos tem fonte de",
+            "3 V vertical, 5 V no topo e",
+            "1 V embaixo.",
+            "(a) +5 esq, +1 esq",
+            "(b) +5 dir, +1 esq",
+            "(c) +5 esq, +1 dir",
+            "(d) +5 dir, +1 dir",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_2_10", "title": "Rev 2.10", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.2",
+        "circuit": None,
+        "statement": [
+            "No circuito da Fig. 2.67, reduzir",
+            "R3 leva a uma reducao da:",
+            "(a) corrente em R3",
+            "(b) tensao em R3",
+            "(c) tensao em R1",
+            "(d) potencia dissipada em R2",
+            "(e) nenhuma das anteriores",
+        ],
+        "solution": ["Gabarito do livro: (b), (d)."],
+        "answer": ["Resposta: (b), (d)"], "final": "(b), (d)",
+    },
+    {
+        "id": "r_3_1", "title": "Rev 3.1", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "No no 1 da Fig. 3.46, aplicando",
+            "a LKC, obtemos:",
+            "(a) 2+(12-v1)/3=v1/6+(v1-v2)/4",
+            "(b) 2+(v1-12)/3=v1/6+(v2-v1)/4",
+            "(c) 2+(12-v1)/3=(0-v1)/6+(v1-v2)/4",
+            "(d) 2+(v1-12)/3=(0-v1)/6+(v2-v1)/4",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_3_2", "title": "Rev 3.2", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "No circuito da Fig. 3.46,",
+            "aplicando a LKC ao no 2, temos:",
+            "(a) (v2-v1)/4+v2/8=v2/6",
+            "(b) (v1-v2)/4+v2/8=v2/6",
+            "(c) (v1-v2)/4+(12-v2)/8=v2/6",
+            "(d) (v2-v1)/4+(v2-12)/8=v2/6",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_3_3", "title": "Rev 3.3", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "Para o circuito da Fig. 3.47,",
+            "v1 e v2 se relacionam segundo:",
+            "(a) v1 = 6i + 8 + v2",
+            "(b) v1 = 6i - 8 + v2",
+            "(c) v1 = -6i + 8 + v2",
+            "(d) v1 = -6i - 8 + v2",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_3_4", "title": "Rev 3.4", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "No circuito da Fig. 3.47, a",
+            "tensao v2 e:",
+            "(a) -8 V",
+            "(b) -1,6 V",
+            "(c) 1,6 V",
+            "(d) 8 V",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_3_5", "title": "Rev 3.5", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "A corrente i no circuito da",
+            "Fig. 3.48 e:",
+            "(a) -2,667 A",
+            "(b) -0,667 A",
+            "(c) 0,667 A",
+            "(d) 2,667 A",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_3_6", "title": "Rev 3.6", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "A equacao dos lacos para o",
+            "circuito da Fig. 3.48 e:",
+            "(a) -10 + 4i + 6 + 2i = 0",
+            "(b) 10 + 4i + 6 + 2i = 0",
+            "(c) 10 + 4i - 6 + 2i = 0",
+            "(d) -10 + 4i - 6 + 2i = 0",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_3_7", "title": "Rev 3.7", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "No circuito da Fig. 3.49, a",
+            "corrente i1 e:",
+            "(a) 4 A",
+            "(b) 3 A",
+            "(c) 2 A",
+            "(d) 1 A",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_3_8", "title": "Rev 3.8", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "A tensao v na fonte de corrente",
+            "do circuito da Fig. 3.49 e:",
+            "(a) 20 V",
+            "(b) 15 V",
+            "(c) 10 V",
+            "(d) 5 V",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_3_9", "title": "Rev 3.9", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "O nome de identificacao no PSpice",
+            "para uma fonte de tensao",
+            "controlada por corrente e:",
+            "(a) EX",
+            "(b) FX",
+            "(c) HX",
+            "(d) GX",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_3_10", "title": "Rev 3.10", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.3",
+        "circuit": None,
+        "statement": [
+            "Quais afirmacoes nao sao",
+            "verdadeiras para o pseudocomponente",
+            "IPROBE?",
+            "(a) Tem de estar em serie",
+            "(b) Mostra a corrente de ramo",
+            "(c) Mostra a corrente do ramo",
+            "(d) Pode mostrar tensao em paralelo",
+            "(e) Usado apenas para analise CC",
+            "(f) Nao corresponde a um elemento",
+        ],
+        "solution": ["Gabarito do livro: (b), (d)."],
+        "answer": ["Resposta: (b), (d)"], "final": "(b), (d)",
+    },
+    {
+        "id": "r_4_1", "title": "Rev 4.1", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Um ramo linear conduz 2 A com",
+            "entrada de 10 V. Se a tensao for",
+            "1 V e a polaridade invertida, a",
+            "corrente sera:",
+            "(a) -2 A",
+            "(b) -0,2 A",
+            "(c) 0,2 A",
+            "(d) 2 A",
+            "(e) 20 A",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_4_2", "title": "Rev 4.2", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Para superposicao, nao e",
+            "necessario considerar apenas uma",
+            "fonte independente por vez.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_4_3", "title": "Rev 4.3", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "O principio da superposicao se",
+            "aplica ao calculo de potencia.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_4_4", "title": "Rev 4.4", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 4.67, fonte de 50 V com",
+            "5 ohm em serie e 20 ohm no ramo",
+            "dos terminais a-b. Rth em a-b e:",
+            "(a) 25 ohm",
+            "(b) 20 ohm",
+            "(c) 5 ohm",
+            "(d) 4 ohm",
+        ],
+        "solution": ["Gabarito do livro: (d)."],
+        "answer": ["Resposta: (d)"], "final": "(d)",
+    },
+    {
+        "id": "r_4_5", "title": "Rev 4.5", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 4.67, a tensao de",
+            "Thevenin nos terminais a e b e:",
+            "(a) 50 V",
+            "(b) 40 V",
+            "(c) 20 V",
+            "(d) 10 V",
+        ],
+        "solution": ["Gabarito do livro: (b)."],
+        "answer": ["Resposta: (b)"], "final": "(b)",
+    },
+    {
+        "id": "r_4_6", "title": "Rev 4.6", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Na Fig. 4.67, a corrente de",
+            "Norton nos terminais a e b e:",
+            "(a) 10 A",
+            "(b) 2,5 A",
+            "(c) 2 A",
+            "(d) 0 A",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_4_7", "title": "Rev 4.7", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "A resistencia de Norton RN e",
+            "exatamente igual a resistencia",
+            "de Thevenin RTh.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+    {
+        "id": "r_4_8", "title": "Rev 4.8", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Que par de circuitos da Fig. 4.68",
+            "sao equivalentes?",
+            "a: 20V serie 5ohm",
+            "b: 4A serie 5ohm",
+            "c: 4A paralelo 5ohm",
+            "d: 20V paralelo 5ohm",
+            "(a) a e b",
+            "(b) b e d",
+            "(c) a e c",
+            "(d) c e d",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_4_9", "title": "Rev 4.9", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Uma carga esta ligada a uma rede.",
+            "Nos terminais, RTh=10 ohm e",
+            "VTh=40 V. A potencia maxima",
+            "fornecida a carga e:",
+            "(a) 160 W",
+            "(b) 80 W",
+            "(c) 40 W",
+            "(d) 1 W",
+        ],
+        "solution": ["Gabarito do livro: (c)."],
+        "answer": ["Resposta: (c)"], "final": "(c)",
+    },
+    {
+        "id": "r_4_10", "title": "Rev 4.10", "subject": "Revisao",
+        "kind": "Revisao", "source": "Sadiku Revisao Cap.4",
+        "circuit": None,
+        "statement": [
+            "Uma fonte fornece potencia maxima",
+            "a carga quando a resistencia de",
+            "carga e igual a resistencia da",
+            "fonte.",
+            "(a) verdadeiro",
+            "(b) falso",
+        ],
+        "solution": ["Gabarito do livro: (a)."],
+        "answer": ["Resposta: (a)"], "final": "(a)",
+    },
+])
+
 
 SUBJECT_ORDER = [
     "Tensao Pot",
@@ -2156,6 +4419,7 @@ SUBJECT_ORDER = [
     "Analise Malhas",
     "Superposicao",
     "Transf Fontes",
+    "Revisao",
 ]
 
 
@@ -4346,6 +6610,68 @@ def text_array_c(name, lines_xy):
     return "\n".join(out)
 
 
+def global_exercises_in_order():
+    ordered = []
+    seen = set()
+    for subject in SUBJECT_ORDER + ANTIGOS_ORDER:
+        items = [ex for ex in EXERCISES if ex["subject"] == subject]
+        if not items:
+            raise AssertionError("subject has no exercises: %s" % subject)
+        for ex in items:
+            if ex["id"] in seen:
+                raise AssertionError("duplicate exercise id %s" % ex["id"])
+            seen.add(ex["id"])
+            ordered.append(ex)
+    if len(ordered) != len(EXERCISES):
+        missing = sorted(ex["id"] for ex in EXERCISES if ex["id"] not in seen)
+        raise AssertionError("exercises outside global order: %r" % missing)
+    if len(ordered) != 211:
+        raise AssertionError("expected 211 exercises, got %d" % len(ordered))
+    return ordered
+
+
+def has_figure(ex):
+    return (ex["id"] in CIRCUITS or ex["id"] in MULTI_CIRCUITS
+            or ex.get("circuit", "generic") is not None)
+
+
+def is_exam(ex):
+    return (ex["title"].startswith(("Prova", "Rec", "PV1"))
+            or "PROVAS" in ex.get("source", ""))
+
+
+def build_payload_model(exercises):
+    draws = all_draws()
+    model = []
+    for ex in exercises:
+        pages_out = []
+        for page in build_pages(ex):
+            lines_xy = page_lines_xy(page)
+            lines = []
+            for text, x, y, color in lines_xy:
+                lines.append((x, y, COLOR_VALUES[color], text))
+            if page.get("result"):
+                result = page["result"]
+                result_y = result_y_for(len(lines_xy))
+            else:
+                result = ""
+                result_y = 0
+            body_name = page.get("body_name")
+            ops = []
+            if body_name:
+                ops = [normalize_op(op) for op in draws[body_name]]
+            pages_out.append({
+                "title": page["title"],
+                "subtitle": page.get("subtitle", ""),
+                "result": result,
+                "result_y": result_y,
+                "lines": lines,
+                "ops": ops,
+            })
+        model.append({"pages": pages_out})
+    return model
+
+
 def generate_exercise_c(ex):
     sid = ex["id"]
     pages = build_pages(ex)
@@ -4374,75 +6700,52 @@ def generate_exercise_c(ex):
 
 
 def generate_c():
-    all_subjects = list(SUBJECT_ORDER)
-    main_exercises = [ex for ex in EXERCISES if ex["subject"] in SUBJECT_ORDER]
-    draws = all_draws()
-    used_bodies = set()
-    for ex in main_exercises:
-        for page in build_pages(ex):
-            body_name = page.get("body_name")
-            if body_name:
-                used_bodies.add(body_name)
+    exercises = global_exercises_in_order()
+    chunks = build_appvar_chunks(exercises)
+    placement = {}
+    for cidx, chunk in enumerate(chunks):
+        for local, global_idx in enumerate(chunk["indices"]):
+            placement[global_idx] = (cidx, local)
+
     out = [
         '#include "cv3.h"',
         "",
         "/* Generated by tools/generate_exercises.py. Do not edit by hand. */",
         "",
-        HELPERS_C,
-        "",
+        "const ExMeta ex_meta[] = {",
     ]
-    # generic fallbacks: emit only the ones actually referenced
-    used_generic = {ex["kind"] for ex in EXERCISES
-                    if ex["subject"] in SUBJECT_ORDER
-                    if ex["id"] not in CIRCUITS
-                    and ex["id"] not in MULTI_CIRCUITS
-                    and ex.get("circuit", "generic") is not None}
-    for kind, src in GENERIC_C.items():
-        if kind in used_generic:
-            out.append(src)
-            out.append("")
-    # dedicated circuit draw functions (single source = CIRCUITS + MULTI)
-    for name, ops in draws.items():
-        if name not in used_bodies:
-            continue
-        out.append(cv_render.emit_circuit_c(name, ops))
-        out.append("")
-
-    for ex in main_exercises:
-        out.append(generate_exercise_c(ex))
-        out.append("")
-
-    for subject in all_subjects:
-        items = [ex for ex in main_exercises if ex["subject"] == subject]
-        arr = "subject_%s" % safe_id(subject)
-        out.append("static const Exercise %s[] = {" % arr)
-        for ex in items:
-            out.append("    { %s, %s_pages, COUNT_OF(%s_pages) },"
-                       % (c_string(ex["title"]), ex["id"], ex["id"]))
-        out.append("};")
-        out.append("")
-
-    out.append("const Subject subjects[] = {")
-    for subject in all_subjects:
-        arr = "subject_%s" % safe_id(subject)
-        out.append("    { %s, %s, COUNT_OF(%s), 0, 0 }," % (c_string(subject), arr, arr))
+    for idx, ex in enumerate(exercises):
+        cc = comp_counts_for(ex)
+        chunk, local = placement[idx]
+        out.append("    { %s, %s, %d, %d, %d, { %d, %d, %d, %d, %d } },"
+                   % (c_string(ex["title"]), c_string(ex["subject"]),
+                      chunk, local, len(build_pages(ex)),
+                      cc[0], cc[1], cc[2], cc[3], cc[4]))
     out.append("};")
     out.append("")
-    out.append("const uint8_t subject_count = COUNT_OF(subjects);")
-    out.append("")
-    out.append("const ExEntry all_exercises[] = {")
-    for subject in all_subjects:
-        arr = "subject_%s" % safe_id(subject)
-        items = [ex for ex in main_exercises if ex["subject"] == subject]
-        for i, ex in enumerate(items):
-            cc = comp_counts_for(ex)
-            out.append("    { &%s[%d], %s, { %d, %d, %d, %d, %d } },"
-                       % (arr, i, c_string(subject),
-                          cc[0], cc[1], cc[2], cc[3], cc[4]))
-    out.append("};")
+    out.append("const uint16_t ex_count = %d;" % len(exercises))
+    out.append("const uint8_t chunk_count = %d;" % len(chunks))
     out.append("")
 
-    out.append("const uint16_t all_exercises_count = COUNT_OF(all_exercises);")
+    start = 0
+    out.append("const SubRange subjects[] = {")
+    for subject in SUBJECT_ORDER:
+        count = len([ex for ex in exercises if ex["subject"] == subject])
+        out.append("    { %s, %d, %d }," % (c_string(subject), start, count))
+        start += count
+    out.append("};")
+    out.append("")
+    out.append("const uint8_t subject_count = %d;" % len(SUBJECT_ORDER))
+    out.append("")
+
+    out.append("const SubRange antigos_topics[] = {")
+    for subject in ANTIGOS_ORDER:
+        start = next(i for i, ex in enumerate(exercises) if ex["subject"] == subject)
+        count = len([ex for ex in exercises if ex["subject"] == subject])
+        out.append("    { %s, %d, %d }," % (c_string(subject), start, count))
+    out.append("};")
+    out.append("")
+    out.append("const uint8_t antigos_topic_count = %d;" % len(ANTIGOS_ORDER))
     out.append("")
 
     out.append("const MenuItem menu_items[] = {")
@@ -4452,33 +6755,28 @@ def generate_c():
     out.append('    { "Antigos", MENU_ANTIGOS, 0 },')
     out.append("};")
     out.append("")
-    out.append("const uint8_t menu_count = COUNT_OF(menu_items);")
+    out.append("const uint8_t menu_count = %d;" % (len(SUBJECT_ORDER) + 2))
     out.append("")
 
-    out.append("const AntMeta antigos_meta[] = {")
-    ant_index = 0
-    topic_rows = []
-    for subject in ANTIGOS_ORDER:
-        items = [ex for ex in EXERCISES if ex["subject"] == subject]
-        start = ant_index
-        for ex in items:
-            cc = comp_counts_for(ex)
-            out.append("    { %s, %s, %d, { %d, %d, %d, %d, %d } },"
-                       % (c_string(ex["title"]), c_string(subject),
-                          len(build_pages(ex)), cc[0], cc[1], cc[2], cc[3], cc[4]))
-            ant_index += 1
-        topic_rows.append((subject, start, len(items)))
-    out.append("};")
-    out.append("")
-    out.append("const uint16_t antigos_meta_count = COUNT_OF(antigos_meta);")
-    out.append("")
+    browse = [(idx, has_figure(ex), is_exam(ex)) for idx, ex in enumerate(exercises)]
 
-    out.append("const AntTopic antigos_topics[] = {")
-    for subject, start, count in topic_rows:
-        out.append("    { %s, %d, %d }," % (c_string(subject), start, count))
-    out.append("};")
+    def emit_browse(name, rows):
+        rows = sorted(rows, key=lambda b: 0 if b[2] else 1)
+        out.append("const uint16_t %s[] = {" % name)
+        for idx, _fig, _exam in rows:
+            out.append("    %d," % idx)
+        if not rows:
+            out.append("    0,")
+        out.append("};")
+        out.append("")
+
+    nofig = [b for b in browse if not b[1]]
+    withfig = [b for b in browse if b[1]]
+    emit_browse("nofig_items", nofig)
+    out.append("const uint16_t nofig_count = %d;" % len(nofig))
     out.append("")
-    out.append("const uint8_t antigos_topic_count = COUNT_OF(antigos_topics);")
+    emit_browse("withfig_items", withfig)
+    out.append("const uint16_t withfig_count = %d;" % len(withfig))
     out.append("")
     return "\n".join(out)
 
@@ -4508,7 +6806,7 @@ def generate_manifest():
 
 
 # ----------------------------------------------------------------------------
-# CV3DATA AppVar packing + strict round-trip verification
+# CV3DATn AppVar packing + strict round-trip verification
 # ----------------------------------------------------------------------------
 
 COLOR_VALUES = {
@@ -4520,6 +6818,8 @@ COLOR_VALUES = {
     "COL_RED": 5,
     "COL_GREEN": 6,
 }
+
+CHUNK_LIMIT = 58000
 
 OPCODE_NAMES = [
     "wire",
@@ -4621,35 +6921,7 @@ def normalize_op(op):
 
 
 def expected_appvar_structure():
-    draws = all_draws()
-    exercises = []
-    for ex in antigos_exercises_in_appvar_order():
-        pages_out = []
-        for page in build_pages(ex):
-            lines_xy = page_lines_xy(page)
-            lines = []
-            for text, x, y, color in lines_xy:
-                lines.append((x, y, COLOR_VALUES[color], text))
-            if page.get("result"):
-                result = page["result"]
-                result_y = result_y_for(len(lines_xy))
-            else:
-                result = ""
-                result_y = 0
-            body_name = page.get("body_name")
-            ops = []
-            if body_name:
-                ops = [normalize_op(op) for op in draws[body_name]]
-            pages_out.append({
-                "title": page["title"],
-                "subtitle": page.get("subtitle", ""),
-                "result": result,
-                "result_y": result_y,
-                "lines": lines,
-                "ops": ops,
-            })
-        exercises.append({"pages": pages_out})
-    return exercises
+    return build_payload_model(global_exercises_in_order())
 
 
 def encode_exercise_block(exercise):
@@ -4681,9 +6953,7 @@ def encode_exercise_block(exercise):
     return bytes(out)
 
 
-def build_appvar_payload():
-    exercises = expected_appvar_structure()
-    blocks = [encode_exercise_block(ex) for ex in exercises]
+def build_chunk_payload(blocks):
     header_len = 4 + 1 + 1 + 2 + 2 * len(blocks)
     offsets = []
     pos = header_len
@@ -4691,7 +6961,7 @@ def build_appvar_payload():
         offsets.append(pos)
         pos += len(block)
     if pos >= 65536:
-        raise AssertionError("CV3DATA payload too large: %d bytes" % pos)
+        raise AssertionError("CV3DAT chunk payload too large: %d bytes" % pos)
     payload = bytearray(b"CV3A")
     payload += _u8(1)
     payload += _u8(0)
@@ -4701,6 +6971,50 @@ def build_appvar_payload():
     for block in blocks:
         payload += block
     return bytes(payload)
+
+
+def build_appvar_chunks(exercises=None):
+    if exercises is None:
+        exercises = global_exercises_in_order()
+    model = build_payload_model(exercises)
+    blocks = [encode_exercise_block(ex) for ex in model]
+    chunks = []
+    cur_blocks = []
+    cur_indices = []
+
+    def projected_size(n, data_size):
+        return 4 + 1 + 1 + 2 + 2 * n + data_size
+
+    data_size = 0
+    for idx, block in enumerate(blocks):
+        if projected_size(1, len(block)) > CHUNK_LIMIT:
+            raise AssertionError("exercise %d block exceeds chunk limit" % idx)
+        if cur_blocks and projected_size(len(cur_blocks) + 1,
+                                         data_size + len(block)) > CHUNK_LIMIT:
+            payload = build_chunk_payload(cur_blocks)
+            chunks.append({"payload": payload, "indices": cur_indices})
+            cur_blocks = []
+            cur_indices = []
+            data_size = 0
+        cur_blocks.append(block)
+        cur_indices.append(idx)
+        data_size += len(block)
+
+    if cur_blocks:
+        payload = build_chunk_payload(cur_blocks)
+        chunks.append({"payload": payload, "indices": cur_indices})
+
+    for i, chunk in enumerate(chunks):
+        if len(chunk["payload"]) >= CHUNK_LIMIT:
+            raise AssertionError("CV3DAT%d is %d bytes" % (i, len(chunk["payload"])))
+    return chunks
+
+
+def build_appvar_payload():
+    chunks = build_appvar_chunks()
+    if len(chunks) != 1:
+        raise AssertionError("global payload is chunked into %d files" % len(chunks))
+    return chunks[0]["payload"]
 
 
 class PayloadReader:
@@ -4739,7 +7053,7 @@ class PayloadReader:
 def decode_appvar_payload(payload):
     reader = PayloadReader(payload)
     if reader.read(4) != b"CV3A":
-        raise ValueError("bad CV3DATA magic")
+        raise ValueError("bad CV3DAT magic")
     version = reader.u8()
     flags = reader.u8()
     if version != 1 or flags != 0:
@@ -4747,14 +7061,12 @@ def decode_appvar_payload(payload):
     count = reader.u16()
     offsets = [reader.u16() for _ in range(count)]
     header_len = reader.pos
-    if count != 52:
-        raise ValueError("expected 52 offsets, got %d" % count)
-    last = header_len
+    last = None
     for offset in offsets:
         if offset < header_len or offset >= len(payload):
             raise ValueError("exercise offset out of range: %d" % offset)
-        if offset < last:
-            raise ValueError("exercise offsets are not monotonic")
+        if last is not None and offset <= last:
+            raise ValueError("exercise offsets are not strictly increasing")
         last = offset
 
     exercises = []
@@ -4823,10 +7135,116 @@ def first_mismatch(expected, actual, path="root"):
     return None
 
 
-def verify_appvar_round_trip(bin_path):
-    payload = Path(bin_path).read_bytes()
+def _payload_offsets(payload):
+    r = PayloadReader(payload)
+    if r.read(4) != b"CV3A":
+        raise ValueError("bad CV3DAT magic")
+    version = r.u8()
+    flags = r.u8()
+    if version != 1 or flags != 0:
+        raise ValueError("bad header version/flags: %d/%d" % (version, flags))
+    count = r.u16()
+    offsets = [r.u16() for _ in range(count)]
+    header_len = r.pos
+    prev = None
+    for off in offsets:
+        if off < header_len or off >= len(payload):
+            raise ValueError("offset out of range: %d" % off)
+        if prev is not None and off <= prev:
+            raise ValueError("offsets are not strictly increasing")
+        prev = off
+    return offsets
+
+
+def c_parser_sim_payload(payload, chunk_idx=0):
+    offsets = _payload_offsets(payload)
+    for ex_idx, start in enumerate(offsets):
+        end = offsets[ex_idx + 1] if ex_idx + 1 < len(offsets) else len(payload)
+        p = start
+
+        def need(n):
+            if p + n > end:
+                raise ValueError("chunk %d exercise %d EOF at %d need %d end %d"
+                                 % (chunk_idx, ex_idx, p, n, end))
+
+        def u8():
+            nonlocal p
+            need(1)
+            v = payload[p]
+            p += 1
+            return v
+
+        def i16():
+            nonlocal p
+            need(2)
+            v = struct.unpack("<h", payload[p:p + 2])[0]
+            p += 2
+            return v
+
+        def cstr():
+            nonlocal p
+            start_s = p
+            while p < end and payload[p] != 0:
+                p += 1
+            if p >= end:
+                raise ValueError("chunk %d exercise %d unterminated cstr at %d"
+                                 % (chunk_idx, ex_idx, start_s))
+            p += 1
+
+        page_count = u8()
+        if page_count > 12:
+            raise ValueError("chunk %d exercise %d page_count %d > 12"
+                             % (chunk_idx, ex_idx, page_count))
+        for _pg in range(page_count):
+            cstr()  # title
+            cstr()  # subtitle
+            cstr()  # result
+            u8()    # result_y
+            line_count = u8()
+            for _li in range(line_count):
+                i16()
+                i16()
+                u8()
+                cstr()
+            op_count = u8()
+            ops_start = p
+            for _oi in range(op_count):
+                need(10)
+                p += 10
+                cstr()
+            draw_p = ops_start
+            for _oi in range(op_count):
+                if draw_p + 10 > p:
+                    raise ValueError("chunk %d exercise %d draw-sim overrun"
+                                     % (chunk_idx, ex_idx))
+                opcode = payload[draw_p]
+                if opcode > 23:
+                    raise ValueError("chunk %d exercise %d opcode %d"
+                                     % (chunk_idx, ex_idx, opcode))
+                draw_p += 10
+                while draw_p < p and payload[draw_p] != 0:
+                    draw_p += 1
+                if draw_p >= p:
+                    raise ValueError("chunk %d exercise %d draw-sim label overrun"
+                                     % (chunk_idx, ex_idx))
+                draw_p += 1
+            if draw_p != p:
+                raise ValueError("chunk %d exercise %d draw/load cursor mismatch"
+                                 % (chunk_idx, ex_idx))
+        if p != end:
+            raise ValueError("chunk %d exercise %d ended at %d, expected %d, delta %d"
+                             % (chunk_idx, ex_idx, p, end, end - p))
+
+
+def verify_appvar_round_trip(bin_paths):
+    if isinstance(bin_paths, (str, Path)):
+        bin_paths = [bin_paths]
     expected = expected_appvar_structure()
-    decoded = decode_appvar_payload(payload)
+    decoded = []
+    for chunk_idx, path in enumerate(bin_paths):
+        payload = Path(path).read_bytes()
+        decoded.extend(decode_appvar_payload(payload))
+        c_parser_sim_payload(payload, chunk_idx)
     mismatch = first_mismatch(expected, decoded, "exercises")
     if mismatch:
         raise AssertionError("round-trip mismatch at %s" % mismatch)
@@ -4835,6 +7253,7 @@ def verify_appvar_round_trip(bin_path):
     line = "ROUND-TRIP OK: %d exercises, %d pages, %d ops" % (
         len(decoded), pages, ops)
     print(line)
+    print("PARSE-SIM OK")
     return line
 
 
@@ -4851,32 +7270,48 @@ def find_convbin():
 def pack_appvar(root):
     bin_dir = root / "bin"
     bin_dir.mkdir(parents=True, exist_ok=True)
-    bin_path = bin_dir / "CV3DATA.bin"
-    appvar_path = bin_dir / "CV3DATA.8xv"
-    payload = build_appvar_payload()
-    bin_path.write_bytes(payload)
+    for stale in bin_dir.glob("CV3DAT*.bin"):
+        stale.unlink()
+    for stale in bin_dir.glob("CV3DAT*.8xv"):
+        stale.unlink()
+    for stale in (bin_dir / "CV3DATA.bin", bin_dir / "CV3DATA.8xv"):
+        if stale.exists():
+            stale.unlink()
+
+    exercises = global_exercises_in_order()
+    chunks = build_appvar_chunks(exercises)
     convbin = find_convbin()
-    cmd = [
-        convbin,
-        "--iformat", "bin",
-        "--oformat", "8xv",
-        "--name", "CV3DATA",
-        "--archive",
-        "--input", str(bin_path),
-        "--output", str(appvar_path),
-    ]
-    subprocess.run(cmd, check=True)
-    verify_line = verify_appvar_round_trip(bin_path)
-    display_cmd = (
-        "%s --iformat bin --oformat 8xv --name CV3DATA --archive --input %s --output %s"
-        % (convbin, bin_path, appvar_path)
-    )
-    print("wrote %s and %s" % (bin_path, appvar_path))
+    bin_paths = []
+    appvar_paths = []
+    commands = []
+    for idx, chunk in enumerate(chunks):
+        name = "CV3DAT%d" % idx
+        bin_path = bin_dir / ("%s.bin" % name)
+        appvar_path = bin_dir / ("%s.8xv" % name)
+        bin_path.write_bytes(chunk["payload"])
+        cmd = [
+            convbin,
+            "--iformat", "bin",
+            "--oformat", "8xv",
+            "--name", name,
+            "--archive",
+            "--input", str(bin_path),
+            "--output", str(appvar_path),
+        ]
+        subprocess.run(cmd, check=True)
+        bin_paths.append(bin_path)
+        appvar_paths.append(appvar_path)
+        commands.append("%s --iformat bin --oformat 8xv --name %s --archive --input %s --output %s"
+                        % (convbin, name, bin_path, appvar_path))
+        print("wrote %s and %s (%d bytes payload)"
+              % (bin_path, appvar_path, len(chunk["payload"])))
+    verify_line = verify_appvar_round_trip(bin_paths)
     return {
-        "bin_path": bin_path,
-        "appvar_path": appvar_path,
+        "bin_paths": bin_paths,
+        "appvar_paths": appvar_paths,
         "verify_line": verify_line,
-        "convbin_cmd": display_cmd,
+        "convbin_cmds": commands,
+        "chunk_count": len(chunks),
     }
 
 

@@ -1,5 +1,7 @@
 #include "cv3.h"
 
+static void appvar_missing_loop(void);
+
 static void draw_empty_state(void) {
     gfx_FillScreen(COL_WHITE);
     gfx_SetTextFGColor(COL_BLACK);
@@ -107,15 +109,6 @@ static void draw_formula_menu(uint8_t selected) {
     }
 
     draw_footer_menu();
-}
-
-static uint8_t subject_ex_count(const Subject *subject) {
-    return (uint8_t)(subject->count + subject->extra_count);
-}
-
-static const Exercise *subject_ex_at(const Subject *subject, uint8_t index) {
-    if (index < subject->count) return &subject->items[index];
-    return &subject->extra_items[index - subject->count];
 }
 
 static int main_menu_loop(void) {
@@ -246,20 +239,31 @@ static void formulas_loop(void) {
 }
 
 static void subject_loop(uint8_t subject_index) {
-    const Subject *subject = &subjects[subject_index];
-    uint8_t ex_index = 0;
+    const SubRange *subject = &subjects[subject_index];
+    uint16_t ex_index = 0;
     uint8_t page = 0;
     bool redraw = true;
 
+    if (!appvar_available()) {
+        appvar_missing_loop();
+        return;
+    }
+
     wait_key_release();
     while (1) {
-        const Exercise *ex = subject_ex_at(subject, ex_index);
-        uint8_t total = subject_ex_count(subject);
+        uint16_t gidx = (uint16_t)(subject->start + ex_index);
+        const Exercise *ex = exercise_load(gidx);
+        uint16_t total = subject->count;
+        if (!ex) {
+            appvar_missing_loop();
+            return;
+        }
 
         check_on_exit();
         kb_Scan();
 
-        if (redraw) {
+        if (redraw && ex) {
+            exercise_set_page(page);
             draw_ex_header(subject->title, ex->title, ex_index,
                            total, page, ex->page_count);
             draw_page_template(&ex->pages[page]);
@@ -305,11 +309,11 @@ static void appvar_missing_loop(void) {
         if (redraw) {
             gfx_FillScreen(COL_WHITE);
             gfx_SetTextFGColor(COL_BLACK);
-            print_center("ANTIGOS", 8);
+            print_center("CIRCVIE3", 8);
             gfx_SetColor(COL_BLACK);
             gfx_HorizLine(0, 24, SCREEN_W);
-            print_center("CV3DATA.8xv ausente", 92);
-            print_center("Envie o arquivo CV3DATA", 114);
+            print_center("Dados ausentes", 92);
+            print_center("Envie CV3DAT0..N", 114);
             print_center("CLEAR volta", 140);
             draw_footer_ex();
             gfx_SwapDraw();
@@ -324,21 +328,25 @@ static void appvar_missing_loop(void) {
 }
 
 static void antigos_view_loop(uint8_t topic) {
-    uint8_t start = antigos_topics[topic].start;
-    uint8_t total = antigos_topics[topic].count;
-    uint8_t pos = 0;
+    uint16_t start = antigos_topics[topic].start;
+    uint16_t total = antigos_topics[topic].count;
+    uint16_t pos = 0;
     uint8_t page = 0;
     bool redraw = true;
 
     wait_key_release();
     while (1) {
         uint16_t gidx = (uint16_t)(start + pos);
-        const Exercise *ex = antigos_load(gidx);
+        const Exercise *ex = exercise_load(gidx);
+        if (!ex) {
+            appvar_missing_loop();
+            return;
+        }
         check_on_exit();
         kb_Scan();
         if (redraw && ex) {
-            antigos_set_page(page);
-            draw_ex_header(antigos_meta[gidx].subject, ex->title, pos, total,
+            exercise_set_page(page);
+            draw_ex_header(antigos_topics[topic].title, ex->title, pos, total,
                            page, ex->page_count);
             draw_page_template(&ex->pages[page]);
             draw_footer_ex();
@@ -413,12 +421,7 @@ static void antigos_loop(void) {
 
 /* ---- Component search -------------------------------------------------- */
 
-enum { SEARCH_BACK = 0, SEARCH_RUN = 1 };
-
-typedef struct {
-    bool ant;
-    uint16_t idx;
-} SearchRef;
+enum { SEARCH_BACK = 0, SEARCH_RUN = 1, SEARCH_SIN = 2, SEARCH_COS = 3 };
 
 static void draw_search_select(const uint8_t counts[5], bool show_labels,
                                bool show_counts) {
@@ -474,6 +477,9 @@ static uint8_t search_select_loop(uint8_t counts[5]) {
             redraw = true;
         }
 
+        if (pressed_once(kb_KeySin)) { wait_key_release(); return SEARCH_SIN; }
+        if (pressed_once(kb_KeyCos)) { wait_key_release(); return SEARCH_COS; }
+
         if (calc_handle_key()) redraw = true;
 
         if (pressed_once(kb_KeyEnter)) { wait_key_release(); return SEARCH_RUN; }
@@ -510,35 +516,35 @@ static void search_no_match_loop(void) {
     }
 }
 
-static void search_results_loop(const SearchRef *filtered, uint16_t fcount) {
+static void search_results_loop(const uint16_t *filtered, uint16_t fcount) {
     uint16_t idx = 0;
     uint8_t page = 0;
     bool redraw = true;
+    bool big = fcount > 10;   /* >10 results: wrap-around + 2nd jumps 10 */
+    bool jump = false;        /* armed by 2nd: next up/down moves 10 */
 
     if (fcount == 0) { search_no_match_loop(); return; }
 
     wait_key_release();
     while (1) {
-        const SearchRef *ref = &filtered[idx];
+        uint16_t gidx = filtered[idx];
+        const ExMeta *meta = &ex_meta[gidx];
         const Exercise *ex;
-        const char *subject;
+        const char *subject = meta->subject;
 
-        if (ref->ant) {
-            ex = antigos_load(ref->idx);
-            subject = antigos_meta[ref->idx].subject;
-        } else {
-            const ExEntry *e = &all_exercises[ref->idx];
-            ex = e->ex;
-            subject = e->subject;
+        ex = exercise_load(gidx);
+        if (!ex) {
+            appvar_missing_loop();
+            return;
         }
 
         check_on_exit();
         kb_Scan();
 
         if (redraw && ex) {
-            if (ref->ant) antigos_set_page(page);
-            draw_ex_header(subject, ex->title, (uint8_t)idx,
-                           (uint8_t)fcount, page, ex->page_count);
+            exercise_set_page(page);
+            draw_ex_header(subject, ex->title, idx, fcount,
+                           page, ex->page_count);
             draw_page_template(&ex->pages[page]);
             draw_footer_ex();
             gfx_SwapDraw();
@@ -549,15 +555,39 @@ static void search_results_loop(const SearchRef *filtered, uint16_t fcount) {
         if ((pressed_once(kb_KeyRight) || pressed_once(kb_KeyEnter)) &&
             page + 1 < ex->page_count) { page++; redraw = true; }
         if (pressed_once(kb_KeyLeft) && page > 0) { page--; redraw = true; }
-        if (pressed_once(kb_KeyDown) && idx + 1 < fcount) { idx++; page = 0; redraw = true; }
-        if (pressed_once(kb_KeyUp) && idx > 0) { idx--; page = 0; redraw = true; }
+
+        if (big && pressed_once(kb_Key2nd)) jump = !jump;
+        {
+            bool dn = pressed_once(kb_KeyDown);
+            bool up = pressed_once(kb_KeyUp);
+            if (dn || up) {
+                uint16_t old = idx;
+                uint16_t step = (big && jump) ? 10 : 1;
+                if (big) {
+                    /* infinite scroll: wrap modulo fcount */
+                    if (dn) idx = (uint16_t)((idx + step) % fcount);
+                    else    idx = (uint16_t)((idx + fcount - (step % fcount)) % fcount);
+                } else {
+                    if (dn && idx + 1 < fcount) idx++;
+                    else if (up && idx > 0) idx--;
+                }
+                jump = false;
+                if (idx != old) { page = 0; redraw = true; }
+            }
+        }
         delay(15);
     }
 }
 
 static void search_flow(void) {
     static uint8_t counts[5] = { 0, 0, 0, 0, 0 };  /* persists across entries */
-    static SearchRef filtered[256];
+    static uint16_t filtered[256];
+    const uint16_t cap = (uint16_t)(sizeof(filtered) / sizeof(filtered[0]));
+
+    if (!appvar_available()) {
+        appvar_missing_loop();
+        return;
+    }
 
     while (1) {
         uint8_t action = search_select_loop(counts);
@@ -565,29 +595,25 @@ static void search_flow(void) {
 
         if (action == SEARCH_BACK) return;
 
-        for (i = 0; i < all_exercises_count; i++) {
-            const ExEntry *e = &all_exercises[i];
-            if (e->comp[0] >= counts[0] && e->comp[1] >= counts[1] &&
-                e->comp[2] >= counts[2] && e->comp[3] >= counts[3] &&
-                e->comp[4] >= counts[4]) {
-                if (fcount < (uint16_t)(sizeof(filtered) / sizeof(filtered[0]))) {
-                    filtered[fcount].ant = false;
-                    filtered[fcount].idx = i;
-                    fcount++;
-                }
+        if (action == SEARCH_SIN || action == SEARCH_COS) {
+            /* sin = sem grafico, cos = com grafico (generated lists). */
+            const uint16_t *src = (action == SEARCH_SIN) ? nofig_items : withfig_items;
+            uint16_t n = (action == SEARCH_SIN) ? nofig_count : withfig_count;
+            for (i = 0; i < n; i++) {
+                if (fcount < cap) filtered[fcount++] = src[i];
             }
+            search_results_loop(filtered, fcount);
+            continue;
         }
-        if (appvar_available()) {
-            for (i = 0; i < antigos_meta_count; i++) {
-                const AntMeta *m = &antigos_meta[i];
-                if (m->comp[0] >= counts[0] && m->comp[1] >= counts[1] &&
-                    m->comp[2] >= counts[2] && m->comp[3] >= counts[3] &&
-                    m->comp[4] >= counts[4]) {
-                    if (fcount < (uint16_t)(sizeof(filtered) / sizeof(filtered[0]))) {
-                        filtered[fcount].ant = true;
-                        filtered[fcount].idx = i;
-                        fcount++;
-                    }
+
+        /* SEARCH_RUN: filter by component minimums over all exercises. */
+        for (i = 0; i < ex_count; i++) {
+            const ExMeta *m = &ex_meta[i];
+            if (m->comp[0] >= counts[0] && m->comp[1] >= counts[1] &&
+                m->comp[2] >= counts[2] && m->comp[3] >= counts[3] &&
+                m->comp[4] >= counts[4]) {
+                if (fcount < cap) {
+                    filtered[fcount++] = i;
                 }
             }
         }

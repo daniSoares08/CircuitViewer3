@@ -86,12 +86,23 @@ void draw_header(const char *title, uint8_t page, uint8_t total) {
     gfx_HorizLine(0, 14, SCREEN_W);
 }
 
+static void append_u16(char *buf, uint8_t *pos, uint16_t value) {
+    char tmp[5];
+    uint8_t n = 0;
+    do {
+        tmp[n++] = (char)('0' + (value % 10));
+        value /= 10;
+    } while (value && n < sizeof(tmp));
+    while (n) {
+        buf[(*pos)++] = tmp[--n];
+    }
+}
+
 void draw_ex_header(const char *subject, const char *ex_title,
-                    uint8_t ex, uint8_t ex_total,
+                    uint16_t ex, uint16_t ex_total,
                     uint8_t page, uint8_t page_total) {
-    char meta[21];
+    char meta[26];
     uint8_t pos = 0;
-    uint8_t n;
 
     gfx_FillScreen(COL_WHITE);
     gfx_SetColor(COL_BLACK);
@@ -100,22 +111,16 @@ void draw_ex_header(const char *subject, const char *ex_title,
     meta[pos++] = 'E';
     meta[pos++] = 'x';
     meta[pos++] = ' ';
-    n = (uint8_t)(ex + 1);
-    if (n >= 10) meta[pos++] = (char)('0' + n / 10);
-    meta[pos++] = (char)('0' + n % 10);
+    append_u16(meta, &pos, (uint16_t)(ex + 1));
     meta[pos++] = '/';
-    if (ex_total >= 10) meta[pos++] = (char)('0' + ex_total / 10);
-    meta[pos++] = (char)('0' + ex_total % 10);
+    append_u16(meta, &pos, ex_total);
     meta[pos++] = ' ';
     meta[pos++] = 'P';
     meta[pos++] = 'g';
     meta[pos++] = ' ';
-    n = (uint8_t)(page + 1);
-    if (n >= 10) meta[pos++] = (char)('0' + n / 10);
-    meta[pos++] = (char)('0' + n % 10);
+    append_u16(meta, &pos, (uint16_t)(page + 1));
     meta[pos++] = '/';
-    if (page_total >= 10) meta[pos++] = (char)('0' + page_total / 10);
-    meta[pos++] = (char)('0' + page_total % 10);
+    append_u16(meta, &pos, page_total);
     meta[pos] = '\0';
     prn(meta, 190, 2);
     gfx_HorizLine(0, 14, SCREEN_W);

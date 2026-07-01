@@ -2,13 +2,13 @@
 #include <fileioc.h>
 #include <string.h>
 
-#define AV_NAME "CV3DATA"
-#define AV_MAXP 10
+#define AV_MAXC 8
+#define AV_MAXP 12
 #define AV_MAXL 8
 
-static const uint8_t *av_base;
+static const uint8_t *chunk_base[AV_MAXC];
+static uint16_t chunk_items[AV_MAXC];
 static bool av_ok = false;
-static uint16_t av_count;
 
 static Exercise m_ex;
 static PageTemplate m_pages[AV_MAXP];
@@ -32,23 +32,38 @@ static const char *rcstr(const uint8_t **pp) {
 }
 
 void appvar_init(void) {
-    uint8_t f = ti_Open(AV_NAME, "r");
+    uint8_t i;
     av_ok = false;
-    if (!f) return;
-    av_base = (const uint8_t *)ti_GetDataPtr(f);
-    ti_Close(f);
-    if (av_base && av_base[0] == 'C' && av_base[1] == 'V' &&
-        av_base[2] == '3' && av_base[3] == 'A') {
-        av_count = ru16(av_base + 6);
-        av_ok = true;
+    for (i = 0; i < AV_MAXC; i++) {
+        chunk_base[i] = NULL;
+        chunk_items[i] = 0;
     }
+    if (chunk_count > AV_MAXC) return;
+    for (i = 0; i < chunk_count; i++) {
+        char name[8] = "CV3DAT0";
+        uint8_t f;
+        const uint8_t *base;
+        name[6] = (char)('0' + i);
+        f = ti_Open(name, "r");
+        if (!f) return;
+        base = (const uint8_t *)ti_GetDataPtr(f);
+        ti_Close(f);
+        if (!base || base[0] != 'C' || base[1] != 'V' ||
+            base[2] != '3' || base[3] != 'A' ||
+            base[4] != 1 || base[5] != 0) {
+            return;
+        }
+        chunk_base[i] = base;
+        chunk_items[i] = ru16(base + 6);
+    }
+    av_ok = true;
 }
 
 bool appvar_available(void) {
     return av_ok;
 }
 
-void antigos_set_page(uint8_t page) {
+void exercise_set_page(uint8_t page) {
     m_cur = page;
 }
 
@@ -95,12 +110,18 @@ static void av_draw_circuit(void) {
     }
 }
 
-const Exercise *antigos_load(uint16_t idx) {
+const Exercise *exercise_load(uint16_t idx) {
+    const ExMeta *meta;
+    const uint8_t *base;
     const uint8_t *p;
     uint8_t pc;
     uint8_t pg;
-    if (!av_ok || idx >= av_count) return NULL;
-    p = av_base + ru16(av_base + 8 + 2 * idx);
+    if (!av_ok || idx >= ex_count) return NULL;
+    meta = &ex_meta[idx];
+    if (meta->chunk >= chunk_count) return NULL;
+    base = chunk_base[meta->chunk];
+    if (!base || meta->local >= chunk_items[meta->chunk]) return NULL;
+    p = base + ru16(base + 8 + 2 * meta->local);
     pc = *p++;
     if (pc > AV_MAXP) pc = AV_MAXP;
     for (pg = 0; pg < pc; pg++) {
@@ -140,7 +161,7 @@ const Exercise *antigos_load(uint16_t idx) {
             m_pages[pg].body = oc ? av_draw_circuit : 0;
         }
     }
-    m_ex.title = antigos_meta[idx].title;
+    m_ex.title = meta->title;
     m_ex.pages = m_pages;
     m_ex.page_count = pc;
     return &m_ex;

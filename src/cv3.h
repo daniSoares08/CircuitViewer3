@@ -10,7 +10,7 @@
 
 #define SCREEN_W 320
 #define SCREEN_H 240
-#define COUNT_OF(a) ((uint8_t)(sizeof(a) / sizeof((a)[0])))
+#define COUNT_OF(a) (sizeof(a) / sizeof((a)[0]))
 
 enum {
     COL_WHITE = 0,
@@ -62,11 +62,18 @@ typedef struct {
 
 typedef struct {
     const char *title;
-    const Exercise *items;
-    uint8_t count;
-    const Exercise *extra_items;
-    uint8_t extra_count;
-} Subject;
+    const char *subject;
+    uint8_t chunk;
+    uint16_t local;
+    uint8_t page_count;
+    uint8_t comp[5];
+} ExMeta;
+
+typedef struct {
+    const char *title;
+    uint16_t start;
+    uint16_t count;
+} SubRange;
 
 typedef struct {
     const char *title;
@@ -76,42 +83,25 @@ typedef struct {
 
 extern const FormulaTopic formula_topics[];
 extern const uint8_t formula_count;
-extern const Subject subjects[];
+extern const ExMeta ex_meta[];
+extern const uint16_t ex_count;
+extern const uint8_t chunk_count;
+extern const SubRange subjects[];
 extern const uint8_t subject_count;
+extern const SubRange antigos_topics[];
+extern const uint8_t antigos_topic_count;
 extern const MenuItem menu_items[];
 extern const uint8_t menu_count;
 
-typedef struct {
-    const char *title;
-    uint8_t start;
-    uint8_t count;
-} AntTopic;
-
-typedef struct {
-    const char *title;
-    const char *subject;
-    uint8_t page_count;
-    uint8_t comp[5];
-} AntMeta;
-
-extern const AntTopic antigos_topics[];
-extern const uint8_t antigos_topic_count;
-extern const AntMeta antigos_meta[];
-extern const uint16_t antigos_meta_count;
-
-typedef struct {
-    const Exercise *ex;
-    const char *subject;
-    uint8_t comp[5];   /* res, FT, FC, cap, ind */
-} ExEntry;
-
-extern const ExEntry all_exercises[];
-extern const uint16_t all_exercises_count;
+extern const uint16_t nofig_items[];     /* sin: sem grafico */
+extern const uint16_t nofig_count;
+extern const uint16_t withfig_items[];   /* cos: com grafico */
+extern const uint16_t withfig_count;
 
 void appvar_init(void);
 bool appvar_available(void);
-const Exercise *antigos_load(uint16_t meta_index);
-void antigos_set_page(uint8_t page);
+const Exercise *exercise_load(uint16_t global_idx);
+void exercise_set_page(uint8_t page);
 
 void check_on_exit(void);
 uint8_t pressed_once(kb_lkey_t key);
@@ -122,7 +112,7 @@ void print_center(const char *text, int y);
 void prn(const char *text, int x, int y);
 void draw_header(const char *title, uint8_t page, uint8_t total);
 void draw_ex_header(const char *subject, const char *ex_title,
-                    uint8_t ex, uint8_t ex_total,
+                    uint16_t ex, uint16_t ex_total,
                     uint8_t page, uint8_t page_total);
 void draw_footer_menu(void);
 void draw_footer_formula(void);

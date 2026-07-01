@@ -11,3 +11,5 @@ LIVRO_ORIGINAL.pdf
 __pycache__
 /obj/*
 .vscode
+.codex
+EXERCICIOS_ANTIGOS_ENCONTRADOS.md
